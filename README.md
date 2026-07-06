@@ -192,7 +192,7 @@ Use these inside any Markdown page:
 Aim for **two** organizers at every event.
 {{%/* /callout */%}}
 
-{{%/* persona name="Linda Lee" title="Defang" photo="images/linda.jpg" */%}}
+{{%/* persona name="Jordan Rivera" title="Example Co." photo="images/jordan.jpg" */%}}
 Short bio goes here.
 {{%/* /persona */%}}
 
