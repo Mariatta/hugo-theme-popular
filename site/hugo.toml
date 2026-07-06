@@ -49,17 +49,8 @@ theme = "hugo-theme-popular"
   favicon = "images/logo.png"
   ogImage = "images/hero.png"
 
-  # Gold (marquee) · sunglass black · periwinkle, the theme's own identity
-  [params.brand]
-    primary       = "#a16207"
-    primaryHover  = "#854d0e"
-    primaryActive = "#713f12"
-    secondary     = "#141417"
-    accent        = "#7d8ff2"
-    ink           = "#141417"
-    surfaceWash   = "#f9edc9"
-    surfaceWashSoft = "#fdf7e7"
-    surfaceInk    = "#141417"
+  # No [params.brand] block: this site runs the theme's default identity
+  # (marquee gold, sunglass black, periwinkle) straight out of the box.
 
   [params.cta]
     label = "Get started"

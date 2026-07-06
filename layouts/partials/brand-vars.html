@@ -7,14 +7,14 @@
 <style id="popular-brand">html:root{
 {{- with $b.primary }}
   --color-primary: {{ . }};
-  --raspberry-500: {{ . }};
-  --raspberry-50: color-mix(in srgb, {{ . }} 7%, #fff);
-  --raspberry-300: color-mix(in srgb, {{ . }} 55%, #fff);
+  --gold-500: {{ . }};
+  --gold-50: color-mix(in srgb, {{ . }} 7%, #fff);
+  --gold-300: color-mix(in srgb, {{ . }} 55%, #fff);
 {{- end }}
 {{- with $b.primaryHover }}  --color-primary-hover: {{ . }};{{ end }}
 {{- with $b.primaryActive }}
   --color-primary-active: {{ . }};
-  --raspberry-700: {{ . }};
+  --gold-700: {{ . }};
   --text-link: {{ . }};
 {{- end }}
 {{- with $b.link }}  --text-link: {{ . }};{{ end }}
