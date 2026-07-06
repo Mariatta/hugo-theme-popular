@@ -13,7 +13,7 @@ Popular is here: a warm, community-first theme for meetups, clubs, and fan commu
 
 Most themes are built for commerce, portfolios, or personal blogs. Search any theme gallery for "community" and what you'll find are conference themes: one event, with ticketing, a venue map, and a countdown clock. Those work for launching a single conference. They don't work for an ongoing community, a grassroots meetup that gathers month after month, whose history is as much a part of its identity as its next event. Community organizers end up rebuilding the same site from scratch, over and over.
 
-Popular's creator has spent ten years organizing meetups and conferences, and one too many of those rebuilds. This theme is the distillation of what a community actually needs from its website: upcoming and past events, a blog for recaps and news, speaker and organizer profiles, and a clear path for a newcomer to show up. All of it ships in the box.
+Popular's creator has spent ten years organizing meetups and conferences, and one too many of those rebuilds. This theme is the distillation of what a community needs from its website: upcoming and past events, a blog for recaps and news, speaker and organizer profiles, and a clear path for a newcomer to show up. All of it ships in the box.
 
 ## What's in the box
 

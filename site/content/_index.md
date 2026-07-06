@@ -37,7 +37,7 @@ title = "Home"
 [featuresHead]
   eyebrow = "Capabilities"
   title = "Everything a community site needs"
-  lead = "Built from years of organizing real conferences and meetups, not a generic blog theme with an events page bolted on. Every feature exists because a community actually needed it."
+  lead = "Built from years of organizing real conferences and meetups, not a generic blog theme with an events page bolted on. Every feature exists because a community needed it."
 
 [[features]]
   icon = "fa-solid fa-calendar-day"
@@ -85,7 +85,7 @@ title = "Home"
 [getInvolved]
   eyebrow = "Get started"
   title = "Your community's site, live this afternoon"
-  lead = "Copy a demo, change one config file, add your content. That's genuinely the whole workflow."
+  lead = "Copy a demo, change one config file, add your content. That's the whole workflow."
   [[getInvolved.ctas]]
     label = "Quick start"
     url = "/docs/quick-start/"
