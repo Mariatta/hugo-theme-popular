@@ -16,7 +16,7 @@ Add the theme to your Hugo site as a git submodule (or copy the folder into `the
 ```bash
 hugo new site my-community && cd my-community
 git init
-git submodule add https://github.com/your-org/hugo-theme-popular.git themes/popular
+git submodule add https://github.com/Mariatta/hugo-theme-popular.git themes/popular
 ```
 {{% /fw %}}
 
@@ -24,13 +24,13 @@ git submodule add https://github.com/your-org/hugo-theme-popular.git themes/popu
 Use the Astro repo as a template, it *is* a runnable site:
 
 ```bash
-npm create astro@latest -- --template your-org/astro-popular my-community
+npm create astro@latest -- --template Mariatta/astro-popular my-community
 cd my-community && npm install
 ```
 {{% /fw %}}
 
 {{% callout tone="info" title="Building with an AI agent?" %}}
-Both repos ship an `AGENTS.md` written for coding agents and new contributors alike: repo layout, build commands, content how-tos, and the known gotchas. Point your agent at it before its first edit ([Hugo](https://github.com/your-org/hugo-theme-popular/blob/main/AGENTS.md) · [Astro](https://github.com/your-org/astro-popular/blob/main/AGENTS.md)), and skim it yourself, it doubles as the fastest human orientation.
+Both repos ship an `AGENTS.md` written for coding agents and new contributors alike: repo layout, build commands, content how-tos, and the known gotchas. Point your agent at it before its first edit ([Hugo](https://github.com/Mariatta/hugo-theme-popular/blob/main/AGENTS.md) · [Astro](https://github.com/Mariatta/astro-popular/blob/main/AGENTS.md)), and skim it yourself, it doubles as the fastest human orientation.
 {{% /callout %}}
 
 ## 2 · Start from an example

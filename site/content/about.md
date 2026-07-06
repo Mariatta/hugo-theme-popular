@@ -38,4 +38,4 @@ Popular is free and MIT licensed, and the best support is seeing it used. If the
 - All demo content is fictional; demo imagery is generated placeholder art
 - **MIT licensed**: fork it, re-brand it, and share your community's version
 
-{{< button url="https://github.com/your-org/hugo-theme-popular" label="Hugo repo" icon="fa-brands fa-github" >}} {{< button url="https://github.com/your-org/astro-popular" label="Astro repo" variant="outline" icon="fa-brands fa-github" >}}
+{{< button url="https://github.com/Mariatta/hugo-theme-popular" label="Hugo repo" icon="fa-brands fa-github" >}} {{< button url="https://github.com/Mariatta/astro-popular" label="Astro repo" variant="outline" icon="fa-brands fa-github" >}}

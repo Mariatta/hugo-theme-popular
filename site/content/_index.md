@@ -17,7 +17,7 @@ title = "Home"
     variant = "outline"
   [[hero.ctas]]
     label = "For AI agents"
-    url = "https://github.com/your-org/hugo-theme-popular/blob/main/AGENTS.md"
+    url = "https://github.com/Mariatta/hugo-theme-popular/blob/main/AGENTS.md"
     icon = "fa-solid fa-robot"
     variant = "ghost"
 

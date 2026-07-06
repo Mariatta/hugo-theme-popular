@@ -57,7 +57,7 @@ writers: plus the plain `author = "Name"` string as a fallback.
 **As a Git submodule** (recommended):
 
 ```bash
-git submodule add https://github.com/your-org/hugo-theme-popular.git themes/popular
+git submodule add https://github.com/Mariatta/hugo-theme-popular.git themes/popular
 ```
 
 …or copy the `hugo-theme-popular/` folder into your site as `themes/popular`.

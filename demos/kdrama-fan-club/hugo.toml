@@ -69,7 +69,7 @@ buildFuture = true
 
   [params.demoBar]
     current = "kdrama"
-    repo = "https://github.com/your-org/hugo-theme-popular"
+    repo = "https://github.com/Mariatta/hugo-theme-popular"
     [[params.demoBar.links]]
       slug = "aquarium"
       label = "Aquarium"

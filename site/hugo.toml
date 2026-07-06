@@ -69,7 +69,7 @@ theme = "hugo-theme-popular"
   [[params.social]]
     label = "GitHub"
     icon  = "fa-brands fa-github"
-    url   = "https://github.com/your-org/hugo-theme-popular"
+    url   = "https://github.com/Mariatta/hugo-theme-popular"
   [[params.social]]
     label = "RSS"
     icon  = "fa-solid fa-rss"
@@ -86,7 +86,7 @@ theme = "hugo-theme-popular"
       variant = "primary"
     [[params.support.ctas]]
       label = "Star the repo"
-      url = "https://github.com/your-org/hugo-theme-popular"
+      url = "https://github.com/Mariatta/hugo-theme-popular"
       variant = "outline"
 
   [params.footer]
@@ -109,10 +109,10 @@ theme = "hugo-theme-popular"
       title = "Project"
       [[params.footer.columns.links]]
         label = "Hugo repo"
-        url = "https://github.com/your-org/hugo-theme-popular"
+        url = "https://github.com/Mariatta/hugo-theme-popular"
       [[params.footer.columns.links]]
         label = "Astro repo"
-        url = "https://github.com/your-org/astro-popular"
+        url = "https://github.com/Mariatta/astro-popular"
       [[params.footer.columns.links]]
         label = "About & credits"
         url = "/about/"
@@ -126,4 +126,4 @@ theme = "hugo-theme-popular"
         url = "/sponsors/"
       [[params.footer.columns.links]]
         label = "Star the repo"
-        url = "https://github.com/your-org/hugo-theme-popular"
+        url = "https://github.com/Mariatta/hugo-theme-popular"

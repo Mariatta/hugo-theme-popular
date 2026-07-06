@@ -55,5 +55,5 @@ jobs:
       #     curl -X POST \
       #       -H "Authorization: Bearer ${{ secrets.SISTER_REPO_TOKEN }}" \
       #       -H "Accept: application/vnd.github+json" \
-      #       https://api.github.com/repos/your-org/astro-popular/dispatches \
+      #       https://api.github.com/repos/Mariatta/astro-popular/dispatches \
       #       -d '{"event_type":"hugo-parity","client_payload":{"sha":"${{ github.sha }}"}}'
