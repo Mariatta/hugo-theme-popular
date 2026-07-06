@@ -1,0 +1,27 @@
+{{- /* Dark footer: brand + land acknowledgement + link columns + socials. */ -}}
+<footer class="g-footer">
+  <div class="g-container g-footer__top">
+    <div class="g-footer__brand">
+      {{ with site.Params.logo }}<img src="{{ . | relURL }}" alt="{{ site.Title }}">{{ end }}
+      {{ with site.Params.landAcknowledgement }}<p class="g-footer__ack">{{ . }}</p>{{ end }}
+      {{ partial "social.html" . }}
+    </div>
+
+    {{ range site.Params.footer.columns }}
+      <div class="g-footer__col">
+        <div class="g-footer__col-title">{{ .title }}</div>
+        <ul>
+          {{ range .links }}<li><a href="{{ .url | relLangURL }}">{{ .label }}</a></li>{{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  </div>
+
+  <div class="g-footer__bottom">
+    <div class="g-container">
+      <span>© {{ now.Year }} {{ site.Title }}</span>
+      {{ with site.Params.footer.credit }}<span><a href="{{ .url }}" rel="noopener">{{ .label }}</a></span>{{ end }}
+      {{ with site.Params.footer.tagline }}<span>{{ . }}</span>{{ end }}
+    </div>
+  </div>
+</footer>

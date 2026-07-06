@@ -1,0 +1,10 @@
+{{ define "main" }}
+{{ partial "page-hero.html" (dict "eyebrow" .Params.eyebrow "title" .Title "lead" .Params.lead) }}
+<section class="g-bg-white g-section">
+  <div class="g-container">
+    <div class="g-article g-prose">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+{{ end }}

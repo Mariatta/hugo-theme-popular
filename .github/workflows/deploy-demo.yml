@@ -1,0 +1,74 @@
+name: Deploy theme site + demos (GitHub Pages)
+
+# Publishes the theme's product site at the Pages root, with the three demo
+# sites at subpaths:
+#
+#   /            ← site/ (Popular product site, docs, blog, about)
+#   /aquarium/   ← demos/rocky-cove-aquarium
+#   /foodie/     ← demos/lucky-town-foodie
+#   /kdrama/     ← demos/kdrama-fan-club
+#   /superfan/   ← demos/truly-madly-riley
+#
+# Enable Pages first: repo Settings → Pages → Source: "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build product site + demos
+        env:
+          BASE: ${{ steps.pages.outputs.base_url }}
+        run: |
+          THEME="$(basename "$GITHUB_WORKSPACE")"
+          build () {  # build <source-dir> <dest-subpath ("" for root)>
+            hugo --source "$1" \
+                 --themesDir "$(realpath --relative-to="$1" "$GITHUB_WORKSPACE/..")" \
+                 --theme "$THEME" \
+                 --baseURL "$BASE/$2" \
+                 --destination "$GITHUB_WORKSPACE/public/$2" \
+                 --minify
+          }
+          build site ""
+          build demos/rocky-cove-aquarium aquarium/
+          build demos/lucky-town-foodie foodie/
+          build demos/kdrama-fan-club kdrama/
+          build demos/truly-madly-riley superfan/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

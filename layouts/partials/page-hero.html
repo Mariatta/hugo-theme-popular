@@ -1,0 +1,10 @@
+{{- /* Interior page hero band. Call with a dict:
+       {{ partial "page-hero.html" (dict "eyebrow" "Blog" "title" .Title "lead" .Params.lead) }} */ -}}
+<header class="g-pagehero">
+  <div class="g-container">
+    {{ with .eyebrow }}<span class="g-eyebrow">{{ . }}</span>{{ end }}
+    <h1>{{ .title }}</h1>
+    {{ with .lead }}<p class="g-pagehero__lead">{{ . }}</p>{{ end }}
+    {{ with .actions }}<div class="g-row" style="margin-top:var(--space-4)">{{ . | safeHTML }}</div>{{ end }}
+  </div>
+</header>

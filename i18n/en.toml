@@ -1,0 +1,162 @@
+# Popular theme UI strings. Override any of these by creating i18n/<lang>.toml
+# in your site root. Keys map 1:1 to STRINGS in astro-popular's config.ts
+# (see PARITY.md).
+
+[skipToContent]
+other = "Skip to content"
+
+[primaryNav]
+other = "Primary"
+
+[toggleMenu]
+other = "Toggle menu"
+
+[nextMeetup]
+other = "Next meetup"
+
+[venueTba]
+other = "Venue to be announced"
+
+[rsvp]
+other = "RSVP"
+
+[rsvpExternal]
+other = "RSVP on Luma"
+
+[allEvents]
+other = "All events"
+
+[comingUp]
+other = "Coming up"
+
+[upcomingEvents]
+other = "Upcoming events"
+
+[upcomingLead]
+other = "Save your seat early, space is limited and our rooms fill up."
+
+[noUpcomingEvents]
+other = "Nothing on the calendar right now, follow us to hear when the next one lands."
+
+[lookingBack]
+other = "Looking back"
+
+[pastEvents]
+other = "Past events"
+
+[venueWanted]
+other = "Venue wanted"
+
+[confirmed]
+other = "Confirmed"
+
+[fromTheBlog]
+other = "From the blog"
+
+[latestFromCommunity]
+other = "Latest from our community"
+
+[readTheBlog]
+other = "Read the blog"
+
+[allPosts]
+other = "All posts"
+
+[filterLabel]
+other = "Filter:"
+
+[filterAll]
+other = "All"
+
+[subscribeRss]
+other = "Subscribe via RSS"
+
+[noPosts]
+other = "No posts yet, check back soon."
+
+[ourSpeaker]
+other = "Our speaker"
+
+[minRead]
+one = "{{ .Count }} min read"
+other = "{{ .Count }} min read"
+
+[authorsBy]
+other = "By"
+
+[listSeparator]
+other = ", "
+
+[listSeparatorFinal]
+other = " & "
+
+[posts]
+other = "Posts"
+
+[guest]
+other = "Guest"
+
+[website]
+other = "Website"
+
+[checklist]
+other = "Checklist"
+
+[copyCode]
+other = "Copy code"
+
+[checklistDone]
+other = "done"
+
+[writtenBy]
+other = "Written by {{ . }}"
+
+[subscribeRssTitle]
+other = "Follow new posts in any feed reader"
+
+[eyebrowBlog]
+other = "Blog"
+
+[eyebrowEvents]
+other = "Events"
+
+[eyebrowAuthor]
+other = "Author"
+
+[eyebrowDocs]
+other = "Docs"
+
+# Used by the Astro implementation's tag pages; kept here so the key set
+# matches STRINGS in astro-popular's config.ts (see PARITY.md).
+[eyebrowTag]
+other = "Tag"
+
+[taggedCount]
+other = "{{ .Count }} post(s) tagged"
+
+[speakers]
+other = "Speakers"
+
+[eyebrowSpeaker]
+other = "Speaker"
+
+[sessionsBy]
+other = "Sessions by {{ . }}"
+
+[eyebrowVenue]
+other = "Venue"
+
+[venueEvents]
+other = "Events held here"
+
+[beforeYouArrive]
+other = "Before you arrive"
+
+[paginationLabel]
+other = "Pagination"
+
+[paginationPrev]
+other = "Previous"
+
+[paginationNext]
+other = "Next"

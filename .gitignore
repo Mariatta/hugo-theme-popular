@@ -1,0 +1,11 @@
+# Hugo build output (any site in the repo: site/, exampleSite/, demos/*)
+public/
+resources/_gen/
+.hugo_build.lock
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Python bytecode from the helper-script tests
+__pycache__/

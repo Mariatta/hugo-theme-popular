@@ -1,0 +1,59 @@
+name: Parity reminder (Hugo → Astro)
+
+# Whenever shared or parallel files change on main, open a `parity` issue
+# reminding maintainers to port the change to astro-popular.
+# See PARITY.md for the contract.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/css/**"
+      - "assets/js/**"
+      - "layouts/**"
+      - "exampleSite/content/**"
+      - "exampleSite/hugo.toml"
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open parity issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commits = context.payload.commits || [];
+            const files = [...new Set(commits.flatMap(c => [...(c.added||[]), ...(c.modified||[]), ...(c.removed||[])]))]
+              .filter(f => /^(assets\/(css|js)\/|layouts\/|exampleSite\/(content\/|hugo\.toml))/.test(f));
+            if (!files.length) return;
+            const title = `Parity: port ${files.length} changed file(s) to astro-popular`;
+            const body = [
+              "Files changed on `main` that have a counterpart in **astro-popular** (see PARITY.md):",
+              "",
+              ...files.map(f => `- \`${f}\``),
+              "",
+              `Commit range: ${context.payload.before?.slice(0,7)}…${context.payload.after?.slice(0,7)}`,
+              "",
+              "- [ ] Ported to astro-popular (or intentionally Hugo-only, explain below)",
+            ].join("\n");
+            // Reuse a single open parity issue if one exists
+            const open = await github.rest.issues.listForRepo({ ...context.repo, labels: "parity", state: "open" });
+            if (open.data.length) {
+              await github.rest.issues.createComment({ ...context.repo, issue_number: open.data[0].number, body });
+            } else {
+              await github.rest.issues.create({ ...context.repo, title, body, labels: ["parity"] });
+            }
+
+      # Optional: also notify the astro-popular repo directly.
+      # Requires a PAT with repo scope stored as SISTER_REPO_TOKEN, then
+      # a `repository_dispatch` listener in astro-popular.
+      # - name: Dispatch to astro-popular
+      #   run: |
+      #     curl -X POST \
+      #       -H "Authorization: Bearer ${{ secrets.SISTER_REPO_TOKEN }}" \
+      #       -H "Accept: application/vnd.github+json" \
+      #       https://api.github.com/repos/your-org/astro-popular/dispatches \
+      #       -d '{"event_type":"hugo-parity","client_payload":{"sha":"${{ github.sha }}"}}'

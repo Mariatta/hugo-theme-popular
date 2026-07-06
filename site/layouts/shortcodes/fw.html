@@ -1,0 +1,6 @@
+{{- /* fw: framework-specific block. Usage (percent shortcode syntax):
+       fw "hugo" ...markdown... /fw
+       Shown/hidden by the fwswitch toggle on the page. */ -}}
+<div class="fw-block" data-fw="{{ .Get 0 }}">
+  {{ .Inner }}
+</div>

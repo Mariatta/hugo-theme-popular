@@ -1,0 +1,13 @@
+name = "Popular"
+license = "MIT"
+licenselink = "https://github.com/your-org/hugo-theme-popular/blob/main/LICENSE"
+description = "Built to make your community seen and famous. A warm, community-first Hugo theme for meetups, user groups and small events: blog, events, organizers, and a docs area for handbooks & runbooks. Fully re-themeable from config."
+homepage = "https://github.com/your-org/hugo-theme-popular"
+demosite = "https://your-org.github.io/hugo-theme-popular"
+tags = ["blog", "community", "meetup", "events", "docs", "responsive", "accessible"]
+features = ["blog", "events", "organizers", "docs", "checklists", "config-theming"]
+min_version = "0.126.0"
+
+[author]
+  name = "Your Community"
+  homepage = "https://example.com"

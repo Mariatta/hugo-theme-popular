@@ -1,0 +1,47 @@
+name: Images must have alt text
+
+# Builds every site in the repo (docs site, exampleSite, three demos) and fails
+# if any <img> in the output lacks a non-empty alt attribute, or any markdown
+# image in content sources has empty alt text. See scripts/check-image-alt.py.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+
+      - name: Build all sites
+        run: |
+          THEME="$(basename "$GITHUB_WORKSPACE")"
+          build () {  # build <source-dir> <dest-subdir>
+            hugo --source "$1" \
+                 --themesDir "$(realpath --relative-to="$1" "$GITHUB_WORKSPACE/..")" \
+                 --theme "$THEME" \
+                 --destination "$GITHUB_WORKSPACE/alt-check-out/$2"
+          }
+          build site site
+          build exampleSite example
+          build demos/rocky-cove-aquarium aquarium
+          build demos/lucky-town-foodie foodie
+          build demos/kdrama-fan-club kdrama
+          build demos/truly-madly-riley superfan
+
+      - name: Check image alt text
+        run: |
+          python3 scripts/check-image-alt.py \
+            alt-check-out \
+            site/content exampleSite/content \
+            demos/rocky-cove-aquarium/content \
+            demos/lucky-town-foodie/content \
+            demos/kdrama-fan-club/content

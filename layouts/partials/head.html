@@ -1,0 +1,30 @@
+{{- /* <head> contents: meta, fonts, concatenated CSS pipeline, brand token overrides */ -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ if site.Params.tagline }}, {{ site.Params.tagline }}{{ end }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+
+{{ partial "seo.html" . }}
+
+{{- /* FontAwesome (icons). Swap the version/URL in config if you self-host. */ -}}
+{{- $fa := site.Params.fontAwesome | default "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" -}}
+<link rel="stylesheet" href="{{ $fa }}" referrerpolicy="no-referrer">
+
+{{- /* CSS pipeline: tokens first (so overrides cascade), then base + components.
+       fonts.css must stay first because it carries the @import for web fonts. */ -}}
+{{- $bundle := slice
+    (resources.Get "css/tokens/fonts.css")
+    (resources.Get "css/tokens/colors.css")
+    (resources.Get "css/tokens/typography.css")
+    (resources.Get "css/tokens/spacing.css")
+    (resources.Get "css/tokens/elevation.css")
+    (resources.Get "css/base.css")
+    (resources.Get "css/components.css") -}}
+{{- $css := $bundle | resources.Concat "css/popular.css" -}}
+{{- if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>
+
+{{- /* Brand overrides from config, recolor/retype the whole site here. */ -}}
+{{ partial "brand-vars.html" . }}
+
+{{ with (site.Params.favicon | default site.Params.logo) }}<link rel="icon" href="{{ . | relURL }}">{{ end }}
+{{ range site.Params.customCSS }}<link rel="stylesheet" href="{{ . | relURL }}">{{ end }}

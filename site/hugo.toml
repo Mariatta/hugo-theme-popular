@@ -1,0 +1,129 @@
+baseURL = "https://example.com/"
+languageCode = "en"
+title = "Popular"
+
+# This is the theme's own product site, dogfooded on the theme itself.
+# Run locally from the repo root:
+#   hugo server --source site --themesDir ../.. --theme hugo-theme-popular
+theme = "hugo-theme-popular"
+
+[taxonomies]
+  tag = "tags"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[menu.main]]
+  name = "Docs"
+  url = "/docs/quick-start/"
+  weight = 10
+[[menu.main]]
+  name = "Demos"
+  url = "/docs/demos/"
+  weight = 20
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 30
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 40
+[[menu.main]]
+  name = "About us"
+  parent = "About"
+  url = "/about/"
+  weight = 10
+[[menu.main]]
+  name = "Maintainers"
+  parent = "About"
+  url = "/organizers/"
+  weight = 20
+
+[params]
+  tagline = "Built to make your community seen and famous"
+  description = "Popular is a warm, community-first theme for meetups, clubs and fan communities, available for Hugo and Astro. Blog, events, organizers, docs with persistent checklists, multi-author posts, and full re-theming from config."
+  brandName = "Popular"
+  brandSub = "Hugo · Astro theme"
+  logo = "images/logo.png"
+  favicon = "images/logo.png"
+  ogImage = "images/hero.png"
+
+  # Gold (marquee) · sunglass black · periwinkle, the theme's own identity
+  [params.brand]
+    primary       = "#a16207"
+    primaryHover  = "#854d0e"
+    primaryActive = "#713f12"
+    secondary     = "#141417"
+    accent        = "#7d8ff2"
+    ink           = "#141417"
+    surfaceWash   = "#f9edc9"
+    surfaceWashSoft = "#fdf7e7"
+    surfaceInk    = "#141417"
+
+  [params.cta]
+    label = "Get started"
+    url   = "/docs/quick-start/"
+    icon  = "fa-solid fa-star"
+
+  [[params.social]]
+    label = "GitHub"
+    icon  = "fa-brands fa-github"
+    url   = "https://github.com/your-org/hugo-theme-popular"
+  [[params.social]]
+    label = "RSS"
+    icon  = "fa-solid fa-rss"
+    url   = "/blog/index.xml"
+
+  # Support box at the end of each blog post (the theme's generic
+  # [params.support] feature, used here to fund the theme itself).
+  [params.support]
+    badge = "Support the theme"
+    text = "Popular is free and MIT licensed. If it made your community site easier, star the repo, tell another organizer about it (or use it for your next community site), or sponsor the work."
+    [[params.support.ctas]]
+      label = "Sponsor on GitHub"
+      url = "https://github.com/sponsors/Mariatta"
+      variant = "primary"
+    [[params.support.ctas]]
+      label = "Star the repo"
+      url = "https://github.com/your-org/hugo-theme-popular"
+      variant = "outline"
+
+  [params.footer]
+    tagline = "Built to make your community seen and famous, MIT licensed"
+    [params.footer.credit]
+      label = "Theme by Mariatta"
+      url   = "https://mariatta.ca"
+    [[params.footer.columns]]
+      title = "Theme"
+      [[params.footer.columns.links]]
+        label = "Quick start"
+        url = "/docs/quick-start/"
+      [[params.footer.columns.links]]
+        label = "Configuration"
+        url = "/docs/configuration/"
+      [[params.footer.columns.links]]
+        label = "Demos"
+        url = "/docs/demos/"
+    [[params.footer.columns]]
+      title = "Project"
+      [[params.footer.columns.links]]
+        label = "Hugo repo"
+        url = "https://github.com/your-org/hugo-theme-popular"
+      [[params.footer.columns.links]]
+        label = "Astro repo"
+        url = "https://github.com/your-org/astro-popular"
+      [[params.footer.columns.links]]
+        label = "About & credits"
+        url = "/about/"
+    [[params.footer.columns]]
+      title = "Support"
+      [[params.footer.columns.links]]
+        label = "Sponsor on GitHub"
+        url = "https://github.com/sponsors/Mariatta"
+      [[params.footer.columns.links]]
+        label = "Our sponsors"
+        url = "/sponsors/"
+      [[params.footer.columns.links]]
+        label = "Star the repo"
+        url = "https://github.com/your-org/hugo-theme-popular"

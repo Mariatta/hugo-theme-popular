@@ -1,0 +1,46 @@
+# Truly Madly Riley: per-site overrides of the theme's UI strings, re-voiced
+# for a personal site (events are an influencer's appearances). Keys not
+# listed here fall back to the theme's i18n/en.toml. The full key set maps
+# 1:1 to STRINGS in astro-popular's demos/superfan/config.ts (see PARITY.md).
+
+[nextMeetup]
+other = "Next appearance"
+
+[rsvp]
+other = "Details"
+
+[rsvpExternal]
+other = "Event details"
+
+[allEvents]
+other = "All appearances"
+
+[comingUp]
+other = "On the calendar"
+
+[upcomingEvents]
+other = "Upcoming appearances"
+
+[upcomingLead]
+other = "Podcasts, panels, popups and the occasional conference. Come say hi after."
+
+[noUpcomingEvents]
+other = "Nothing booked right now. Invite me to your thing, or your karaoke night."
+
+[pastEvents]
+other = "Past appearances"
+
+[latestFromCommunity]
+other = "Latest news & obsessions"
+
+[readTheBlog]
+other = "Read the news"
+
+[eyebrowBlog]
+other = "News"
+
+[eyebrowEvents]
+other = "Appearances"
+
+[eyebrowDocs]
+other = "Guides"

@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{- /* Venue: a venueRef to a /venues/ page wins over the flat venue/address
+     fields; the page's arrival notes are inherited unless the event sets
+     its own venueNotes. */ -}}
+{{- $venuePage := "" -}}
+{{- with .Params.venueRef }}{{ $venuePage = site.GetPage (print "/venues/" .) }}{{ end -}}
+{{- $venueNotes := .Params.venueNotes -}}
+{{- if not $venueNotes }}{{ with $venuePage }}{{ $venueNotes = .Params.notes }}{{ end }}{{ end -}}
+<article>
+  <header class="g-pagehero">
+    <div class="g-container" style="padding-block:var(--space-6) var(--space-5)">
+      <div style="margin-bottom:1rem"><a href="{{ "/events/" | relLangURL }}" style="display:inline-flex;gap:.4rem;align-items:center;font-size:var(--text-sm);font-weight:var(--weight-medium)"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ i18n "allEvents" }}</a></div>
+      <span class="g-eyebrow">{{ .Date | time.Format "Monday, Jan 2, 2006" }}{{ with .Params.time }} · {{ . }}{{ end }}</span>
+      <h1 style="margin:.5rem 0 0">{{ .Title }}</h1>
+    </div>
+  </header>
+  <div class="g-container g-section--sm">
+   <div class="g-article">
+    <div class="g-meta-line" style="margin-bottom:var(--space-4)">
+      <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ if $venuePage }}<a href="{{ $venuePage.RelPermalink }}">{{ $venuePage.Title }}</a>{{ with $venuePage.Params.address }} · {{ . }}{{ end }}{{ else }}{{ with .Params.venue }}{{ . }}{{ else }}{{ i18n "venueTba" }}{{ end }}{{ with .Params.address }} · {{ . }}{{ end }}{{ end }}</span>
+      {{ with .Params.speaker }}<span><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> {{ . }}</span>{{ end }}
+    </div>
+
+    {{ if or .Params.checkin $venueNotes }}
+    <div class="g-callout" style="flex-direction:column;gap:.6rem;margin:0 0 var(--space-4)">
+      <div class="g-callout__title">{{ i18n "beforeYouArrive" }}</div>
+      {{ with .Params.checkin }}<div class="g-callout__body"><i class="fa-solid fa-ticket" aria-hidden="true"></i> {{ . }}</div>{{ end }}
+      {{ with $venueNotes }}<div class="g-callout__body"><i class="fa-solid fa-door-open" aria-hidden="true"></i> {{ . }}</div>{{ end }}
+    </div>
+    {{ end }}
+
+    <div class="g-prose">{{ .Content }}</div>
+
+    {{- /* Speaker profile cards, resolved from /speakers/ pages. */ -}}
+    {{- $boxes := slice -}}
+    {{- range .Params.speakers }}{{ with site.GetPage (print "/speakers/" .) }}{{ $boxes = $boxes | append (dict "page" .) }}{{ end }}{{ end -}}
+    {{ with $boxes }}
+      <h2 style="font-size:var(--text-xl);margin:var(--space-5) 0 1rem">{{ i18n "speakers" }}</h2>
+      <div class="g-stack" style="gap:var(--space-3)">
+        {{ range . }}{{ partial "author-box.html" . }}{{ end }}
+      </div>
+    {{ end }}
+
+    {{ with .Params.rsvp }}<div class="g-row" style="margin-top:var(--space-4)"><a class="g-btn g-btn--primary g-btn--lg" href="{{ . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i> {{ i18n "rsvpExternal" }}</a></div>{{ end }}
+   </div>
+  </div>
+</article>
+{{ end }}

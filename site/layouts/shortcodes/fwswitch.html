@@ -1,0 +1,41 @@
+{{- /* fwswitch: the Hugo | Astro docs toggle. Place once near the top of a
+       docs page. Choice persists in localStorage ("popular-fw") and honors a
+       ?fw=hugo|astro query param for deep links. Pair with {{% fw "hugo" %}}…{{% /fw %}} blocks. */ -}}
+<div class="g-fwswitch" role="tablist" aria-label="Framework">
+  <button data-fw="hugo" role="tab"><i class="fa-solid fa-h" aria-hidden="true"></i> Hugo</button>
+  <button data-fw="astro" role="tab"><i class="fa-solid fa-rocket" aria-hidden="true"></i> Astro</button>
+</div>
+<style>
+  .g-fwswitch { display: inline-flex; gap: 4px; padding: 4px; background: var(--surface-tertiary);
+    border: var(--border-width) solid var(--border-subtle); border-radius: var(--radius-pill); margin: 0.4rem 0 1rem; }
+  .g-fwswitch button { font-family: var(--font-sans); font-size: var(--text-sm); font-weight: var(--weight-semibold);
+    border: none; background: transparent; color: var(--text-muted); padding: 0.45rem 1.1rem;
+    border-radius: var(--radius-pill); cursor: pointer; display: inline-flex; gap: 0.45em; align-items: center; }
+  .g-fwswitch button.is-active { background: var(--color-primary); color: var(--text-on-brand); }
+  .fw-block { display: none; }
+  .fw-block.is-active { display: block; }
+</style>
+<script>
+  (function () {
+    if (window.__popularFw) return; window.__popularFw = true;
+    function apply(fw) {
+      try { localStorage.setItem("popular-fw", fw); } catch (e) {}
+      document.querySelectorAll(".g-fwswitch button").forEach(function (b) {
+        b.classList.toggle("is-active", b.getAttribute("data-fw") === fw);
+        b.setAttribute("aria-selected", b.getAttribute("data-fw") === fw ? "true" : "false");
+      });
+      document.querySelectorAll(".fw-block").forEach(function (el) {
+        el.classList.toggle("is-active", el.getAttribute("data-fw") === fw);
+      });
+    }
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest(".g-fwswitch button");
+      if (b) apply(b.getAttribute("data-fw"));
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      var fw = new URLSearchParams(location.search).get("fw");
+      try { fw = fw || localStorage.getItem("popular-fw"); } catch (e) {}
+      apply(fw === "astro" ? "astro" : "hugo");
+    });
+  })();
+</script>
