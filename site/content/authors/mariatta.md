@@ -8,7 +8,7 @@ website = "https://example.com"
 [[social]]
   label = "GitHub"
   icon = "fa-brands fa-github"
-  url = "https://github.com/your-org"
+  url = "https://github.com/Mariatta"
 +++
 
 Mariatta started Popular after one too many community sites rebuilt from scratch. She maintains both implementations.

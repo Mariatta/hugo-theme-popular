@@ -8,5 +8,5 @@ description = "Multi-award-winning open source contributor and serial conference
 [[social]]
   label = "GitHub"
   icon = "fa-brands fa-github"
-  url = "https://github.com/your-org"
+  url = "https://github.com/Mariatta"
 +++
