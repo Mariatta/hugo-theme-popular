@@ -5,7 +5,7 @@
 > **AI agents / automated contributors:** read [AGENTS.md](AGENTS.md) before making changes. It covers the repo layout, build commands, the Hugo-Astro parity contract, and content conventions.
 
 **Popular** is a warm, community-first [Hugo](https://gohugo.io) theme for meetups, user
-groups and small events. It ships everything a chapter needs:
+groups and small events. It ships everything a community or group needs:
 
 - A composable **home page** (hero, stats, "what we do", auto next-event, latest posts, organizers, testimonials, CTA)
 - A **blog** with tag filtering and per-post speaker bios
