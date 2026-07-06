@@ -57,13 +57,3 @@ Diff any two configs and you'll find the entire visual difference: a `brand` blo
 ## Get started
 
 The [quick start](/docs/quick-start/) takes about five minutes for either framework.
-
-## About the author
-
-[Mariatta](/authors/mariatta/), creator and maintainer of Popular. Multi-award-winning open source contributor and serial conference organizer. Started Popular after one too many community sites rebuilt from scratch: it's everything she's learned about what a community needs from its website, in one theme.
-
-## Support the theme
-
-Popular is free and MIT licensed. If it made your community site easier, star the repo, tell another organizer about it (or use it for your next community site), or sponsor the work.
-
-[Sponsor on GitHub](https://github.com/sponsors/Mariatta) · [Star the repo](https://github.com/Mariatta/hugo-theme-popular)
