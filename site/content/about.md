@@ -12,7 +12,7 @@ Popular is created and maintained by a multi-award-winning open source contribut
 
 ## The name
 
-Yes, it's named after the Darren Hayes song *Pop!ular*. A theme whose whole job is helping small communities put on a good show deserved a name with some sparkle. (The song is styled *Pop!ular*; the theme is plain **Popular**.) The palette follows suit: marquee gold, sunglass black, and the periwinkle of a certain music-video blazer.
+It's named after the Darren Hayes song *Pop!ular*. A theme whose whole job is helping small communities put on a good show deserved a name with some sparkle. (The song is styled *Pop!ular*; the theme is plain **Popular**.) The palette follows suit: marquee gold, sunglass black, and the periwinkle of a certain music-video blazer.
 
 ## Two frameworks, one theme
 
