@@ -3,7 +3,6 @@ title = "Introducing Popular"
 date = 2026-07-06
 authors = ["mariatta"]
 description = "A warm, community-first theme for Hugo and Astro, built from ten years of organizing: events, docs, importers, and one-block re-theming. Four demos included."
-image = "images/post-1.png"
 tags = ["release", "announcement"]
 +++
 

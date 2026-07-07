@@ -30,7 +30,7 @@ Popular is free and MIT licensed, and the best support is seeing it used. If the
 
 - **Star the repo**: stars are how other organizers discover the theme
 - **Tell others about it**: recommend it to another meetup, club or community, or use it yourself for your next community site
-- **[Sponsor on GitHub](https://github.com/sponsors/Mariatta)**: fund ongoing maintenance of both implementations
+- **[Sponsor on GitHub](https://github.com/sponsors/Mariatta)**: fund ongoing maintenance of both implementations, and join [these wonderful people](/sponsors/)
 
 ## Credits & license
 

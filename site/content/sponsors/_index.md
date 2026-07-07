@@ -1,8 +1,12 @@
 +++
 title = "Sponsors"
-# Reuses the organizers photo-card grid (the documented directory trick).
-# Sponsor entries are generated: run scripts/update-sponsors.py to refresh.
-type = "organizers"
 eyebrow = "Sponsors"
-lead = "The people who sponsor Popular's maintenance through GitHub Sponsors. Thank you, truly, madly, deeply."
+lead = "These wonderful people sponsor Mariatta on GitHub. Thank you, truly, madly, deeply."
+
+# Sponsor entries are generated: run scripts/update-sponsors.py to refresh.
+# They link out to GitHub, so no individual pages are rendered.
+[[cascade]]
+  [cascade.build]
+    render = "never"
+    list = "local"
 +++

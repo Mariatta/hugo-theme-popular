@@ -66,9 +66,7 @@ def render_sponsor(s, weight):
 {MARKER}
 title = {toml_str(name)}
 weight = {weight}
-role = "GitHub sponsor"
 photo = {toml_str(s["avatarUrl"])}
-description = "Sponsors Popular's maintainer on GitHub. Thank you!"
 [[social]]
   label = "GitHub"
   icon = "fa-brands fa-github"
