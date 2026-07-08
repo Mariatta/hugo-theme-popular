@@ -163,5 +163,5 @@ use it for every renderable component snippet) in `site/layouts/shortcodes/`.
   points to `example.com`. Do not add real organizations or people. Exception:
   license attribution must keep its real links (the Code of Conduct credits
   the Django CoC and Geek Feminism template, as CC-BY requires).
-- The theme credit is "Popular. A Hugo theme by Mariatta." linking to
-  https://mariatta.ca (set per site via `[params.footer.credit]`).
+- The theme credit is "Popular. A Hugo theme by Mariatta." linking to the
+  project site https://mariatta.ca/hugo-theme-popular/ (set per site via `[params.footer.credit]`).

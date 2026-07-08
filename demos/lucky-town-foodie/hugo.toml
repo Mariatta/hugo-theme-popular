@@ -110,7 +110,7 @@ buildFuture = true
     tagline = "Cook · Eat · Share, a Hugo demo site for the Popular theme"
     [params.footer.credit]
       label = "Popular. A Hugo theme by Mariatta."
-      url   = "https://mariatta.ca"
+      url   = "https://mariatta.ca/hugo-theme-popular/"
     [[params.footer.columns]]
       title = "Community"
       [[params.footer.columns.links]]

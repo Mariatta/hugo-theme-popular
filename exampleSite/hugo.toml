@@ -84,7 +84,7 @@ buildFuture = true
     tagline = "Your community's motto goes here"
     [params.footer.credit]
       label = "Popular. A Hugo theme by Mariatta."
-      url   = "https://mariatta.ca"
+      url   = "https://mariatta.ca/hugo-theme-popular/"
     [[params.footer.columns]]
       title = "Community"
       [[params.footer.columns.links]]

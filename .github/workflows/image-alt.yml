@@ -41,6 +41,14 @@ jobs:
           build demos/kdrama-fan-club kdrama
           build demos/truly-madly-riley superfan
 
+      - name: No double-escaped ampersands
+        run: |
+          # &amp;amp; means a URL was HTML-escaped twice (breaks query-string
+          # links); regression guard for the rel-href/safeHTML fix.
+          # HTML only: RSS XML legitimately double-escapes HTML in descriptions
+          if grep -rl --include='*.html' '&amp;amp;' alt-check-out; then
+            echo "::error::double-escaped ampersand in built output"; exit 1
+          fi
       - name: Check image alt text
         run: |
           python3 scripts/check-image-alt.py \

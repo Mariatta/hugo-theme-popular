@@ -128,7 +128,7 @@ buildFuture = true
     tagline = "Truly, madly, deeply a fan site, a Hugo demo site for the Popular theme"
     [params.footer.credit]
       label = "Popular. A Hugo theme by Mariatta."
-      url   = "https://mariatta.ca"
+      url   = "https://mariatta.ca/hugo-theme-popular/"
     [[params.footer.columns]]
       title = "Site"
       [[params.footer.columns.links]]
