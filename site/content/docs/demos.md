@@ -12,10 +12,10 @@ lead = "Three fictional communities and one fictional superfan, one theme. Plus 
 
 All four are complete example sites, every page, guides, blog and events. They exist to prove one claim: **the entire visual difference between them is one config block.** None is more "official" than the others.
 
-- **🐠 Rocky Cove Aquarium Club**: deep teal. Show & tell nights, aquascaping workshops, shrimp swaps. Also demonstrates the multi-author blog (a profile author *and* an inline guest writer).
-- **🍜 Lucky Town Foodie Club**: copper. Pierogi nights, dessert crawls, the great poutine cook-off.
-- **📺 KDrama Fan Club**: indigo. Watch parties, trivia nights, OST karaoke.
-- **⭐ Truly Madly Riley**: marquee gold. A *personal site* for one fictional superfan: the blog is a news feed, events are an influencer's appearances, and there's no organizers page at all.
+- [**🐠 Rocky Cove Aquarium Club**](/aquarium/): deep teal. Show & tell nights, aquascaping workshops, shrimp swaps. Also demonstrates the multi-author blog (a profile author *and* an inline guest writer).
+- [**🍜 Lucky Town Foodie Club**](/foodie/): copper. Pierogi nights, dessert crawls, the great poutine cook-off.
+- [**📺 KDrama Fan Club**](/kdrama/): indigo. Watch parties, trivia nights, OST karaoke.
+- [**⭐ Truly Madly Riley**](/superfan/): marquee gold. A *personal site* for one fictional superfan: the blog is a news feed, events are an influencer's appearances, and there's no organizers page at all.
 
 Every community, venue and person in them is fictional, and all links point to `example.com`. Browse them with the floating demo switcher, it only renders on demo builds.
 
