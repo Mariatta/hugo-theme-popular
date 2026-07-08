@@ -63,6 +63,9 @@ theme's content model and never overwrites existing files.
   change in the mapped Astro component; the mapping table is in `PARITY.md`.
 - The content model (front matter fields) is part of the contract; if you add a
   field, update both `PARITY.md`s and astro-theme-popular's `src/content.config.ts`.
+- Lockstep changes (e.g. adding a Tier-1 shared file to both repos) must use
+  the **same branch name** in both repos: CI's parity check pairs same-named
+  branches, and falls back to the sibling's main otherwise.
 
 ## Adding content
 
