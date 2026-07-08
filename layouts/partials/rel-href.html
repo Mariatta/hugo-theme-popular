@@ -3,4 +3,4 @@
      baseURL subpath (breaks subpath deployments like Pages project sites),
      so trim the slash first; anything else (https://, mailto:, #fragment)
      passes through untouched. */ -}}
-{{- if hasPrefix . "/" -}}{{ strings.TrimPrefix "/" . | relLangURL }}{{- else -}}{{ . }}{{- end -}}
+{{- if and (hasPrefix . "/") (not (hasPrefix . "//")) -}}{{ strings.TrimPrefix "/" . | relLangURL }}{{- else -}}{{ . }}{{- end -}}
