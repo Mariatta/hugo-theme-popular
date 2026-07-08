@@ -54,6 +54,11 @@ repo (Watch → Custom → Releases) or subscribe to the
 Update with `hugo mod get -u` (module), `git submodule update --remote`
 (submodule), or by re-copying (vendored copy).
 
+Releases are cut by the Release workflow after the CHANGELOG entry is merged:
+`gh workflow run release.yml -f version=X.Y.Z`, run in **both** repos. It
+validates the CHANGELOG section and cross-repo parity, then tags `vX.Y.Z` and
+publishes the GitHub Release with that section as the notes.
+
 ## Requirements
 
 - **Hugo Extended is _not_ required.** Popular uses plain CSS (no SCSS), so standard Hugo works.
