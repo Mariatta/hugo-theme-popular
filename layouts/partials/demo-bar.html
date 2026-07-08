@@ -30,17 +30,19 @@
 <script>
   (function () {
     var slugs = [{{ range $i, $l := .links }}{{ if $i }},{{ end }}"{{ $l.slug }}"{{ end }}];
+    var base = "{{ "" | relLangURL }}"; /* site root incl. any subpath; on the
+      project site the demos hang off this same base */
     var path = window.location.pathname;
     var re = new RegExp("/(" + slugs.join("|") + ")/");
     var home = document.querySelector(".g-demobar a[data-demo-home]");
     if (home) {
       var m = path.search(re);
-      home.href = m >= 0 ? path.slice(0, m + 1) : "/";
+      home.href = m >= 0 ? path.slice(0, m + 1) : base;
     }
     document.querySelectorAll(".g-demobar a[data-demo]").forEach(function (a) {
       var slug = a.getAttribute("data-demo");
       if (re.test(path)) a.href = path.replace(re, "/" + slug + "/").replace(/\/[^/]*$/, "/");
-      else a.href = "/" + slug + "/";
+      else a.href = base + slug + "/";
     });
   })();
 </script>

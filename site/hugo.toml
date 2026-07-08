@@ -12,6 +12,27 @@ theme = "hugo-theme-popular"
 [markup.goldmark.renderer]
   unsafe = true
 
+# Demo switcher pill (bottom of every page). On the combined Pages
+  # deployment the demos hang off this site's own base path.
+  [params.demoBar]
+    repo = "https://github.com/Mariatta/hugo-theme-popular"
+    [[params.demoBar.links]]
+      slug = "aquarium"
+      label = "Aquarium"
+      icon = "fa-solid fa-fish"
+    [[params.demoBar.links]]
+      slug = "foodie"
+      label = "Foodie"
+      icon = "fa-solid fa-utensils"
+    [[params.demoBar.links]]
+      slug = "kdrama"
+      label = "KDrama"
+      icon = "fa-solid fa-tv"
+    [[params.demoBar.links]]
+      slug = "superfan"
+      label = "Superfan"
+      icon = "fa-solid fa-star"
+
 [[menu.main]]
   name = "Docs"
   url = "/docs/quick-start/"
