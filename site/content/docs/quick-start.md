@@ -11,7 +11,7 @@ lead = "From zero to a running community site. Pick your framework once: the doc
 ## 1 · Get the theme
 
 {{% fw "hugo" %}}
-Add the theme to your Hugo site as a git submodule (or copy the folder into `themes/popular`):
+Add the theme to your Hugo site as a git submodule (or copy the folder into `themes/popular`; Hugo Modules users can instead import `github.com/Mariatta/hugo-theme-popular`, see the README):
 
 ```bash
 hugo new site my-community && cd my-community

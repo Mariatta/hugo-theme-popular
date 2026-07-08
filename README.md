@@ -43,6 +43,17 @@ writers: plus the plain `author = "Name"` string as a fallback.
 
 ---
 
+## Versioning & staying up to date
+
+Releases are tagged `v0.x` (semver, in lockstep with
+[`astro-theme-popular`](https://github.com/Mariatta/astro-theme-popular)); the
+1.0 release will mark the content model and brand keys as stable. Changes are
+documented in [CHANGELOG.md](CHANGELOG.md). To hear about updates, watch this
+repo (Watch → Custom → Releases) or subscribe to the
+[releases feed](https://github.com/Mariatta/hugo-theme-popular/releases.atom).
+Update with `hugo mod get -u` (module), `git submodule update --remote`
+(submodule), or by re-copying (vendored copy).
+
 ## Requirements
 
 - **Hugo Extended is _not_ required.** Popular uses plain CSS (no SCSS), so standard Hugo works.
@@ -55,7 +66,21 @@ writers: plus the plain `author = "Name"` string as a fallback.
 
 ### 1. Add the theme
 
-**As a Git submodule** (recommended):
+**As a Hugo Module** (recommended, versioned updates):
+
+```bash
+hugo mod init github.com/<you>/<your-site>
+```
+
+```toml
+# hugo.toml
+[[module.imports]]
+  path = "github.com/Mariatta/hugo-theme-popular"
+```
+
+Update to the latest release with `hugo mod get -u`.
+
+**As a Git submodule:**
 
 ```bash
 git submodule add https://github.com/Mariatta/hugo-theme-popular.git themes/popular
