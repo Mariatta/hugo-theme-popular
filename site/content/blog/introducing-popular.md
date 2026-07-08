@@ -4,6 +4,8 @@ date = 2026-07-06
 authors = ["mariatta"]
 description = "A warm, community-first theme for Hugo and Astro, built from ten years of organizing: events, docs, importers, and one-block re-theming. Four demos included."
 tags = ["release", "announcement"]
+# Held back until launch day: the code goes out first, the announcement later.
+draft = true
 +++
 
 Popular is here: a warm, community-first theme for meetups, clubs, and fan communities, shipping for Hugo and Astro on day one, in parity, from the same design system.
