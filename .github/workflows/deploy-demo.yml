@@ -1,9 +1,9 @@
 name: Deploy theme site + demos (GitHub Pages)
 
-# Publishes the theme's product site at the Pages root, with the four demo
+# Publishes the theme's project site at the Pages root, with the four demo
 # sites at subpaths:
 #
-#   /            ← site/ (Popular product site, docs, blog, about)
+#   /            ← site/ (Popular project site, docs, blog, about)
 #   /aquarium/   ← demos/rocky-cove-aquarium
 #   /foodie/     ← demos/lucky-town-foodie
 #   /kdrama/     ← demos/kdrama-fan-club
@@ -40,7 +40,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build product site + demos
+      - name: Build project site + demos
         env:
           BASE: ${{ steps.pages.outputs.base_url }}
         run: |

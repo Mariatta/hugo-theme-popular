@@ -32,7 +32,7 @@
     </ul>
 
     {{ with site.Params.cta }}
-      <a class="g-btn g-btn--primary g-btn--sm g-nav__cta" href="{{ .url }}">
+      <a class="g-btn g-btn--primary g-btn--sm g-nav__cta" href="{{ partial "rel-href.html" .url }}">
         {{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}{{ .label }}
       </a>
     {{ end }}

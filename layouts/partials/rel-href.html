@@ -1,0 +1,6 @@
+{{- /* Resolve an href that may be a site path or an external URL. Hugo's
+     relLangURL treats leading-slash input as server-root and drops the
+     baseURL subpath (breaks subpath deployments like Pages project sites),
+     so trim the slash first; anything else (https://, mailto:, #fragment)
+     passes through untouched. */ -}}
+{{- if hasPrefix . "/" -}}{{ strings.TrimPrefix "/" . | relLangURL }}{{- else -}}{{ . }}{{- end -}}

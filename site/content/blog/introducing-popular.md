@@ -47,7 +47,7 @@ Treat chat and forums as communication, not documentation. The handbook, the run
 
 ## Communities first, but it flexes
 
-Popular is built for communities, but "community" doesn't mean "tech meetup." A community is any group of people who gather around a shared thing: a hobby, a neighborhood, a fandom, even a single person and their audience. Two other shapes fall out for free. This very website is Popular running as a product site (docs, blog, no events), and it works as a personal site too (the blog as a news feed, events as appearances, no organizers page). Sections you don't create content for simply never render.
+Popular is built for communities, but "community" doesn't mean "tech meetup." A community is any group of people who gather around a shared thing: a hobby, a neighborhood, a fandom, even a single person and their audience. Two other shapes fall out for free. This very website is Popular running as a project site (docs, blog, no events), and it works as a personal site too (the blog as a news feed, events as appearances, no organizers page). Sections you don't create content for simply never render.
 
 ## Four demos, zero tricks
 

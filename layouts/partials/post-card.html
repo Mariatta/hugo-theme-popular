@@ -13,7 +13,7 @@
     <div class="g-card__text">{{ .Description | default .Summary | truncate 130 }}</div>
     {{ with .Params.tags }}
       <div class="g-card__footer">
-        {{ range first 2 . }}<a class="g-tag" href="{{ (print "/tags/" (urlize .)) | relLangURL }}">{{ . }}</a>{{ end }}
+        {{ range first 2 . }}<a class="g-tag" href="{{ (print "tags/" (urlize .)) | relLangURL }}">{{ . }}</a>{{ end }}
       </div>
     {{ end }}
   </div>

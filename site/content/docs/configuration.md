@@ -139,11 +139,10 @@ All template strings (section headings, buttons, badges, empty states, dates)
 are translatable; content is whatever language you write it in.
 
 {{% fw "hugo" %}}
-Set **both** `languageCode` (drives `<html lang>`) and
-`defaultContentLanguage` (drives date formatting) in `hugo.toml`, at the top
-level, above any `[section]`. Then create `i18n/<lang>.toml` in your site root
-and override any key from the theme's `i18n/en.toml`; you only need the keys
-you want to change.
+Set `defaultContentLanguage` in `hugo.toml`, at the top level above any
+`[section]`: it drives both `<html lang>` and date formatting. Then create
+`i18n/<lang>.toml` in your site root and override any key from the theme's
+`i18n/en.toml`; you only need the keys you want to change.
 {{% /fw %}}
 
 {{% fw "astro" %}}
