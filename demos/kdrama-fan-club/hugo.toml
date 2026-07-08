@@ -1,5 +1,4 @@
 baseURL = "https://example.com/"
-languageCode = "en"
 title = "KDrama Fan Club"
 theme = "popular"
 # A bare `hugo server` here cannot find the theme (it lives at the repo root,

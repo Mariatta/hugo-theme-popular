@@ -2,8 +2,8 @@
 <article>
   <header class="g-pagehero">
     <div class="g-container" style="padding-block:var(--space-6) var(--space-5)">
-      <a href="{{ "/blog/" | relLangURL }}" style="display:inline-flex;gap:.4rem;align-items:center;font-size:var(--text-sm);font-weight:var(--weight-medium);margin-bottom:1rem"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ i18n "allPosts" }}</a>
-      {{ with .Params.tags }}<div class="g-row" style="margin-bottom:.8rem">{{ range . }}<a class="g-tag" href="{{ (print "/tags/" (urlize .)) | relLangURL }}">{{ . }}</a>{{ end }}</div>{{ end }}
+      <a href="{{ "blog/" | relLangURL }}" style="display:inline-flex;gap:.4rem;align-items:center;font-size:var(--text-sm);font-weight:var(--weight-medium);margin-bottom:1rem"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ i18n "allPosts" }}</a>
+      {{ with .Params.tags }}<div class="g-row" style="margin-bottom:.8rem">{{ range . }}<a class="g-tag" href="{{ (print "tags/" (urlize .)) | relLangURL }}">{{ . }}</a>{{ end }}</div>{{ end }}
       <h1 style="margin:0">{{ .Title }}</h1>
       <p style="margin:.9rem 0 0;font-size:var(--text-sm);color:var(--ink-700)">{{ $by := partial "author-line.html" . }}{{ with $by }}{{ . }} · {{ end }}{{ .Date | time.Format ":date_medium" }}{{ with .ReadingTime }} · {{ i18n "minRead" . }}{{ end }}</p>
     </div>
@@ -46,7 +46,7 @@
       <div class="g-callout" style="margin-top:var(--space-5);flex-direction:column;gap:.9rem">
         <span class="g-badge g-badge--secondary g-badge--soft"><i class="fa-solid fa-heart" aria-hidden="true"></i> {{ .badge | default "Support us" }}</span>
         <div class="g-callout__body">{{ .text }}</div>
-        <div class="g-row">{{ range .ctas }}<a class="g-btn g-btn--{{ .variant | default "secondary" }}" href="{{ .url }}">{{ .label }}</a>{{ end }}</div>
+        <div class="g-row">{{ range .ctas }}<a class="g-btn g-btn--{{ .variant | default "secondary" }}" href="{{ partial "rel-href.html" .url }}">{{ .label }}</a>{{ end }}</div>
       </div>
     {{ end }}
    </div>

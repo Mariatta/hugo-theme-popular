@@ -11,7 +11,7 @@
       <div class="g-footer__col">
         <div class="g-footer__col-title">{{ .title }}</div>
         <ul>
-          {{ range .links }}<li><a href="{{ .url | relLangURL }}">{{ .label }}</a></li>{{ end }}
+          {{ range .links }}<li><a href="{{ partial "rel-href.html" .url }}">{{ .label }}</a></li>{{ end }}
         </ul>
       </div>
     {{ end }}

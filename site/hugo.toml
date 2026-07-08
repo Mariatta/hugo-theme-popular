@@ -1,8 +1,7 @@
 baseURL = "https://example.com/"
-languageCode = "en"
 title = "Popular"
 
-# This is the theme's own product site, dogfooded on the theme itself.
+# This is the theme's own project site, dogfooded on the theme itself.
 # Run locally from the repo root:
 #   hugo server --source site --themesDir ../.. --theme hugo-theme-popular
 theme = "hugo-theme-popular"

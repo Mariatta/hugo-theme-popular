@@ -16,7 +16,7 @@ checked out next to this one, many changes here must be mirrored there (see
 | Path | What it is |
 |---|---|
 | `layouts/`, `assets/`, `archetypes/`, `theme.toml` | The theme itself |
-| `site/` | The canonical docs/product site (popular's own website) |
+| `site/` | The canonical docs/project site (popular's own website) |
 | `exampleSite/` | Neutral starter site adopters copy ("Your Community") |
 | `demos/rocky-cove-aquarium/`, `demos/lucky-town-foodie/`, `demos/kdrama-fan-club/`, `demos/truly-madly-riley/` | Four complete fictional Hugo demo sites (three communities + one personal site) |
 | `scripts/sync-shared.sh` | Parity checker/syncer against astro-theme-popular |
@@ -136,7 +136,9 @@ use it for every renderable component snippet) in `site/layouts/shortcodes/`.
 - Shared JS must stay language-free; pass text via `data-*` attributes on
   `<body>` (see `data-copy-label` / `data-checklist-done`).
 - Site owners translate by creating `i18n/<lang>.toml` in their site root and
-  setting `languageCode` in `hugo.toml`.
+  setting `defaultContentLanguage` in `hugo.toml` (top level, above any
+  `[section]`). Don't add `languageCode`: it's unused by the theme and emits a
+  deprecation warning on Hugo ≥ 0.158.
 
 ## CI checks
 

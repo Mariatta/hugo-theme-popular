@@ -14,7 +14,7 @@
       {{ with .lead }}<p class="g-hero__lead">{{ . }}</p>{{ end }}
       {{ with .ctas }}
         <div class="g-row">
-          {{ range . }}<a class="g-btn g-btn--lg g-btn--{{ .variant | default "primary" }}" href="{{ .url }}">{{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}{{ .label }}</a>{{ end }}
+          {{ range . }}<a class="g-btn g-btn--lg g-btn--{{ .variant | default "primary" }}" href="{{ partial "rel-href.html" .url }}">{{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}{{ .label }}</a>{{ end }}
         </div>
       {{ end }}
     </div>
@@ -77,7 +77,7 @@
       <p style="margin:0;color:var(--text-muted);max-width:34rem">{{ .Description | default .Summary }}</p>
       <div class="g-row">
         {{ with .Params.rsvp }}<a class="g-btn g-btn--primary" href="{{ . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i> {{ i18n "rsvpExternal" }}</a>{{ end }}
-        <a class="g-btn g-btn--outline" href="{{ "/events/" | relLangURL }}">{{ i18n "allEvents" }}</a>
+        <a class="g-btn g-btn--outline" href="{{ "events/" | relLangURL }}">{{ i18n "allEvents" }}</a>
       </div>
     </div>
   </div>
@@ -92,7 +92,7 @@
         <span class="g-eyebrow">{{ i18n "fromTheBlog" }}</span>
         <h2>{{ i18n "latestFromCommunity" }}</h2>
       </div>
-      <a class="g-btn g-btn--ghost" href="{{ "/blog/" | relLangURL }}">{{ i18n "readTheBlog" }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a class="g-btn g-btn--ghost" href="{{ "blog/" | relLangURL }}">{{ i18n "readTheBlog" }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
     </div>
     <div class="g-grid-3" style="margin-top:var(--space-4)">
       {{ range . }}{{ partial "post-card.html" . }}{{ end }}
@@ -114,7 +114,7 @@
       {{ range first 3 . }}{{ partial "organizer-card.html" . }}{{ end }}
     </div>
     <div class="g-row" style="justify-content:center;margin-top:var(--space-4)">
-      <a class="g-btn g-btn--outline" href="{{ "/organizers/" | relLangURL }}">{{ with $team }}{{ .cta | default "All organizers" }}{{ else }}All organizers{{ end }}</a>
+      <a class="g-btn g-btn--outline" href="{{ "organizers/" | relLangURL }}">{{ with $team }}{{ .cta | default "All organizers" }}{{ else }}All organizers{{ end }}</a>
     </div>
   </div>
 </section>
@@ -152,7 +152,7 @@
     <h2 style="margin:0;max-width:40rem">{{ .title }}</h2>
     {{ with .lead }}<p style="margin:0;color:var(--ink-700);max-width:38rem">{{ . }}</p>{{ end }}
     <div class="g-row" style="justify-content:center">
-      {{ range .ctas }}<a class="g-btn g-btn--{{ .variant | default "primary" }}" href="{{ .url }}">{{ .label }}</a>{{ end }}
+      {{ range .ctas }}<a class="g-btn g-btn--{{ .variant | default "primary" }}" href="{{ partial "rel-href.html" .url }}">{{ .label }}</a>{{ end }}
     </div>
   </div>
 </section>

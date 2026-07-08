@@ -25,13 +25,13 @@ everything a community or group needs:
 Every colour and font is driven from your site config, so you can **re-brand the whole theme
 without touching a line of CSS**.
 
-> **Product site + four demos.** `site/` is the theme's own documentation site
+> **Project site + four demos.** `site/` is the theme's own documentation site
 > (dogfooded on the theme: docs with a Hugo|Astro switcher, blog, about).
 > `demos/` holds four complete fictional example sites, **Rocky Cove Aquarium
 > Club** (teal), **Lucky Town Foodie Club** (copper), **KDrama Fan Club** (indigo),
 > and **Truly Madly Riley** (gold, a personal site for one fictional superfan),
 > all running the same theme code with different configs. `exampleSite/` is a
-> neutral starter skeleton. The deploy workflow publishes the product site at the
+> neutral starter skeleton. The deploy workflow publishes the project site at the
 > Pages root with the demos at subpaths, linked by a floating demo switcher
 > (`params.demoBar`: never set it on a real site and it never appears).
 > All demo communities, venues and people are made up for demonstration.
@@ -255,8 +255,8 @@ popular/
 
   (A ready-made workbook ships at `scripts/sample-community.xlsx`.)
 
-- `scripts/serve-all.sh`: run the product site, all four demos and the exampleSite at once.
-- `scripts/update-sponsors.py`: regenerate the product site's sponsors section from GitHub Sponsors.
+- `scripts/serve-all.sh`: run the project site, all four demos and the exampleSite at once.
+- `scripts/update-sponsors.py`: regenerate the project site's sponsors section from GitHub Sponsors.
 - `scripts/sync-shared.sh --check`: verify the Hugo ⇄ Astro shared files haven't drifted.
 
 The helper scripts have a dependency-free test suite: `python3 -m unittest discover -s scripts/tests` (also run in CI).
