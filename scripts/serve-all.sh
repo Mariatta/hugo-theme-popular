@@ -68,7 +68,9 @@ for entry in "${SITES[@]}"; do
     fi
     sleep 0.5
   done
-  open "http://localhost:$port"
+  if command -v open >/dev/null; then open "http://localhost:$port"
+  elif command -v xdg-open >/dev/null; then xdg-open "http://localhost:$port"
+  else echo "  → http://localhost:$port"; fi
 done
 
 echo

@@ -6,8 +6,8 @@ homepage = "https://github.com/Mariatta/hugo-theme-popular"
 demosite = "https://mariatta.github.io/hugo-theme-popular"
 tags = ["blog", "community", "meetup", "events", "docs", "responsive", "accessible"]
 features = ["blog", "events", "organizers", "docs", "checklists", "config-theming"]
-min_version = "0.126.0"
+min_version = "0.146.0"
 
 [author]
-  name = "Your Community"
-  homepage = "https://example.com"
+  name = "Mariatta"
+  homepage = "https://mariatta.ca"

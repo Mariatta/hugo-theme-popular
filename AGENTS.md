@@ -129,7 +129,10 @@ use it for every renderable component snippet) in `site/layouts/shortcodes/`.
 - Never hardcode user-facing text in templates. Add a key to `i18n/en.toml`
   and use `{{ i18n "key" }}`; add the same key to `STRINGS` in astro-popular's
   `config.ts` (the key sets must match, see PARITY.md).
-- Dates: use `{{ .Date | time.Format "..." }}` (localized), never `.Date.Format`.
+- Dates: use `{{ .Date | time.Format "..." }}` (localized), never `.Date.Format`;
+  prefer the predefined `:date_full` / `:date_medium` layouts for whole dates
+  (natural word order per language). Localization keys off the site's
+  `defaultContentLanguage`, not `languageCode`.
 - Shared JS must stay language-free; pass text via `data-*` attributes on
   `<body>` (see `data-copy-label` / `data-checklist-done`).
 - Site owners translate by creating `i18n/<lang>.toml` in their site root and

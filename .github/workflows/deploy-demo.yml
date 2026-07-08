@@ -1,6 +1,6 @@
 name: Deploy theme site + demos (GitHub Pages)
 
-# Publishes the theme's product site at the Pages root, with the three demo
+# Publishes the theme's product site at the Pages root, with the four demo
 # sites at subpaths:
 #
 #   /            ← site/ (Popular product site, docs, blog, about)

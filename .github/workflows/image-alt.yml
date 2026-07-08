@@ -1,6 +1,6 @@
 name: Images must have alt text
 
-# Builds every site in the repo (docs site, exampleSite, three demos) and fails
+# Builds every site in the repo (docs site, exampleSite, four demos) and fails
 # if any <img> in the output lacks a non-empty alt attribute, or any markdown
 # image in content sources has empty alt text. See scripts/check-image-alt.py.
 
@@ -13,13 +13,17 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # latest plus the documented minimum supported version
+        hugo-version: ["latest", "0.146.0"]
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "latest"
+          hugo-version: ${{ matrix.hugo-version }}
 
       - name: Build all sites
         run: |

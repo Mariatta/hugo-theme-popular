@@ -49,11 +49,9 @@ hugo server
 
 {{% fw "astro" %}}
 ```bash
-# activate a demo set (copies its config + content into src/):
-npm run demo:aquarium     # or demo:foodie / demo:kdrama
-# …or the personal-site example (one person, blog as news, talks as events):
-npm run demo:superfan
-npm run dev
+npm run dev               # boots the neutral starter skeleton
+# …or activate a full demo first (copies its config + content into src/):
+npm run demo:aquarium     # or demo:foodie / demo:kdrama / demo:superfan
 ```
 When you're ready, edit `src/content/` and `src/config.ts` directly and delete `demos/`.
 {{% /fw %}}

@@ -46,7 +46,7 @@ writers: plus the plain `author = "Name"` string as a fallback.
 ## Requirements
 
 - **Hugo Extended is _not_ required.** Popular uses plain CSS (no SCSS), so standard Hugo works.
-- Hugo **v0.126.0 or newer** (uses `.Fragments.Headings` for the docs TOC).
+- Hugo **v0.146.0 or newer** (uses `[cascade.build]` and `.Fragments.Headings`); CI tests this floor and latest.
 - Icons come from **Font Awesome 6** (loaded from a CDN by default; see *Icons* below).
 
 ---
@@ -159,7 +159,8 @@ The home sections live in `content/_index.md` front matter: `[hero]`, `[[stats]]
 `[featuresHead]` + `[[features]]`, `[testimonialsHead]` + `[[testimonials]]` (member quotes:
 `quote`, `name`, optional `role` and `photo`), and `[getInvolved]`. Beyond those, the page **auto-populates**
 the next upcoming event, the latest three posts, and your organizers from your content, no extra
-config.
+config. A stat with `value = "@pastEventCount"` renders the live number of past events
+(rounded to "70+" style once there are ten or more).
 
 ### Events
 
@@ -248,10 +249,11 @@ popular/
   cross-references the others by name. Generate a starter workbook with:
 
   ```bash
-  python3 scripts/spreadsheet-import.py --make-sample community.xlsx
+  python3 scripts/spreadsheet-import.py --make-sample community.xlsx   # starter workbook
+  python3 scripts/spreadsheet-import.py --xlsx community.xlsx --site .  # the import itself
   ```
 
-  (A ready-made one ships at `scripts/sample-community.xlsx`.)
+  (A ready-made workbook ships at `scripts/sample-community.xlsx`.)
 
 - `scripts/serve-all.sh`: run the product site, all four demos and the exampleSite at once.
 - `scripts/update-sponsors.py`: regenerate the product site's sponsors section from GitHub Sponsors.

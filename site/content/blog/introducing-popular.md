@@ -33,7 +33,7 @@ Fair question. If those platforms handle RSVPs, discovery, and scheduling, why m
 
 Because each of those tools solves exactly one problem. Luma is for RSVPs. Pretalx and Sessionize are for speakers and schedules. None of them is your community's home: your recaps, your handbook, your history, your identity. Popular is not a replacement for these platforms. It's the connective tissue between them. Event pages link out to your RSVP platform; speaker pages are generated from your CFP tool. Each platform does its one job, and your site ties them into a single, independent presence.
 
-Independence matters. Community evolves. Technology changes. Because the community owned its own website, the move was a link update, not a migration. The URL stayed. The archive stayed. Members didn't have to find the group again. When you own your presence, a platform changing its pricing, its policies, or its priorities is an inconvenience, not a crisis.
+Independence matters, while your community evolves and technology changes. What's a well-known platform this year may not be the same well-known platform ten years later. When you own your presence, a platform changing its pricing, its policies, or its priorities, is an inconvenience, not a crisis.
 
 ## "Our community lives on Discord / Slack / a forum"
 

@@ -2,6 +2,9 @@ baseURL = "https://example.com/"
 languageCode = "en"
 title = "Your Community"
 theme = "popular"
+# A bare `hugo server` here cannot find the theme (it lives at the repo root,
+# not in themes/). Serve everything with scripts/serve-all.sh, or run:
+#   hugo server --source <this dir> --themesDir <repo parent> --theme hugo-theme-popular
 
 # Events use real future dates; without this Hugo treats a future date as the
 # publish date and silently drops upcoming events from the build.

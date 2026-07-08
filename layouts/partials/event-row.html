@@ -1,10 +1,10 @@
 {{- /* Event row. Context = an event page (Date = event datetime). */ -}}
 {{- $venuePage := "" -}}
-{{- with .Params.venueRef }}{{ $venuePage = site.GetPage (print "/venues/" .) }}{{ end -}}
+{{- with .Params.venueRef }}{{ $venuePage = site.GetPage (print "/venues/" .) }}{{ if not $venuePage }}{{ warnf "%s: venueRef %q matches no venue page" $.File.Path . }}{{ end }}{{ end -}}
 {{- $tbd := or .Params.venueWanted (and (not .Params.venue) (not $venuePage)) -}}
 {{- /* Speaker line: resolved /speakers/ names, falling back to the plain string. */ -}}
 {{- $names := slice -}}
-{{- range .Params.speakers }}{{ with site.GetPage (print "/speakers/" .) }}{{ $names = $names | append .Title }}{{ end }}{{ end -}}
+{{- range .Params.speakers }}{{ with site.GetPage (print "/speakers/" .) }}{{ $names = $names | append .Title }}{{ else }}{{ warnf "%s: speaker %q matches no speaker page" $.File.Path . }}{{ end }}{{ end -}}
 {{- $speakerLine := or (delimit $names ", ") .Params.speaker -}}
 <div class="g-event">
   <div class="g-event__date">

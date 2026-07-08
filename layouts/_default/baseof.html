@@ -1,6 +1,6 @@
 {{- /* Popular base template */ -}}
 <!DOCTYPE html>
-<html lang="{{ site.LanguageCode | default "en" }}">
+<html lang="{{ or site.Language.LanguageCode site.Language.Lang "en" }}">
 <head>
   {{ partial "head.html" . }}
 </head>
