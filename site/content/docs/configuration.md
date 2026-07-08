@@ -46,6 +46,7 @@ The whole visual identity, one block. Only `primary` is required to re-brand; th
 | `link` / `linkHover` | prose link color, when the default (derived from `primaryActive`) lacks contrast against body text |
 | `secondary` | secondary buttons, persona accents |
 | `accent` | occasional highlights |
+| `accentHover` | accent-button hover (defaults to a darkened `accent`) |
 | `ink` | headings & dark text |
 | `surfaceWash` / `surfaceWashSoft` | hero wash & soft bands |
 | `surfaceInk` | footer / dark strips |
@@ -132,6 +133,13 @@ The home page composition (hero, stats, features, team heading, testimonials, cl
 Each `[[testimonials]]` entry takes a `quote`, `name`, optional `role`, and optional `photo`; delete the block to hide the section.
 
 Beyond those, the home page auto-populates the next upcoming event, the latest three posts, and your organizers from content, no config.
+
+## Extra head markup (analytics and friends)
+
+The theme core ships no analytics. To add a tracking snippet, verification
+tag, or any other head-level markup, create `layouts/partials/head-extra.html`
+in your site: the theme includes it at the end of `<head>` and ships it empty,
+so your version wins without overriding the whole head partial.
 
 ## Translating the UI
 

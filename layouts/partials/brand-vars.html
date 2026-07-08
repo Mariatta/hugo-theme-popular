@@ -9,6 +9,7 @@
   --color-primary: {{ . }};
   --gold-500: {{ . }};
   --gold-50: color-mix(in srgb, {{ . }} 7%, #fff);
+  --gold-100: color-mix(in srgb, {{ . }} 20%, #fff);
   --gold-300: color-mix(in srgb, {{ . }} 55%, #fff);
 {{- end }}
 {{- with $b.primaryHover }}  --color-primary-hover: {{ . }};{{ end }}
@@ -21,6 +22,7 @@
 {{- with $b.linkHover }}  --text-link-hover: {{ . }};{{ end }}
 {{- with $b.secondary }}  --color-secondary: {{ . }};{{ end }}
 {{- with $b.accent }}  --color-accent: {{ . }}; --indigo-500: {{ . }};{{ end }}
+{{- with $b.accentHover }}  --color-accent-hover: {{ . }};{{ end }}
 {{- with $b.ink }}  --ink-800: {{ . }}; --text-strong: {{ . }};{{ end }}
 {{- with $b.surfaceWash }}  --surface-wash: {{ . }};{{ end }}
 {{- with $b.surfaceWashSoft }}  --surface-wash-soft: {{ . }};{{ end }}
