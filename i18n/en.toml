@@ -1,5 +1,5 @@
 # Popular theme UI strings. Override any of these by creating i18n/<lang>.toml
-# in your site root. Keys map 1:1 to STRINGS in astro-popular's config.ts
+# in your site root. Keys map 1:1 to STRINGS in astro-theme-popular's config.ts
 # (see PARITY.md).
 
 [skipToContent]
@@ -127,7 +127,7 @@ other = "Author"
 other = "Docs"
 
 # Used by the Astro implementation's tag pages; kept here so the key set
-# matches STRINGS in astro-popular's config.ts (see PARITY.md).
+# matches STRINGS in astro-theme-popular's config.ts (see PARITY.md).
 [eyebrowTag]
 other = "Tag"
 

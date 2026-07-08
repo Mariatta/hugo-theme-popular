@@ -1,7 +1,7 @@
 name: Parity reminder (Hugo → Astro)
 
 # Whenever shared or parallel files change on main, open a `parity` issue
-# reminding maintainers to port the change to astro-popular.
+# reminding maintainers to port the change to astro-theme-popular.
 # See PARITY.md for the contract.
 
 on:
@@ -29,15 +29,15 @@ jobs:
             const files = [...new Set(commits.flatMap(c => [...(c.added||[]), ...(c.modified||[]), ...(c.removed||[])]))]
               .filter(f => /^(assets\/(css|js)\/|layouts\/|exampleSite\/(content\/|hugo\.toml))/.test(f));
             if (!files.length) return;
-            const title = `Parity: port ${files.length} changed file(s) to astro-popular`;
+            const title = `Parity: port ${files.length} changed file(s) to astro-theme-popular`;
             const body = [
-              "Files changed on `main` that have a counterpart in **astro-popular** (see PARITY.md):",
+              "Files changed on `main` that have a counterpart in **astro-theme-popular** (see PARITY.md):",
               "",
               ...files.map(f => `- \`${f}\``),
               "",
               `Commit range: ${context.payload.before?.slice(0,7)}…${context.payload.after?.slice(0,7)}`,
               "",
-              "- [ ] Ported to astro-popular (or intentionally Hugo-only, explain below)",
+              "- [ ] Ported to astro-theme-popular (or intentionally Hugo-only, explain below)",
             ].join("\n");
             // Reuse a single open parity issue if one exists
             const open = await github.rest.issues.listForRepo({ ...context.repo, labels: "parity", state: "open" });
@@ -47,13 +47,13 @@ jobs:
               await github.rest.issues.create({ ...context.repo, title, body, labels: ["parity"] });
             }
 
-      # Optional: also notify the astro-popular repo directly.
+      # Optional: also notify the astro-theme-popular repo directly.
       # Requires a PAT with repo scope stored as SISTER_REPO_TOKEN, then
-      # a `repository_dispatch` listener in astro-popular.
-      # - name: Dispatch to astro-popular
+      # a `repository_dispatch` listener in astro-theme-popular.
+      # - name: Dispatch to astro-theme-popular
       #   run: |
       #     curl -X POST \
       #       -H "Authorization: Bearer ${{ secrets.SISTER_REPO_TOKEN }}" \
       #       -H "Accept: application/vnd.github+json" \
-      #       https://api.github.com/repos/Mariatta/astro-popular/dispatches \
+      #       https://api.github.com/repos/Mariatta/astro-theme-popular/dispatches \
       #       -d '{"event_type":"hugo-parity","client_payload":{"sha":"${{ github.sha }}"}}'

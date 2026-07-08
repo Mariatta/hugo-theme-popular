@@ -5,7 +5,7 @@ Instructions for AI agents (and new contributors) working in this repository.
 ## What this repo is
 
 **Popular** is a community/meetup theme that ships as two parallel implementations:
-this repo (Hugo) and the sibling repo `astro-popular` (Astro). Both implement the
+this repo (Hugo) and the sibling repo `astro-theme-popular` (Astro). Both implement the
 same design, content model, and demos. A written contract (`PARITY.md`) plus
 `scripts/sync-shared.sh --check` keep them from drifting. If the sibling repo is
 checked out next to this one, many changes here must be mirrored there (see
@@ -19,7 +19,7 @@ checked out next to this one, many changes here must be mirrored there (see
 | `site/` | The canonical docs/product site (popular's own website) |
 | `exampleSite/` | Neutral starter site adopters copy ("Your Community") |
 | `demos/rocky-cove-aquarium/`, `demos/lucky-town-foodie/`, `demos/kdrama-fan-club/`, `demos/truly-madly-riley/` | Four complete fictional Hugo demo sites (three communities + one personal site) |
-| `scripts/sync-shared.sh` | Parity checker/syncer against astro-popular |
+| `scripts/sync-shared.sh` | Parity checker/syncer against astro-theme-popular |
 | `PARITY.md` | The Hugo-Astro parity contract (file mappings, content model) |
 
 Any `public/` directory is generated build output. Never hand-edit it; it may
@@ -53,16 +53,16 @@ theme's content model and never overwrites existing files.
 ## Parity rules (important)
 
 - `assets/css/**` and `assets/js/**` must stay **byte-identical** with
-  `astro-popular/src/styles/**` and `astro-popular/public/scripts/**`.
+  `astro-theme-popular/src/styles/**` and `astro-theme-popular/public/scripts/**`.
   After editing any of these, copy the file to the sibling repo and run
   `bash scripts/sync-shared.sh --check` (image drift is known and tolerated).
 - New shared JS files must be registered in three places: the bundle in
-  `layouts/_default/baseof.html`, a `<script>` tag in astro-popular's
+  `layouts/_default/baseof.html`, a `<script>` tag in astro-theme-popular's
   `src/layouts/BaseLayout.astro`, and the file table in both `PARITY.md`s.
 - Template changes (layouts/partials/shortcodes) usually need an equivalent
   change in the mapped Astro component; the mapping table is in `PARITY.md`.
 - The content model (front matter fields) is part of the contract; if you add a
-  field, update both `PARITY.md`s and astro-popular's `src/content.config.ts`.
+  field, update both `PARITY.md`s and astro-theme-popular's `src/content.config.ts`.
 
 ## Adding content
 
@@ -127,7 +127,7 @@ use it for every renderable component snippet) in `site/layouts/shortcodes/`.
 ## Internationalization (UI strings)
 
 - Never hardcode user-facing text in templates. Add a key to `i18n/en.toml`
-  and use `{{ i18n "key" }}`; add the same key to `STRINGS` in astro-popular's
+  and use `{{ i18n "key" }}`; add the same key to `STRINGS` in astro-theme-popular's
   `config.ts` (the key sets must match, see PARITY.md).
 - Dates: use `{{ .Date | time.Format "..." }}` (localized), never `.Date.Format`;
   prefer the predefined `:date_full` / `:date_medium` layouts for whole dates

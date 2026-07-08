@@ -103,7 +103,7 @@ theme = "hugo-theme-popular"
         url = "https://github.com/Mariatta/hugo-theme-popular"
       [[params.footer.columns.links]]
         label = "Astro repo"
-        url = "https://github.com/Mariatta/astro-popular"
+        url = "https://github.com/Mariatta/astro-theme-popular"
       [[params.footer.columns.links]]
         label = "About & credits"
         url = "/about/"

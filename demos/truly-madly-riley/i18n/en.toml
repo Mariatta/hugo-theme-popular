@@ -1,7 +1,7 @@
 # Truly Madly Riley: per-site overrides of the theme's UI strings, re-voiced
 # for a personal site (events are an influencer's appearances). Keys not
 # listed here fall back to the theme's i18n/en.toml. The full key set maps
-# 1:1 to STRINGS in astro-popular's demos/superfan/config.ts (see PARITY.md).
+# 1:1 to STRINGS in astro-theme-popular's demos/superfan/config.ts (see PARITY.md).
 
 [nextMeetup]
 other = "Next appearance"

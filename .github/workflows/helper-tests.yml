@@ -17,9 +17,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: python3 -m unittest discover -s scripts/tests -v
-      - name: Parity check against astro-popular
+      - name: Parity check against astro-theme-popular
         run: |
-          if git clone --depth 1 https://github.com/Mariatta/astro-popular ../astro-popular 2>/dev/null; then
+          if git clone --depth 1 https://github.com/Mariatta/astro-theme-popular ../astro-theme-popular 2>/dev/null; then
             bash scripts/sync-shared.sh --check
           else
             echo "::notice::sibling repo not clonable (private?); parity check skipped"
