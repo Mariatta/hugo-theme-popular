@@ -71,6 +71,13 @@ are yours and never need re-copying.
 **Merge-based forks**: if you forked the repo and merge from upstream
 instead, note that `src/content/` ships live starter samples by design;
 expect to delete or replace them once, after which merges stay quiet.
+
+**The `demos/` directory is inert**: nothing at build time reads it (the
+site builds identically with it deleted), it never reaches `dist/`, and it
+only matters when you run `npm run demo:<name>`. Copy-based adopters can
+delete it; merge-based forks are better off keeping it (deleting means every
+upstream merge brings it back), or hiding it locally with
+`git sparse-checkout set --no-cone '/*' '!demos'`.
 {{% /fw %}}
 
 ## Customizations that survive updates
