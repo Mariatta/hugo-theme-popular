@@ -160,3 +160,12 @@ other = "Previous"
 
 [paginationNext]
 other = "Next"
+
+[postNavigation]
+other = "More posts"
+
+[newerPost]
+other = "Newer post"
+
+[olderPost]
+other = "Older post"

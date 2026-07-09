@@ -24,6 +24,20 @@ python3 scripts/sessionize-import.py --url https://sessionize.com/api/v2/<embed-
 
 Every session becomes an event (title, date, time range, room as venue, description) and every speaker becomes a profile (photo, tagline, bio, socials mapped to icons), already cross-referenced. Service sessions like lunch breaks are skipped. Use `--rsvp <url>` to stamp a signup link on every imported event, or `--file saved.json` to import offline.
 
+## Storing your event's endpoint
+
+Instead of passing `--url` every time, store the Sessionize embed id once in
+`popular-import.toml` at your site root:
+
+```toml
+[sessionize]
+id = "your-embed-id"
+```
+
+Then the import is just `python3 scripts/sessionize-import.py --site .`
+(there's also `--id <embed-id>` as a one-off shorthand). The file is read
+with Python's standard library; nothing to install.
+
 ## From a spreadsheet
 
 Not on Sessionize? Plan in **one workbook with a tab per content type**: Speakers, Venues, Sponsors, Organizers, Events (any subset works). Generate a starter to see the expected columns:
