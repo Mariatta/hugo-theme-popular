@@ -42,6 +42,15 @@
       </div>
     {{ end }}
 
+    {{- /* Chronological neighbors. PARITY.md pins the ordering: date desc,
+         then title, then path; next = newer. Posts must not set weight. */ -}}
+    {{ if or .NextInSection .PrevInSection }}
+    <nav class="g-postnav" aria-label="{{ i18n "postNavigation" }}">
+      {{ with .PrevInSection }}<a class="g-postnav__card" href="{{ .RelPermalink }}" rel="prev"><span class="g-postnav__label"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ i18n "olderPost" }}</span><span class="g-postnav__title">{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
+      {{ with .NextInSection }}<a class="g-postnav__card g-postnav__card--next" href="{{ .RelPermalink }}" rel="next"><span class="g-postnav__label">{{ i18n "newerPost" }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span><span class="g-postnav__title">{{ .Title }}</span></a>{{ end }}
+    </nav>
+    {{ end }}
+
     {{ with site.Params.support }}
       <div class="g-callout" style="margin-top:var(--space-5);flex-direction:column;gap:.9rem">
         <span class="g-badge g-badge--secondary g-badge--soft"><i class="fa-solid fa-heart" aria-hidden="true"></i> {{ .badge | default "Support us" }}</span>
