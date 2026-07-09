@@ -51,8 +51,9 @@ Releases are tagged `v0.x` (semver, in lockstep with
 documented in [CHANGELOG.md](CHANGELOG.md). To hear about updates, watch this
 repo (Watch → Custom → Releases) or subscribe to the
 [releases feed](https://github.com/Mariatta/hugo-theme-popular/releases.atom).
-Update with `hugo mod get -u` (module), `git submodule update --remote`
-(submodule), or by re-copying (vendored copy).
+Update with `hugo mod get -u` (module), a tag checkout (submodule), or by
+re-copying (vendored copy); the full per-method guide is at
+[/docs/updating/](https://mariatta.ca/hugo-theme-popular/docs/updating/).
 
 Releases are cut by the Release workflow after the CHANGELOG entry is merged:
 `gh workflow run release.yml -f version=X.Y.Z`, run in **both** repos. It
