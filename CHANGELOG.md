@@ -15,7 +15,6 @@ Releases) or subscribe to the releases feed
 ## [Unreleased]
 
 ### Added
-
 - Astro package: `popular({ routes: { speakers: false, ... } })` disables
   any injected route group, the supported way to replace part of the
   content model or provide your own `/` or `/rss.xml`.
@@ -23,7 +22,6 @@ Releases) or subscribe to the releases feed
   content ids (`2019-pycon-us/cooper-lees`) build.
 
 ### Changed
-
 - Astro: theme pages tolerate undefined/empty collections (return no pages
   instead of failing); theme-only CI workflows no longer run in forks.
 
