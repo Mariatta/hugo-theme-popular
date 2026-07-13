@@ -53,6 +53,8 @@ Popular is built for communities, but "community" doesn't mean "tech meetup." A 
 
 That range is why Popular ships with four complete fictional example sites, and not one of them is a tech meetup: Rocky Cove Aquarium Club (teal, a hobby club), Lucky Town Foodie Club (copper, people who gather to eat), KDrama Fan Club (indigo, a fandom), and Truly Madly Riley (gold, a personal site for one devoted superfan). If the theme works for all four, it will work for yours.
 
+And if you want the real thing rather than fiction: [PyLadies Vancouver](https://vancouver.pyladies.com/), a real tech community, runs its site on Popular's Hugo theme in production. The demos show the range; PyLadies Vancouver shows it holding up against actual meetups, actual RSVPs, and actual organizer handoffs.
+
 Diff any two configs and you'll find the entire visual difference: a `brand` block, nav labels, and copy. Zero template changes, zero CSS. Everything in them is fictional on purpose, and every link points to `example.com`, so you can safely copy a demo, search-and-replace, and publish. [Browse the demos](/docs/demos/) and pick the closest vibe.
 
 ## Get started
