@@ -8,7 +8,12 @@
     {{- range .Params.authors }}{{ with site.GetPage (print "/authors/" .) }}{{ $names = $names | append .Title }}{{ else }}{{ $names = $names | append . }}{{ end }}{{ end -}}
     {{- range .Params.guestAuthors }}{{ $names = $names | append .name }}{{ end -}}
     {{- if not $names }}{{ with .Params.author }}{{ $names = $names | append . }}{{ end }}{{ end -}}
-    <span class="g-card__eyebrow">{{ .Date | time.Format "Jan 2006" }}{{ with $names }} · {{ delimit . ", " }}{{ end }}</span>
+    {{- /* Date-less pages (this card also renders section children via
+         _default/list.html) must not print "Jan 0001"; omit the eyebrow
+         entirely when there is neither a date nor a byline. */ -}}
+    {{- $date := "" }}{{ if not .Date.IsZero }}{{ $date = .Date | time.Format "Jan 2006" }}{{ end -}}
+    {{- $byline := delimit $names ", " -}}
+    {{ if or $date $byline }}<span class="g-card__eyebrow">{{ $date }}{{ if and $date $byline }} · {{ end }}{{ $byline }}</span>{{ end }}
     <h3 class="g-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
     <div class="g-card__text">{{ .Description | default .Summary | truncate 130 }}</div>
     {{ with .Params.tags }}
