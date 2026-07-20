@@ -33,7 +33,8 @@
 
     {{- /* Author bios: resolved /authors/ profiles + inline guest authors */ -}}
     {{- $boxes := slice -}}
-    {{- range .Params.authors }}{{ with site.GetPage (print "/authors/" .) }}{{ $boxes = $boxes | append (dict "page" .) }}{{ end }}{{ end -}}
+    {{- $sec := partial "section.html" "authors" -}}
+    {{- range .Params.authors }}{{ with site.GetPage (print "/" $sec "/" .) }}{{ $boxes = $boxes | append (dict "page" .) }}{{ end }}{{ end -}}
     {{- range .Params.guestAuthors }}{{ $boxes = $boxes | append (dict "guest" .) }}{{ end -}}
     {{ with $boxes }}
       <h2 style="font-size:var(--text-xl);margin:var(--space-5) 0 1rem">About the author{{ if gt (len .) 1 }}s{{ end }}</h2>

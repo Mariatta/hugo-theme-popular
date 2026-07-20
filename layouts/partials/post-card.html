@@ -5,7 +5,8 @@
   {{ end }}
   <div class="g-card__body">
     {{- $names := slice -}}
-    {{- range .Params.authors }}{{ with site.GetPage (print "/authors/" .) }}{{ $names = $names | append .Title }}{{ else }}{{ $names = $names | append . }}{{ end }}{{ end -}}
+    {{- $sec := partial "section.html" "authors" -}}
+    {{- range .Params.authors }}{{ with site.GetPage (print "/" $sec "/" .) }}{{ $names = $names | append .Title }}{{ else }}{{ $names = $names | append . }}{{ end }}{{ end -}}
     {{- range .Params.guestAuthors }}{{ $names = $names | append .name }}{{ end -}}
     {{- if not $names }}{{ with .Params.author }}{{ $names = $names | append . }}{{ end }}{{ end -}}
     {{- /* Date-less pages (this card also renders section children via

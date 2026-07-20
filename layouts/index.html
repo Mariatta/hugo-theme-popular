@@ -3,7 +3,8 @@
 {{- $upcoming := where (where site.RegularPages "Section" "events") "Date" ">=" now -}}
 {{- $upcoming = sort $upcoming "Date" "asc" -}}
 {{- $posts := first 3 (where site.RegularPages "Section" "blog") -}}
-{{- $orgs := where site.RegularPages "Section" "organizers" -}}
+{{- $teamSec := partial "section.html" "team" -}}
+{{- $orgs := where site.RegularPages "Section" $teamSec -}}
 
 {{- with $hero }}
 <section class="g-hero">
@@ -114,7 +115,7 @@
       {{ range first 3 . }}{{ partial "organizer-card.html" . }}{{ end }}
     </div>
     <div class="g-row" style="justify-content:center;margin-top:var(--space-4)">
-      <a class="g-btn g-btn--outline" href="{{ "organizers/" | relLangURL }}">{{ with $team }}{{ .cta | default "All organizers" }}{{ else }}All organizers{{ end }}</a>
+      <a class="g-btn g-btn--outline" href="{{ (print $teamSec "/") | relLangURL }}">{{ with $team }}{{ .cta | default "All organizers" }}{{ else }}All organizers{{ end }}</a>
     </div>
   </div>
 </section>

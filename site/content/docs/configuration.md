@@ -134,6 +134,27 @@ Each `[[testimonials]]` entry takes a `quote`, `name`, optional `role`, and opti
 
 Beyond those, the home page auto-populates the next upcoming event, the latest three posts, and your organizers from content, no config.
 
+## Renaming content sections
+
+If your community's people are not "organizers" and your blog is not written
+by "authors", rename the sections the theme reads, without overriding any
+template. In `hugo.toml`:
+
+```toml
+[params.sections]
+  authors = "hosts"   # resolve post-author bylines against content/hosts/
+  team    = "hosts"   # show the content/hosts/ people in the homepage team grid
+```
+
+Both default to the theme's own names (`authors`, `organizers`). `authors`
+drives the byline links and author bio cards on posts; `team` drives the
+homepage team grid and its "All organizers" button. Rename the matching
+content directory to suit (`content/authors/` becomes `content/hosts/`).
+
+On the Astro side the equivalent lives in `config.ts` as `SECTIONS_MAP`
+(`{ authors: 'hosts', team: 'hosts' }`); the value names a collection that
+must exist in your `content.config.ts`.
+
 ## Extra head markup (analytics and friends)
 
 The theme core ships no analytics. To add a tracking snippet, verification
