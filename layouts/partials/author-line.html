@@ -2,8 +2,9 @@
        Resolves `authors = ["slug", …]` to /authors/ pages (linked), appends
        inline [[guestAuthors]] names, falls back to the plain `author` string. */ -}}
 {{- $names := slice -}}
+{{- $sec := partial "section.html" "authors" -}}
 {{- range .Params.authors }}
-  {{- with site.GetPage (print "/authors/" .) }}
+  {{- with site.GetPage (print "/" $sec "/" .) }}
     {{- $names = $names | append (printf `<a href="%s">%s</a>` .RelPermalink .Title) -}}
   {{- else }}
     {{- $names = $names | append . -}}
