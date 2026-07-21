@@ -114,3 +114,18 @@ Put the file in `src/content/docs/` as MDX; import `<Callout>` and `<Checklist>`
 ## Plain pages
 
 About, code of conduct, get-involved: `title`, `eyebrow`, `lead` + prose.
+
+## Nested pages and back links
+
+A page inside a section directory (`content/about/financials.md`, or on Astro
+`content/pages/about/financials.mdx`) renders a back link to its parent
+section. The link text is the parent's title, or its optional `shortTitle`
+front-matter field when the full title is long:
+
+```toml
+# content/about/_index.md   (Astro: content/pages/about.mdx)
+title = "About Our Community and How We Run It"
+shortTitle = "About"
+```
+
+Root-level pages have no parent and show no back link.
