@@ -134,6 +134,26 @@ Each `[[testimonials]]` entry takes a `quote`, `name`, optional `role`, and opti
 
 Beyond those, the home page auto-populates the next upcoming event, the latest three posts, and your organizers from content, no config.
 
+## Live counts in the home page stats
+
+A stat's `value` is shown verbatim unless it is one of these computed tokens:
+
+- `@pastEventCount`: the number of past events, rounded down to a "70+" style
+  once there are ten or more.
+- `@count:<section>`: the live number of entries in a section, for example
+  `@count:blog` or `@count:events`.
+- `@count:<section>:rounded`: the same count, rounded down to "70+" at ten or
+  more (podcast-style exact counts stay exact without `:rounded`).
+
+```toml
+[[stats]]
+  value = "@count:blog"
+  label = "posts"
+```
+
+On Hugo the resolver is `partials/stat-value.html`, reusable from any
+template; on Astro it is `formatStat` in `src/lib/stats.ts`.
+
 ## Renaming content sections
 
 If your community's people are not "organizers" and your blog is not written

@@ -28,14 +28,7 @@
 <section class="g-bg-ink">
   <div class="g-container g-stats">
     {{ range . }}
-      {{- /* value = "@pastEventCount" renders the live number of past events,
-             rounded down to a "70+" style once there are ten or more. */ -}}
-      {{- $value := .value -}}
-      {{- if eq $value "@pastEventCount" -}}
-        {{- $past := len (where (where site.RegularPages "Section" "events") "Date" "<" now) -}}
-        {{- $value = cond (ge $past 10) (printf "%d+" (mul (div $past 10) 10)) (printf "%d" $past) -}}
-      {{- end -}}
-      <div class="g-stat"><div class="g-stat__n">{{ $value }}</div><div class="g-stat__l">{{ .label }}</div></div>
+      <div class="g-stat"><div class="g-stat__n">{{ partial "stat-value.html" .value }}</div><div class="g-stat__l">{{ .label }}</div></div>
     {{- end }}
   </div>
 </section>
