@@ -140,6 +140,9 @@ other = "Speakers"
 [eyebrowSpeaker]
 other = "Speaker"
 
+[eyebrowOrganizer]
+other = "Organizer"
+
 [sessionsBy]
 other = "Sessions by {{ . }}"
 
