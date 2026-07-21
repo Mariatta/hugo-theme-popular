@@ -61,7 +61,7 @@ Set `buildFuture = true` in your `hugo.toml`. Upcoming events have a future `dat
 
 ## Organizers
 
-`title` (name), `weight` (ordering), `role`, `photo`, `description` (card bio), `social[]`.
+`title` (name), `weight` (ordering), `role`, `photo`, `description` (card bio), `social[]`. Each organizer gets a profile page (linked from their card) showing the bio card and any page body.
 
 ## Speakers
 
