@@ -1,11 +1,11 @@
 +++
 title = "Our first meetup"
-date = 2026-08-06T18:00:00-07:00
+date = 2026-08-06
 description = "Describe the event in a sentence or two."
 image = "images/post-1.png"
 tags = ["meetup"]
 
-time = "6:00 – 8:00 PM"
+time = "6:00 PM – 8:00 PM"
 # This event references a venue page (content/venues/community-hall.md) and a
 # speaker profile (content/speakers/alex.md); it inherits the venue's name,
 # address and arrival notes, and shows Alex's bio card.
