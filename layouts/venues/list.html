@@ -5,7 +5,7 @@
     <div class="g-grid-3">
       {{ range .Pages.ByTitle }}
       <article class="g-card">
-        {{ with .Params.photo }}<a href="{{ $.RelPermalink }}" class="g-card__media"><img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy"></a>{{ end }}
+        {{ with .Params.photo }}<a href="{{ $.RelPermalink }}" class="g-card__media"><img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" decoding="async"></a>{{ end }}
         <div class="g-card__body">
           <h3 class="g-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
           {{ with .Params.address }}<div class="g-card__text"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ . }}</div>{{ end }}

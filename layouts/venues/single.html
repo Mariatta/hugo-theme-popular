@@ -4,7 +4,7 @@
 <section class="g-bg-white g-section">
   <div class="g-container">
     <div class="g-article" style="margin-bottom:var(--space-5)">
-      {{ with .Params.photo }}<img src="{{ . | relURL }}" alt="{{ $.Title }}" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius-xl);box-shadow:var(--shadow-md);margin-bottom:var(--space-4)">{{ end }}
+      {{ with .Params.photo }}<img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" decoding="async" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius-xl);box-shadow:var(--shadow-md);margin-bottom:var(--space-4)">{{ end }}
       <div class="g-meta-line" style="margin-bottom:var(--space-3)">
         {{ with .Params.address }}<span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ . }}</span>{{ end }}
         {{ with .Params.website }}<span><i class="fa-solid fa-globe" aria-hidden="true"></i> <a href="{{ . }}" rel="noopener" target="_blank">{{ i18n "website" }}</a></span>{{ end }}

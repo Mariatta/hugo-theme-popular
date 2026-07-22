@@ -4,7 +4,7 @@
 {{- $p := .page -}}{{- $g := .guest -}}
 <div class="g-persona g-persona--primary">
   {{- if $p }}
-    {{ with $p.Params.photo }}<img class="g-persona__img" src="{{ . | relURL }}" alt="{{ $p.Title }}">{{ end }}
+    {{ with $p.Params.photo }}<img class="g-persona__img" src="{{ . | relURL }}" alt="{{ $p.Title }}" loading="lazy" decoding="async">{{ end }}
     <div>
       <div class="g-persona__name"><a href="{{ $p.RelPermalink }}" style="color:inherit">{{ $p.Title }}</a></div>
       {{ with $p.Params.role }}<div class="g-persona__role">{{ . }}</div>{{ end }}
@@ -15,7 +15,7 @@
       </div>
     </div>
   {{ else if $g }}
-    {{ with $g.photo }}<img class="g-persona__img" src="{{ . | relURL }}" alt="{{ $g.name }}">{{ end }}
+    {{ with $g.photo }}<img class="g-persona__img" src="{{ . | relURL }}" alt="{{ $g.name }}" loading="lazy" decoding="async">{{ end }}
     <div>
       <div class="g-persona__name">{{ $g.name }}{{ " " }}<span class="g-badge g-badge--soft" style="vertical-align:middle">{{ i18n "guest" }}</span></div>
       {{ with $g.title }}<div class="g-persona__role">{{ . }}</div>{{ end }}
