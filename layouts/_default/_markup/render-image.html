@@ -1,2 +1,2 @@
 {{- /* Body images: resolve through relURL so posts work under subpath deployments. */ -}}
-<img src="{{ .Destination | relURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy">
+<img src="{{ .Destination | relURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">

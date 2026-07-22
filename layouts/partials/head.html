@@ -7,7 +7,8 @@
 
 {{- /* FontAwesome (icons). Swap the version/URL in config if you self-host. */ -}}
 {{- $fa := site.Params.fontAwesome | default "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" -}}
-<link rel="stylesheet" href="{{ $fa }}" referrerpolicy="no-referrer"{{ if eq $fa "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" }} integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous"{{ end }}>
+{{ if eq $fa "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" }}<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+{{ end }}<link rel="stylesheet" href="{{ $fa }}" referrerpolicy="no-referrer"{{ if eq $fa "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" }} integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous"{{ end }}>
 
 {{- /* CSS pipeline: tokens first (so overrides cascade), then base + components.
        fonts.css must stay first because it carries the @import for web fonts. */ -}}

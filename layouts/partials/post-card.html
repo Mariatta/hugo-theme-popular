@@ -1,7 +1,7 @@
 {{- /* Blog post card. Context = a blog page. */ -}}
 <article class="g-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
   {{ with .Params.image }}
-    <a href="{{ $.RelPermalink }}" class="g-card__media"><img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy"></a>
+    <a href="{{ $.RelPermalink }}" class="g-card__media"><img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" decoding="async"></a>
   {{ end }}
   <div class="g-card__body">
     {{- $names := slice -}}
