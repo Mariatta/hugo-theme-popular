@@ -134,6 +134,19 @@ Each `[[testimonials]]` entry takes a `quote`, `name`, optional `role`, and opti
 
 Beyond those, the home page auto-populates the next upcoming event, the latest three posts, and your organizers from content, no config.
 
+## Search-engine basics
+
+The theme emits a `robots.txt` pointing at your sitemap, plus `og:locale`
+and (when a page has an image) `og:image:alt`. Optional knobs:
+
+- `imageAlt` on any page's front matter sets the `og:image:alt` text (defaults
+  to the page title).
+- `[params.seo]` `noindexTaxonomies = true` adds `noindex,follow` to tag
+  pages (Astro: `SITE.seo.noindexTaxonomies`).
+
+A fuller SEO reference (structured data, event rich results) lives on the
+[SEO docs page](/docs/seo/).
+
 ## Live counts in the home page stats
 
 A stat's `value` is shown verbatim unless it is one of these computed tokens:

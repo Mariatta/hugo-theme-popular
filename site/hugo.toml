@@ -1,4 +1,5 @@
 baseURL = "https://example.com/"
+enableRobotsTXT = true
 title = "Popular"
 
 # This is the theme's own project site, dogfooded on the theme itself.
