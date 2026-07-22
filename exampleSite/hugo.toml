@@ -1,4 +1,5 @@
 baseURL = "https://example.com/"
+enableRobotsTXT = true
 title = "Your Community"
 theme = "popular"
 # A bare `hugo server` here cannot find the theme (it lives at the repo root,
