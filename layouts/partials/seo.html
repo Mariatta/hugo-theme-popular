@@ -22,3 +22,5 @@
 <meta name="twitter:card" content="{{ if $img }}summary_large_image{{ else }}summary{{ end }}">
 {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}
 {{- if and .IsPage (eq .Section "events") }}{{ partial "jsonld-event.html" . }}{{ end -}}
+{{- if .IsHome }}{{ partial "jsonld-org.html" . }}{{ end -}}
+{{- if and .IsPage (eq .Section "blog") }}{{ partial "jsonld-blogpost.html" . }}{{ end -}}
