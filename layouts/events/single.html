@@ -11,7 +11,7 @@
     <div class="g-container" style="padding-block:var(--space-6) var(--space-5)">
       <div style="margin-bottom:1rem"><a href="{{ "events/" | relLangURL }}" style="display:inline-flex;gap:.4rem;align-items:center;font-size:var(--text-sm);font-weight:var(--weight-medium)"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ i18n "allEvents" }}</a></div>
       <span class="g-eyebrow">{{ .Date | time.Format ":date_full" }}{{ with .Params.time }} · {{ . }}{{ end }}</span>
-      <h1 style="margin:.5rem 0 0">{{ .Title }}</h1>
+      <h1 style="margin:.5rem 0 0">{{ .Title }}{{ if eq .Params.cancelled true }} <span class="g-badge g-badge--danger" style="vertical-align:middle;font-size:var(--text-sm)">{{ i18n "eventCancelled" }}</span>{{ end }}</h1>
     </div>
   </header>
   <div class="g-container g-section--sm">

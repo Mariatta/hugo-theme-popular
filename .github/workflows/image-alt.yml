@@ -57,3 +57,5 @@ jobs:
             demos/rocky-cove-aquarium/content \
             demos/lucky-town-foodie/content \
             demos/kdrama-fan-club/content
+      - name: Validate JSON-LD
+        run: python3 scripts/check-jsonld.py alt-check-out

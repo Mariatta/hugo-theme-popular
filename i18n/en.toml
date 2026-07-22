@@ -17,6 +17,9 @@ other = "Next meetup"
 [venueTba]
 other = "Venue to be announced"
 
+[eventCancelled]
+other = "Cancelled"
+
 [rsvp]
 other = "RSVP"
 

@@ -20,7 +20,8 @@
     {{ with $speakerLine }}<div class="g-event__meta"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i>{{ . }}</div>{{ end }}
   </div>
   <div class="g-event__aside">
-    {{ if $tbd }}<span class="g-badge g-badge--warning g-badge--soft">{{ i18n "venueWanted" }}</span>
+    {{ if eq .Params.cancelled true }}<span class="g-badge g-badge--danger g-badge--soft">{{ i18n "eventCancelled" }}</span>
+    {{ else if $tbd }}<span class="g-badge g-badge--warning g-badge--soft">{{ i18n "venueWanted" }}</span>
     {{ else }}<span class="g-badge g-badge--success g-badge--soft">{{ i18n "confirmed" }}</span>{{ end }}
     {{ with .Params.rsvp }}<a class="g-btn g-btn--primary g-btn--sm" href="{{ . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i>{{ i18n "rsvp" }}</a>{{ end }}
   </div>
