@@ -14,6 +14,13 @@ Releases) or subscribe to the releases feed
 
 ## [Unreleased]
 
+### Added
+
+- Astro package: component overrides. `popular({ overrides: { Header:
+  './src/overrides/Header.astro' } })` replaces any of Header, Footer, Hero,
+  EventRow, PostCard, OrganizerCard, AuthorBox, PageHero without forking the
+  theme. (Hugo adopters already override via native template lookup.)
+
 ## [0.6.0] - 2026-07-23
 
 Search-engine optimisation: structured data, crawl plumbing, Core Web Vitals,
