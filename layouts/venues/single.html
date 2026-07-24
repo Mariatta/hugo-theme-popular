@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{- /* Venue page: details, arrival notes, and every event held here. */ -}}
-{{ partial "page-hero.html" (dict "eyebrow" (.Params.eyebrow | default (i18n "eyebrowVenue")) "title" .Title "lead" .Params.address) }}
+{{ partial "page-hero.html" (dict "eyebrow" (.Params.eyebrow | default (i18n "eyebrowVenue")) "title" .Title "lead" .Params.address "backHref" "venues/" "backLabel" (i18n "allVenues")) }}
 <section class="g-bg-white g-section">
   <div class="g-container">
     <div class="g-article" style="margin-bottom:var(--space-5)">

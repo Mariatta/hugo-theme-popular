@@ -28,6 +28,15 @@ other = "RSVP on Luma"
 
 [allEvents]
 other = "All events"
+[allSpeakers]
+other = "All speakers"
+
+[allVenues]
+other = "All venues"
+
+[allOrganizers]
+other = "All organizers"
+
 
 [comingUp]
 other = "Coming up"

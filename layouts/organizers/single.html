@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{- /* Organizer profile: bio card + any page body. Organizer entries are not
      tied to events, so unlike speakers there is no session grid here. */ -}}
-{{ partial "page-hero.html" (dict "eyebrow" (.Params.eyebrow | default (i18n "eyebrowOrganizer")) "title" .Title "lead" (.Params.bio | default .Description)) }}
+{{ $teamSec := partial "section.html" "team" }}{{ partial "page-hero.html" (dict "eyebrow" (.Params.eyebrow | default (i18n "eyebrowOrganizer")) "title" .Title "lead" (.Params.bio | default .Description) "backHref" (print $teamSec "/") "backLabel" (i18n "allOrganizers")) }}
 <section class="g-bg-white g-section">
   <div class="g-container">
     <div class="g-article">
