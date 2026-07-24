@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{- /* Speaker profile: bio card + every session they've led. */ -}}
-{{ partial "page-hero.html" (dict "eyebrow" (.Params.eyebrow | default (i18n "eyebrowSpeaker")) "title" .Title "lead" (.Params.bio | default .Description)) }}
+{{ partial "page-hero.html" (dict "eyebrow" (.Params.eyebrow | default (i18n "eyebrowSpeaker")) "title" .Title "lead" (.Params.bio | default .Description) "backHref" "speakers/" "backLabel" (i18n "allSpeakers")) }}
 <section class="g-bg-white g-section">
   <div class="g-container">
     <div class="g-article" style="margin-bottom:var(--space-5)">
