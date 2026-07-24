@@ -38,6 +38,9 @@ other = "All venues"
 other = "All organizers"
 
 
+[allVenues]
+other = "All venues"
+
 [comingUp]
 other = "Coming up"
 
