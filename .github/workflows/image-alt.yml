@@ -59,3 +59,5 @@ jobs:
             demos/kdrama-fan-club/content
       - name: Validate JSON-LD
         run: python3 scripts/check-jsonld.py alt-check-out
+      - name: Validate iCalendar feeds
+        run: python3 scripts/check-ics.py alt-check-out

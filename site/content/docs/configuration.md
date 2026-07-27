@@ -134,6 +134,24 @@ Each `[[testimonials]]` entry takes a `quote`, `name`, optional `role`, and opti
 
 Beyond those, the home page auto-populates the next upcoming event, the latest three posts, and your organizers from content, no config.
 
+## Calendar feed (iCal)
+
+Add `Calendar` to your events section's outputs and the theme publishes an
+iCalendar feed at `/events/calendar.ics` that people subscribe to once and
+see every future meetup in Google, Apple or Outlook Calendar:
+
+```toml
+# content/events/_index.md
+outputs = ["HTML", "RSS", "Calendar"]
+```
+
+The events list gains a "Subscribe to calendar" link automatically. Timed
+events (a parseable `time`) get a start and a 2-hour default end
+(`[params.events] defaultDurationMinutes`); date-only events are all-day.
+Cancelled events carry `STATUS:CANCELLED`. To subscribe, most apps take the
+feed URL under "add calendar from URL". On Astro the feed is always at
+`/events/calendar.ics`, no opt-in needed.
+
 ## Search-engine basics
 
 The theme emits a `robots.txt` pointing at your sitemap, plus `og:locale`

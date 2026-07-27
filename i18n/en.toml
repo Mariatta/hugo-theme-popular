@@ -83,6 +83,9 @@ other = "All"
 [subscribeRss]
 other = "Subscribe via RSS"
 
+[subscribeCalendar]
+other = "Subscribe to calendar"
+
 [noPosts]
 other = "No posts yet, check back soon."
 
