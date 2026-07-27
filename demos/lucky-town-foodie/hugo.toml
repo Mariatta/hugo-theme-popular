@@ -142,3 +142,12 @@ buildFuture = true
       [[params.footer.columns.links]]
         label = "Meetup Runbooks"
         url = "/runbooks/"
+
+[mediaTypes."text/calendar"]
+  suffixes = ["ics"]
+
+[outputFormats.Calendar]
+  mediaType = "text/calendar"
+  baseName = "calendar"
+  isPlainText = true
+  noUgly = true

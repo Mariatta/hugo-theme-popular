@@ -157,3 +157,12 @@ buildFuture = true
       [[params.footer.columns.links]]
         label = "Mastodon"
         url = "https://example.com"
+
+[mediaTypes."text/calendar"]
+  suffixes = ["ics"]
+
+[outputFormats.Calendar]
+  mediaType = "text/calendar"
+  baseName = "calendar"
+  isPlainText = true
+  noUgly = true
