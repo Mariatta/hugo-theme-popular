@@ -19,11 +19,10 @@
 {{- if $hm -}}
 {{- $start := printf "%s%s00" (.Date.Format "20060102T") (replaceRE ":" "" $hm) -}}
 {{- partial "fold.html" (printf "DTSTART:%s" $start) -}}
-{{- $end := (.Date.Add (mul $dur 60 1000000000)).Format "20060102T150405" -}}
-{{- /* end = start-of-day + parsed minutes + duration */ -}}
+{{- /* DTEND = midnight + (parsed minutes + duration), version-safe Duration. */ -}}
 {{- $parts := split $hm ":" -}}
 {{- $mins := add (mul (int (index $parts 0)) 60) (int (index $parts 1)) -}}
-{{- $endT := (.Date.Add (mul (add $mins $dur) 60 1000000000)).Format "20060102T150405" -}}
+{{- $endT := (.Date.Add (time.ParseDuration (printf "%dm" (add $mins $dur)))).Format "20060102T150405" -}}
 {{- partial "fold.html" (printf "DTEND:%s" $endT) -}}
 {{- else -}}
 {{- partial "fold.html" (printf "DTSTART;VALUE=DATE:%s" (.Date.Format "20060102")) -}}
