@@ -86,6 +86,12 @@ other = "Subscribe via RSS"
 [subscribeCalendar]
 other = "Subscribe to calendar"
 
+[learnMore]
+other = "Learn more"
+
+[joinChat]
+other = "Join the chat"
+
 [noPosts]
 other = "No posts yet, check back soon."
 

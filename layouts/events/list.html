@@ -17,7 +17,7 @@
       <h3 class="g-year">{{ .Key }}</h3>
       {{ range .Pages }}{{ partial "event-row.html" . }}{{ end }}
       {{ end }}
-      {{ if not $upcoming }}<p class="g-lead">{{ i18n "noUpcomingEvents" }}</p>{{ end }}
+      {{ if not $upcoming }}{{ partial "events-empty.html" . }}{{ end }}
     </div>
   </div>
 </section>

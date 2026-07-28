@@ -78,6 +78,12 @@
 </section>
 {{ end }}
 
+{{- if not $upcoming }}
+<section class="g-bg-wash-soft g-section">
+  <div class="g-container">{{ partial "events-empty.html" . }}</div>
+</section>
+{{- end }}
+
 {{- with $posts }}
 <section class="g-bg-white g-section">
   <div class="g-container">
