@@ -129,3 +129,16 @@ shortTitle = "About"
 ```
 
 Root-level pages have no parent and show no back link.
+
+## Venue access & logistics
+
+Venue pages accept optional inclusion fields, rendered as a "Getting there &
+access" section (omitted entirely when none are set):
+
+- `wheelchair` (true/false): shows a "Wheelchair accessible" badge, on the
+  venue page and on every event held there.
+- `transit`, `parking`: short lines.
+- `access`: a freeform note, the catch-all for washrooms, elevators, a quiet
+  space, childcare, or a scent policy.
+
+The spreadsheet importer has matching columns (see [Importing](/docs/importing/)).

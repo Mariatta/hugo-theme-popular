@@ -187,3 +187,18 @@ other = "Newer post"
 
 [olderPost]
 other = "Older post"
+
+[gettingThere]
+other = "Getting there & access"
+
+[wheelchairAccessible]
+other = "Wheelchair accessible"
+
+[transit]
+other = "Transit"
+
+[parking]
+other = "Parking"
+
+[accessNotes]
+other = "Access notes"
