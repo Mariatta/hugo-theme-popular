@@ -61,3 +61,26 @@ jobs:
         run: python3 scripts/check-jsonld.py alt-check-out
       - name: Validate iCalendar feeds
         run: python3 scripts/check-ics.py alt-check-out
+
+      - name: Empty state + notice banner (§5)
+        run: |
+          # A fixture site with no upcoming events must render the designed
+          # empty state (home + events list) and the site-wide notice banner.
+          THEME="$(basename "$GITHUB_WORKSPACE")"
+          SRC=scripts/fixtures/empty-events
+          hugo --source "$SRC" \
+               --themesDir "$(realpath --relative-to="$SRC" "$GITHUB_WORKSPACE/..")" \
+               --theme "$THEME" \
+               --destination "$GITHUB_WORKSPACE/empty-state-out"
+          out="$GITHUB_WORKSPACE/empty-state-out"
+          # Notice banner: rendered, inline markdown applied, optional link present
+          grep -q 'class="g-notice" role="status"' "$out/index.html"
+          grep -q '<strong>Stay tuned</strong>' "$out/index.html"
+          grep -q '>Learn more</a>' "$out/index.html"
+          # Empty state on home and events list: message + calendar link + chat CTA
+          for page in index.html events/index.html; do
+            grep -q 'g-empty' "$out/$page"
+            grep -q 'follow us to hear when the next one lands' "$out/$page"
+            grep -q 'events/calendar.ics' "$out/$page"
+            grep -q 'Join our chat' "$out/$page"
+          done

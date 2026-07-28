@@ -1,0 +1,42 @@
+# Fixture site for the §5 empty-state + notice-banner build-and-grep test.
+# It has an events section but no *upcoming* events (one past event), so the
+# home page and the events list must render the designed empty state. It also
+# sets params.notice and params.community.chat so the banner and the empty
+# state's chat CTA render. Built and grepped by .github/workflows/image-alt.yml.
+baseURL = "https://example.com/"
+title = "Empty State Fixture"
+theme = "popular"
+buildFuture = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  brandName = "Empty"
+  brandSub = "Fixture"
+  logo = "images/logo.png"
+  ogImage = "images/hero.png"
+
+  [params.notice]
+    text = "Our next season is being planned. **Stay tuned** and [say hello](https://example.com/hello)."
+    url = "https://example.com/news"
+
+  [params.community]
+    [params.community.chat]
+      url = "https://example.com/chat"
+      label = "Join our chat"
+
+  [params.footer]
+    tagline = "Fixture footer"
+    [params.footer.credit]
+      label = "Popular. A Hugo theme by Mariatta."
+      url = "https://mariatta.ca/hugo-theme-popular/"
+
+[mediaTypes."text/calendar"]
+  suffixes = ["ics"]
+
+[outputFormats.Calendar]
+  mediaType = "text/calendar"
+  baseName = "calendar"
+  isPlainText = true
+  noUgly = true
