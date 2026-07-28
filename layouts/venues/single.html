@@ -16,6 +16,16 @@
         {{ with .Params.accessibility }}<div class="g-callout__body"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> {{ . }}</div>{{ end }}
       </div>
       {{ end }}
+      {{- $hasAccess := or .Params.wheelchair .Params.transit .Params.parking .Params.access -}}
+      {{ if $hasAccess }}
+      <div class="g-section-head" style="margin-top:var(--space-4)"><span class="g-eyebrow">{{ i18n "eyebrowVenue" }}</span><h2 style="font-size:var(--text-xl)">{{ i18n "gettingThere" }}</h2></div>
+      {{ if eq .Params.wheelchair true }}<p><span class="g-badge g-badge--success g-badge--soft"><i class="fa-solid fa-wheelchair" aria-hidden="true"></i> {{ i18n "wheelchairAccessible" }}</span></p>{{ end }}
+      <div class="g-meta-line" style="flex-direction:column;align-items:flex-start;gap:.4rem">
+        {{ with .Params.transit }}<span><i class="fa-solid fa-train-subway" aria-hidden="true"></i> <strong>{{ i18n "transit" }}:</strong> {{ . }}</span>{{ end }}
+        {{ with .Params.parking }}<span><i class="fa-solid fa-square-parking" aria-hidden="true"></i> <strong>{{ i18n "parking" }}:</strong> {{ . }}</span>{{ end }}
+      </div>
+      {{ with .Params.access }}<div class="g-prose" style="margin-top:var(--space-3)">{{ $.RenderString . }}</div>{{ end }}
+      {{ end }}
       {{ with .Content }}<div class="g-prose" style="margin-top:var(--space-4)">{{ . }}</div>{{ end }}
     </div>
     {{- $slug := .File.ContentBaseName -}}
