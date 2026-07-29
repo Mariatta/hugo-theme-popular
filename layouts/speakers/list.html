@@ -4,6 +4,7 @@
   <div class="g-container">
     <div class="g-stack" style="max-width:52rem;gap:var(--space-3)">
       {{ range .Pages.ByTitle }}{{ partial "author-box.html" (dict "page" .) }}{{ end }}
+      {{ partial "speaker-invite.html" . }}
     </div>
   </div>
 </section>
