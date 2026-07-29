@@ -92,6 +92,12 @@ other = "Learn more"
 [joinChat]
 other = "Join the chat"
 
+[speakerInviteTitle]
+other = "Your name here?"
+
+[speakerInviteBody]
+other = "We are always looking for new voices. Lightning talks welcome, and we will help you prepare."
+
 [noPosts]
 other = "No posts yet, check back soon."
 

@@ -5,6 +5,7 @@
 {{- $posts := first 3 (where site.RegularPages "Section" "blog") -}}
 {{- $teamSec := partial "section.html" "team" -}}
 {{- $orgs := where site.RegularPages "Section" $teamSec -}}
+{{- $chat := "" -}}{{- with site.Params.community -}}{{ $chat = .chat }}{{- end -}}
 
 {{- with $hero }}
 <section class="g-hero">
@@ -13,9 +14,10 @@
       {{ with .eyebrow }}<span class="g-eyebrow">{{ . }}</span>{{ end }}
       <h1>{{ .title | default site.Title | safeHTML }}</h1>
       {{ with .lead }}<p class="g-hero__lead">{{ . }}</p>{{ end }}
-      {{ with .ctas }}
+      {{ if or .ctas $chat }}
         <div class="g-row">
-          {{ range . }}<a class="g-btn g-btn--lg g-btn--{{ .variant | default "primary" }}" href="{{ partial "rel-href.html" .url }}">{{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}{{ .label }}</a>{{ end }}
+          {{ range .ctas }}<a class="g-btn g-btn--lg g-btn--{{ .variant | default "primary" }}" href="{{ partial "rel-href.html" .url }}">{{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}{{ .label }}</a>{{ end }}
+          {{ with $chat }}<a class="g-btn g-btn--lg g-btn--secondary" href="{{ partial "rel-href.html" .url }}"{{ if not (hasPrefix .url "/") }} rel="noopener" target="_blank"{{ end }}><i class="fa-solid fa-comments" aria-hidden="true"></i> {{ .label | default (i18n "joinChat") }}</a>{{ end }}
         </div>
       {{ end }}
     </div>

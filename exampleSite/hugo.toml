@@ -17,6 +17,10 @@ buildFuture = true
   unsafe = true
 
 [[menu.main]]
+  name = "Start here"
+  url = "/start/"
+  weight = 5
+[[menu.main]]
   name = "About"
   url = "/about/"
   weight = 10
@@ -62,6 +66,18 @@ buildFuture = true
     label = "RSVP"
     url   = "https://example.com/rsvp"
     icon  = "fa-solid fa-calendar"
+
+  # The community lives in chat between events. Set this and a "Join the chat"
+  # button appears in the home hero and footer, and in the no-events empty
+  # state. Platform-agnostic: Discord, Slack, Matrix, Zulip all fit.
+  [params.community.chat]
+    url   = "https://example.com/chat"
+    label = "Join the chat"
+
+  # Turn on the "Your name here?" invite card at the end of the speakers list,
+  # pointing to /speak/. Off by default.
+  [params.speakers]
+    invite = true
 
 
   [[params.social]]
