@@ -29,8 +29,16 @@ cd my-community && npm install
 ```
 {{% /fw %}}
 
-{{% callout tone="info" title="Building with an AI agent?" %}}
-Both repos ship an `AGENTS.md` written for coding agents and new contributors alike: repo layout, build commands, content how-tos, and the known gotchas. Point your agent at it before its first edit ([Hugo](https://github.com/Mariatta/hugo-theme-popular/blob/main/AGENTS.md) · [Astro](https://github.com/Mariatta/astro-theme-popular/blob/main/AGENTS.md)), and skim it yourself, it doubles as the fastest human orientation.
+{{% callout tone="info" title="Building a site with an AI agent?" %}}
+Point your agent at this page plus the [content model](/docs/content-model/) and let it drive. The brief it needs to *use* the theme:
+
+- **Scaffold** with step 1 above, then start from a demo (step 2), rather than building pages from scratch.
+- **One config file** holds site name, colours, nav, footer, and feature toggles: `hugo.toml` under `[params]` for Hugo, `src/config.ts` for Astro. See the [configuration reference](/docs/configuration/).
+- **Content** is Markdown with front matter under `content/` (Hugo) or `src/content/` (Astro); the fields are identical across both frameworks. See the [content model](/docs/content-model/).
+- **Bulk content** like events and speakers should be [imported](/docs/importing/) from Sessionize or a spreadsheet with one command, not typed by hand.
+- **Preview** with `hugo server` (Hugo) or `npm run dev` (Astro); both output a fully static site you can deploy anywhere.
+
+*Modifying or contributing to the theme itself* is different work: point the agent at the repo's `AGENTS.md` first ([Hugo](https://github.com/Mariatta/hugo-theme-popular/blob/main/AGENTS.md) · [Astro](https://github.com/Mariatta/astro-theme-popular/blob/main/AGENTS.md)) for repo layout, parity rules, and the known gotchas. It doubles as the fastest human orientation.
 {{% /callout %}}
 
 ## 2 · Start from an example
