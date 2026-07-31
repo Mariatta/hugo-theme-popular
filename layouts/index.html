@@ -1,6 +1,7 @@
 {{ define "main" }}
 {{- $hero := .Params.hero -}}
-{{- $upcoming := where (where site.RegularPages "Section" "events") "Date" ">=" now -}}
+{{- $allEvents := where site.RegularPages "Section" "events" -}}
+{{- $upcoming := where $allEvents "Date" ">=" now -}}
 {{- $upcoming = sort $upcoming "Date" "asc" -}}
 {{- $posts := first 3 (where site.RegularPages "Section" "blog") -}}
 {{- $teamSec := partial "section.html" "team" -}}
@@ -80,7 +81,10 @@
 </section>
 {{ end }}
 
-{{- if not $upcoming }}
+{{- /* Empty state only on a community that has an events section but nothing
+     upcoming (a dormant club), never on an event-less site like this docs
+     site. */ -}}
+{{- if and $allEvents (not $upcoming) }}
 <section class="g-bg-wash-soft g-section">
   <div class="g-container">{{ partial "events-empty.html" . }}</div>
 </section>
