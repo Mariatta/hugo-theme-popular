@@ -21,6 +21,10 @@ buildFuture = true
   unsafe = true
 
 [[menu.main]]
+  name = "Start here"
+  url = "/start/"
+  weight = 5
+[[menu.main]]
   name = "About"
   url = "/about/"
   weight = 10
@@ -42,6 +46,10 @@ buildFuture = true
   name = "Events"
   url = "/events/"
   weight = 30
+[[menu.main]]
+  name = "Cook with us"
+  url = "/speak/"
+  weight = 35
 [[menu.main]]
   name = "Handbook"
   url = "/handbook/"

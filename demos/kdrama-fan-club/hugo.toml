@@ -47,6 +47,10 @@ buildFuture = true
   url = "/talks/"
   weight = 35
 [[menu.main]]
+  name = "Speak with us"
+  url = "/speak/"
+  weight = 40
+[[menu.main]]
   name = "Handbook"
   url = "/handbook/"
   weight = 50
@@ -73,6 +77,9 @@ buildFuture = true
     label = "RSVP"
     url   = "https://example.com/rsvp"
     icon  = "fa-solid fa-calendar"
+
+  [params.speakers]
+    invite = true
 
   [params.demoBar]
     current = "kdrama"
