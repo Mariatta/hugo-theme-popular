@@ -53,3 +53,21 @@ the people, the story.
 If your site is a single event with ticketing and a countdown, use a
 conference theme. Popular is for the *ongoing* group whose history is part of
 its identity. That's the line.
+
+## Deliberate non-features
+
+Some things are left out on purpose. Publishing the list is itself a feature:
+it says the theme is designed around *your maintenance load*, the
+no-more-spreadsheets promise applied to content.
+
+- **Job board** — staleness plus a moderation burden; every meetup job board
+  becomes a graveyard. A chat channel does it better.
+- **Member directory** — a privacy surface with consent to manage, and stale
+  within a year.
+- **Comments** — moderation load and spam; the conversation belongs in the
+  community's chat.
+- **Photo lightbox** — needs JavaScript for marginal value. The gallery links
+  each photo to its full-size image, which is enough.
+
+If you need one of these, a hosted service that specializes in it will serve
+you better than a theme feature you have to keep alive.

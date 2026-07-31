@@ -167,7 +167,10 @@ A fuller SEO reference (structured data, event rich results) lives on the
 
 ## Live counts in the home page stats
 
-A stat's `value` is shown verbatim unless it is one of these computed tokens:
+The stats strip is the theme's social-proof pattern: a running "events hosted"
+or "years running" count is the quiet evidence that a group is real and
+regular. A stat's `value` is shown verbatim unless it is one of these computed
+tokens, which stay true on their own as your history grows:
 
 - `@pastEventCount`: the number of past events, rounded down to a "70+" style
   once there are ten or more.

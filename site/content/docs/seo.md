@@ -12,6 +12,12 @@ Every page gets a description, canonical URL, full Open Graph and Twitter card
 tags, `og:locale`, and a `robots.txt` advertising your sitemap. You don't
 configure any of it.
 
+The site also emits **`/llms.txt`**, a short plain-text summary for AI agents:
+what the community is, the next upcoming event (regenerated every build so it
+stays true), how to join, and links to the key pages and the calendar feed. On
+Astro it is always generated; on Hugo add `LLMS` to the home page's outputs
+(the demos and starter already do).
+
 The theme also emits JSON-LD structured data:
 
 - **Event** on event pages (rich-result eligible),
