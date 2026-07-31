@@ -86,6 +86,21 @@ other = "Subscribe via RSS"
 [subscribeCalendar]
 other = "Subscribe to calendar"
 
+[watchRecording]
+other = "Watch"
+
+[viewSlides]
+other = "Slides"
+
+[hasRecording]
+other = "Recording available"
+
+[talks]
+other = "Talks"
+
+[talksLead]
+other = "Every talk from our past events, with recordings and slides where we have them."
+
 [learnMore]
 other = "Learn more"
 

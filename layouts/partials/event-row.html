@@ -6,6 +6,9 @@
 {{- $names := slice -}}
 {{- range .Params.speakers }}{{ with site.GetPage (print "/speakers/" .) }}{{ $names = $names | append .Title }}{{ else }}{{ warnf "%s: speaker %q matches no speaker page" $.File.Path . }}{{ end }}{{ end -}}
 {{- $speakerLine := or (delimit $names ", ") .Params.speaker -}}
+{{- /* Recording cue (§3): any event-level or per-talk recording. */ -}}
+{{- $hasRecording := false -}}
+{{- if .Params.talks }}{{ range .Params.talks }}{{ if .recording }}{{ $hasRecording = true }}{{ end }}{{ end }}{{ else }}{{ if .Params.recording }}{{ $hasRecording = true }}{{ end }}{{ end -}}
 <div class="g-event">
   <div class="g-event__date">
     <span class="g-event__dow">{{ .Date | time.Format "Mon" }}</span>
@@ -18,6 +21,7 @@
     <p>{{ .Description | default .Summary }}</p>
     <div class="g-event__meta"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>{{ if $venuePage }}{{ $venuePage.Title }}{{ with $venuePage.Params.address }} · {{ . }}{{ end }}{{ else }}{{ with .Params.venue }}{{ . }}{{ else }}{{ i18n "venueTba" }}{{ end }}{{ with .Params.address }} · {{ . }}{{ end }}{{ end }}</div>
     {{ with $speakerLine }}<div class="g-event__meta"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i>{{ . }}</div>{{ end }}
+    {{ if $hasRecording }}<div class="g-event__meta"><i class="fa-solid fa-circle-play" aria-hidden="true"></i>{{ i18n "hasRecording" }}</div>{{ end }}
   </div>
   <div class="g-event__aside">
     {{ if eq .Params.cancelled true }}<span class="g-badge g-badge--danger g-badge--soft">{{ i18n "eventCancelled" }}</span>
