@@ -30,7 +30,7 @@ buildFuture = true
     tagline = "Fixture footer"
     [params.footer.credit]
       label = "Popular. A Hugo theme by Mariatta."
-      url = "https://popular.mariatta.ca/"
+      url = "https://mariatta.ca/hugo-theme-popular/"
 
 [mediaTypes."text/calendar"]
   suffixes = ["ics"]
