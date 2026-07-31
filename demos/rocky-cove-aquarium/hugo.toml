@@ -70,6 +70,14 @@ buildFuture = true
     url   = "https://example.com/rsvp"
     icon  = "fa-solid fa-calendar"
 
+  [params.notice]
+    text = "Winter break: regular meetups resume in March. **Tanks stay wet**, [pop into the chat](https://example.com/chat) any time."
+    url  = "https://example.com/news"
+
+  [params.community.chat]
+    url   = "https://example.com/discord"
+    label = "Join our Discord"
+
   [params.demoBar]
     current = "aquarium"
     repo = "https://github.com/Mariatta/hugo-theme-popular"
