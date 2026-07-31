@@ -140,14 +140,6 @@ theme = "hugo-theme-popular"
         label = "Star the repo"
         url = "https://github.com/Mariatta/hugo-theme-popular"
 
-[mediaTypes."text/calendar"]
-  suffixes = ["ics"]
-
-[outputFormats.Calendar]
-  mediaType = "text/calendar"
-  baseName = "calendar"
-  isPlainText = true
-  noUgly = true
-
+# The docs site has no events section, so no calendar feed, just llms.txt.
 [outputs]
   home = ["HTML", "RSS", "LLMS"]
