@@ -94,6 +94,29 @@ Use the CSS classes directly, they're part of the theme's stylesheet:
 
 A bio card with a portrait, used for speakers and members, the same card that powers author boxes.
 
+## Gallery
+
+A photo grid for recaps: no JavaScript, no lightbox (each photo links to its full-size image, the deliberate [non-feature](/docs/beyond-meetups/#deliberate-non-features)). `alt` is **required**, a missing `alt` fails the build with a clear message, which is how the image-alt check stays green by construction.
+
+{{</* gallery */>}}
+  {{</* photo src="/images/recap-1.jpg" alt="Attendees around the demo table" caption="Show & tell" */>}}
+  {{</* photo src="/images/recap-2.jpg" alt="A speaker mid-talk" */>}}
+{{</* /gallery */>}}
+
+## Pull-quote
+
+A styled blockquote with optional attribution, for a testimonial in a recap or on the home page. Use the `{{%/* */%}}` form so the quote renders as Markdown.
+
+{{%/* pullquote cite="A happy member" */%}}The best Tuesday of my month.{{%/* /pullquote */%}}
+
+{{< example >}}
+{{% pullquote cite="A happy member" %}}The best Tuesday of my month.{{% /pullquote %}}
+{{< /example >}}
+
+### Recap posts
+
+A recap is just a blog post that uses these two: tag it `recap`, open with a line linking back to the event, drop in a `gallery` and a `pullquote`, and you have social proof for everyone who did not make it. Low effort, and it is exactly the evidence lurkers look for. The KDrama demo's "OST karaoke night in photos" is a worked example.
+
 ## Free interactive behaviour
 
 These ship as small vanilla-JS files, no framework runtime:

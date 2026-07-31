@@ -1,0 +1,11 @@
+# Theme-level config, merged into every site that uses the theme (lower
+# priority than the site's own config). Defines the LLMS (llms.txt) output
+# format so a site can enable /llms.txt (§8) just by adding "LLMS" to its home
+# [outputs], without redeclaring the format. (Hugo merges outputFormats from a
+# theme, but not [outputs], so the home outputs stay a per-site choice.)
+
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true

@@ -159,3 +159,6 @@ buildFuture = true
   baseName = "calendar"
   isPlainText = true
   noUgly = true
+
+[outputs]
+  home = ["HTML", "RSS", "LLMS"]

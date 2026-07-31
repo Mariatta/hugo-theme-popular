@@ -17,6 +17,9 @@ title = "Home"
     variant = "outline"
 
 [[stats]]
+  value = "@pastEventCount"
+  label = "events hosted"
+[[stats]]
   value = "2026"
   label = "founded"
 [[stats]]
@@ -25,9 +28,6 @@ title = "Home"
 [[stats]]
   value = "Free"
   label = "to attend"
-[[stats]]
-  value = "Monthly"
-  label = "gatherings"
 
 [featuresHead]
   eyebrow = "What we do"
