@@ -20,6 +20,7 @@
       <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ if $venuePage }}<a href="{{ $venuePage.RelPermalink }}">{{ $venuePage.Title }}</a>{{ with $venuePage.Params.address }} · {{ . }}{{ end }}{{ else }}{{ with .Params.venue }}{{ . }}{{ else }}{{ i18n "venueTba" }}{{ end }}{{ with .Params.address }} · {{ . }}{{ end }}{{ end }}</span>
       {{ if $venuePage }}{{ if eq $venuePage.Params.wheelchair true }}<span class="g-badge g-badge--success g-badge--soft"><i class="fa-solid fa-wheelchair" aria-hidden="true"></i> {{ i18n "wheelchairAccessible" }}</span>{{ end }}{{ if or $venuePage.Params.transit $venuePage.Params.parking $venuePage.Params.access }}<span><a href="{{ $venuePage.RelPermalink }}#{{ i18n "gettingThere" | urlize }}">{{ i18n "gettingThere" }}</a></span>{{ end }}{{ end }}
       {{ with .Params.speaker }}<span><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> {{ . }}</span>{{ end }}
+      {{ if not .Params.talks }}{{ with .Params.recording }}<span><a href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a></span>{{ end }}{{ with .Params.slides }}<span><a href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a></span>{{ end }}{{ end }}
     </div>
 
     {{ if or .Params.checkin $venueNotes }}
@@ -39,6 +40,28 @@
       <h2 style="font-size:var(--text-xl);margin:var(--space-5) 0 1rem">{{ i18n "speakers" }}</h2>
       <div class="g-stack" style="gap:var(--space-3)">
         {{ range . }}{{ partial "author-box.html" . }}{{ end }}
+      </div>
+    {{ end }}
+
+    {{- /* §3 Talks section: multi-talk events (talks[]). Single-talk events
+         render recording/slides links in the meta block above. */ -}}
+    {{ with .Params.talks }}
+      <h2 style="font-size:var(--text-xl);margin:var(--space-5) 0 1rem">{{ i18n "talks" }}</h2>
+      <div class="g-stack" style="gap:var(--space-3)">
+        {{ range . }}
+        {{- $sp := "" -}}
+        {{- if .speaker }}{{ $sp = site.GetPage (print "/speakers/" .speaker) }}{{ if not $sp }}{{ warnf "%s: talk speaker %q matches no speaker page" $.File.Path .speaker }}{{ end }}{{ end -}}
+        <div class="g-talk">
+          <div class="g-talk__title">{{ .title }}</div>
+          {{ if $sp }}<div class="g-talk__by"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> <a href="{{ $sp.RelPermalink }}">{{ $sp.Title }}</a></div>{{ end }}
+          {{ if or .recording .slides }}
+          <div class="g-row" style="gap:var(--space-2)">
+            {{ with .recording }}<a class="g-btn g-btn--sm g-btn--outline" href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a>{{ end }}
+            {{ with .slides }}<a class="g-btn g-btn--sm g-btn--ghost" href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a>{{ end }}
+          </div>
+          {{ end }}
+        </div>
+        {{ end }}
       </div>
     {{ end }}
 
