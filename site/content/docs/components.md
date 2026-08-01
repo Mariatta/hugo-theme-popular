@@ -99,8 +99,8 @@ A bio card with a portrait, used for speakers and members, the same card that po
 A photo grid for recaps: no JavaScript, no lightbox (each photo links to its full-size image, the deliberate [non-feature](/docs/beyond-meetups/#deliberate-non-features)). `alt` is **required**, a missing `alt` fails the build with a clear message, which is how the image-alt check stays green by construction.
 
 {{</* gallery */>}}
-  {{</* photo src="/images/recap-1.jpg" alt="Attendees around the demo table" caption="Show & tell" */>}}
-  {{</* photo src="/images/recap-2.jpg" alt="A speaker mid-talk" */>}}
+  {{</* photo src="images/recap-1.jpg" alt="Attendees around the demo table" caption="Show & tell" */>}}
+  {{</* photo src="images/recap-2.jpg" alt="A speaker mid-talk" */>}}
 {{</* /gallery */>}}
 
 ## Pull-quote
