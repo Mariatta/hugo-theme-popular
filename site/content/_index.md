@@ -42,27 +42,39 @@ title = "Home"
 [[features]]
   icon = "fa-solid fa-calendar-day"
   title = "Events, done right"
-  body = "Events split automatically into upcoming and past, with speaker profile cards, venue pages that carry arrival notes (buzz codes and all), check-in instructions, RSVP buttons and a 'venue wanted' state."
+  body = "Events split automatically into upcoming and past, with speaker cards, venue pages carrying arrival notes and step-free, transit and parking access, check-in details, RSVP buttons, and a one-click calendar subscribe so every meetup lands in members' calendars."
+[[features]]
+  icon = "fa-solid fa-circle-play"
+  title = "A talk archive, not a dead list"
+  body = "Attach a recording and slides to an event or to individual talks, and past events become a library members come back for. An optional /talks/ index gathers every talk, newest first, filterable by topic."
+[[features]]
+  icon = "fa-solid fa-images"
+  title = "Recaps that prove it happened"
+  body = "Gallery and pull-quote shortcodes for photo recaps and testimonials, no lightbox and no JavaScript. The social proof lurkers look for before they show up."
+[[features]]
+  icon = "fa-solid fa-comments"
+  title = "The between-events bridge"
+  body = "A community-chat call to action, a 'Start here' script for first-timers, a 'Speak with us' call for speakers, and a notice banner for when the season is on pause, the glue that keeps a community alive between meetups."
+[[features]]
+  icon = "fa-solid fa-magnifying-glass"
+  title = "Found by search and AI"
+  body = "Structured data, sitemaps and Open Graph out of the box, plus a build-time llms.txt summary, so search engines and AI agents alike understand who you are and when you next meet."
 [[features]]
   icon = "fa-solid fa-list-check"
   title = "Handbook & runbooks"
-  body = "A docs layout with scroll-tracking TOC and checklists that remember progress in the browser, turn your ops knowledge into a living playbook."
+  body = "A docs layout with a scroll-tracking table of contents and checklists that remember progress in the browser, turning your ops knowledge into a living playbook."
+[[features]]
+  icon = "fa-solid fa-pen-nib"
+  title = "Multi-author blog"
+  body = "Author profiles with bio, photo and socials; multiple authors per post; one-off guest writers inline, all with linkbacks to profile pages."
+[[features]]
+  icon = "fa-solid fa-people-group"
+  title = "Organizers & community"
+  body = "Team pages, get-involved flows, a code of conduct, a land-acknowledgement slot, and a warm voice throughout."
 [[features]]
   icon = "fa-solid fa-battery-full"
   title = "Batteries included"
   body = "Command-line tools import your events, speakers and venues from the platforms you already plan in. Not copy-paste, not magic: the busywork, scripted."
-[[features]]
-  icon = "fa-solid fa-robot"
-  title = "Agent & human friendly"
-  body = "AGENTS.md is included: repo layout, build commands, content rules and the known gotchas, one playbook that AI coding agents and humans follow alike."
-[[features]]
-  icon = "fa-solid fa-people-group"
-  title = "Organizers & community"
-  body = "Team pages, get-involved flows, code of conduct, land-acknowledgement slot, and a warm voice throughout."
-[[features]]
-  icon = "fa-solid fa-pen-nib"
-  title = "Multi-author blog"
-  body = "Author profiles with bio, photo and socials; multiple authors per post; one-off guest writers inline, with linkbacks to profile pages."
 [[features]]
   icon = "fa-solid fa-palette"
   title = "Config-first theming"
