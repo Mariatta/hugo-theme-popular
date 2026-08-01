@@ -47,6 +47,11 @@ jobs:
           BASE: ${{ steps.pages.outputs.base_url }}
         run: |
           THEME="$(basename "$GITHUB_WORKSPACE")"
+          # Regenerate the docs-site changelog page from the canonical
+          # CHANGELOG.md so the deployed /changelog/ is always current.
+          # (escape shortcode delimiters so mentions like `{{< faq >}}` in the
+          # changelog render literally instead of executing)
+          { printf '+++\ntitle = "Changelog"\ntype = "docs"\neyebrow = "Docs"\nlead = "Every notable change to the Popular theme, newest first."\nweight = 70\n+++\n\n'; grep -v '^# Changelog$' CHANGELOG.md | sed -e 's|{{<|{{</* |g' -e 's|>}}| */>}}|g' -e 's|{{%|{{%/* |g' -e 's|%}}| */%}}|g'; } > site/content/changelog.md
           build () {  # build <source-dir> <dest-subpath ("" for root)>
             hugo --source "$1" \
                  --themesDir "$(realpath --relative-to="$1" "$GITHUB_WORKSPACE/..")" \

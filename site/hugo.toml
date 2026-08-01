@@ -43,6 +43,10 @@ theme = "hugo-theme-popular"
   url = "/docs/demos/"
   weight = 20
 [[menu.main]]
+  name = "Changelog"
+  url = "/changelog/"
+  weight = 25
+[[menu.main]]
   name = "Blog"
   url = "/blog/"
   weight = 30
