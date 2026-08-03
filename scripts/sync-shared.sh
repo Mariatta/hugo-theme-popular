@@ -23,6 +23,7 @@ PAIRS=(
   "scripts/sessionize-import.py:scripts/sessionize-import.py"
   "scripts/spreadsheet-import.py:scripts/spreadsheet-import.py"
   "scripts/sample-community.xlsx:scripts/sample-community.xlsx"
+  "data/setup-questions.json:src/data/setup-questions.json"
   "scripts/tests:scripts/tests"
   "CHANGELOG.md:CHANGELOG.md"
   "RELEASING.md:RELEASING.md"
