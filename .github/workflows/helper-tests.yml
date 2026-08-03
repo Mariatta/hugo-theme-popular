@@ -28,3 +28,36 @@ jobs:
             || { echo "::notice::sibling repo not clonable; parity check skipped"; exit 0; }
           bash scripts/sync-shared.sh --check
 
+  e2e-wizard:
+    # End-to-end: run scripts/setup.py over a fresh copy of the starter with a
+    # fixture answer file, then confirm the generated site builds and the
+    # answers reached the rendered HTML.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+      - name: Run the wizard over a fresh copy of the starter
+        run: |
+          cp -R exampleSite /tmp/site
+          POPULAR_SETUP_DATE=2026-08-03 python3 scripts/setup.py \
+            --site /tmp/site \
+            --answers scripts/tests/fixtures/answers-full.json --force
+      - name: Wizard wrote the config, seed, audit trail and answer record
+        run: |
+          test -f /tmp/site/DECISIONS.md
+          test -f /tmp/site/.popular-setup.json
+          grep -q "PyLadies Vancouver" /tmp/site/hugo.toml
+          grep -q "coc@" /tmp/site/content/code-of-conduct.md
+      - name: The generated site builds
+        run: hugo --source /tmp/site --themesDir "$PWD/.." --theme hugo-theme-popular --minify
+      - name: The answers reached the rendered HTML
+        run: |
+          grep -rq "PyLadies Vancouver" /tmp/site/public
+          grep -rq "coc@" /tmp/site/public
+
