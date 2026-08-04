@@ -75,6 +75,11 @@ config. It reads the same question schema, writes your config plus a
 code-of-conduct seed page, and leaves a `DECISIONS.md` recording what you chose
 (with handbook links) and what is still open.
 
+It's a single Python 3 script with no packages to install (Python 3 ships on
+macOS and most Linux; Windows users can get it from python.org). Prefer not to
+use it at all? Skip this step and edit the config by hand, everything the wizard
+writes, you can also set yourself.
+
 {{% fw "hugo" %}}
 ```bash
 python3 themes/popular/scripts/setup.py --dry-run  # interactive; Enter skips a question, shows the diff, writes nothing
