@@ -11,6 +11,38 @@ same design, content model, and demos. A written contract (`PARITY.md`) plus
 checked out next to this one, many changes here must be mirrored there (see
 "Parity rules" below).
 
+## Setting up a new site for a user
+
+When a user asks you to set up a **new community site** with this theme (as
+opposed to modifying the theme itself), the write path is the setup wizard, not
+your editor. Your job is the conversation; `scripts/setup.py` is the
+deterministic, tested writer.
+
+1. **Read the schema** `data/setup-questions.json`. It is the single source of
+   truth, and also drives the "Before you build" worksheet page. Interview the
+   user **conversationally, grouped by topic** (identity, then governance, then
+   links), one topic per exchange, never as a flat form dump.
+2. **For `decision`-layer questions, advise, don't just collect.** Use the
+   question's `help` text, surface its `handbook_url`, and bring relevant
+   context ("you mentioned you're a PyLadies chapter, the PSF Code of Conduct is
+   the conventional choice there"). "Not decided yet" is a valid answer: record
+   it and move on.
+3. **Write the answers to `answers.json`** and run
+   `python3 scripts/setup.py --answers answers.json --dry-run`. Show the user
+   the diff. On approval, run it **without** `--dry-run`. On a freshly
+   scaffolded site the config file already exists, so the first apply also needs
+   `--force` (the wizard refuses to overwrite an existing config otherwise);
+   after that, drop `--force` so later runs still protect the user's edits.
+4. **Never hand-edit `hugo.toml` or the seed pages to apply the answers.** The
+   script owns that write path; hand-edits drift from the schema and skip the
+   `DECISIONS.md` audit trail.
+5. **After writing, build the site** (see "How to build and serve") and confirm
+   it succeeds. Point the user at `DECISIONS.md` for what was decided and the
+   "Still open" list for what to come back to.
+
+Same invariant as the wizard: sugar, never a gate. A user who wants to skip the
+interview entirely still gets a clean starter config.
+
 ## Repo layout
 
 | Path | What it is |

@@ -6,9 +6,13 @@ eyebrow = "Docs"
 lead = "From zero to a running community site. Pick your framework once: the docs remember your choice."
 +++
 
+New here? Start with **[Before you build](/docs/before-you-build/)**: the handful
+of decisions (code of conduct, where the repo lives, how people RSVP) worth
+settling before you install. This page picks up once you're ready to build.
+
 {{< fwswitch >}}
 
-## 1 · Get the theme
+## 1 · Install the theme
 
 {{% fw "hugo" %}}
 Add the theme to your Hugo site as a git submodule (or copy the folder into `themes/popular`; Hugo Modules users can instead import `github.com/Mariatta/hugo-theme-popular`, see the README):
@@ -33,7 +37,7 @@ cd my-community && npm install
 Point your agent at this page plus the [content model](/docs/content-model/) and let it drive. The brief it needs to *use* the theme:
 
 - **Scaffold** with step 1 above, then start from a demo (step 2), rather than building pages from scratch.
-- **One config file** holds site name, colours, nav, footer, and feature toggles: `hugo.toml` under `[params]` for Hugo, `src/config.ts` for Astro. See the [configuration reference](/docs/configuration/).
+- **Interview, don't hand-edit.** The repo's `AGENTS.md` has a "Setting up a new site for a user" protocol: the agent reads `setup-questions.json`, interviews you, and runs the setup wizard (step 3), which is the tested write path.
 - **Content** is Markdown with front matter under `content/` (Hugo) or `src/content/` (Astro); the fields are identical across both frameworks. See the [content model](/docs/content-model/).
 - **Bulk content** like events and speakers should be [imported](/docs/importing/) from Sessionize or a spreadsheet with one command, not typed by hand.
 - **Preview** with `hugo server` (Hugo) or `npm run dev` (Astro); both output a fully static site you can deploy anywhere.
@@ -64,17 +68,38 @@ npm run demo:aquarium     # or demo:foodie / demo:kdrama / demo:superfan
 When you're ready, edit `src/content/` and `src/config.ts` directly and delete `demos/`.
 {{% /fw %}}
 
-## 3 · Make it yours
+## 3 · Make it yours: run the setup wizard
 
-Open the config file and change the obvious things, name, logo, colours, links:
+The wizard turns the [Before you build](/docs/before-you-build/) answers into
+config. It reads the same question schema, writes your config plus a
+code-of-conduct seed page, and leaves a `DECISIONS.md` recording what you chose
+(with handbook links) and what is still open.
+
+It's a single Python 3 script with no packages to install (Python 3 ships on
+macOS and most Linux; Windows users can get it from python.org). Prefer not to
+use it at all? Skip this step and edit the config by hand, everything the wizard
+writes, you can also set yourself.
 
 {{% fw "hugo" %}}
-Everything lives under `[params]` in `hugo.toml`. See the [configuration reference](/docs/configuration/).
+```bash
+python3 themes/popular/scripts/setup.py --dry-run  # interactive; Enter skips a question, shows the diff, writes nothing
+python3 themes/popular/scripts/setup.py --force    # apply (replaces the config `hugo new site` created)
+```
+It writes `hugo.toml`. Prefer to edit by hand? Everything lives under `[params]`; see the [configuration reference](/docs/configuration/).
 {{% /fw %}}
 
 {{% fw "astro" %}}
-Everything lives in `src/config.ts`. See the [configuration reference](/docs/configuration/).
+```bash
+python3 scripts/setup.py --dry-run  # interactive; Enter skips a question, shows the diff, writes nothing
+python3 scripts/setup.py --force    # apply (replaces the template's src/config.ts)
+```
+It writes `src/config.ts`. Prefer to edit by hand? Everything lives in that one file; see the [configuration reference](/docs/configuration/).
 {{% /fw %}}
+
+The first run needs `--force` because scaffolding your site already created a
+config file, and the wizard refuses to clobber an existing config unless you say
+so. Preview with `--dry-run` first; it writes nothing. Skip every question and
+you still get a clean starter config: the wizard is sugar, never a gate.
 
 {{% callout tone="tip" title="The one-file re-brand" %}}
 Change `brand.primary` and the theme derives coherent tints for badges, tags and hovers automatically. Fonts, surfaces and radii are one line each. Details in [Theming](/docs/theming/).
