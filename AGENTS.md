@@ -29,10 +29,10 @@ deterministic, tested writer.
    it and move on.
 3. **Write the answers to `answers.json`** and run
    `python3 scripts/setup.py --answers answers.json --dry-run`. Show the user
-   the diff. On approval, run it **without** `--dry-run`. On a freshly
-   scaffolded site the config file already exists, so the first apply also needs
-   `--force` (the wizard refuses to overwrite an existing config otherwise);
-   after that, drop `--force` so later runs still protect the user's edits.
+   the diff. On approval, run it **without** `--dry-run`. On a fresh site the
+   wizard adopts the unedited starter config and CoC page automatically (no
+   `--force` needed); it only refuses, and asks for `--force`, once the user has
+   hand-edited those files, so their work is never silently overwritten.
 4. **Never hand-edit `hugo.toml` or the seed pages to apply the answers.** The
    script owns that write path; hand-edits drift from the schema and skip the
    `DECISIONS.md` audit trail.

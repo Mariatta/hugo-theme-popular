@@ -83,7 +83,7 @@ writes, you can also set yourself.
 {{% fw "hugo" %}}
 ```bash
 python3 themes/popular/scripts/setup.py --dry-run  # interactive; Enter skips a question, shows the diff, writes nothing
-python3 themes/popular/scripts/setup.py --force    # apply (replaces the config `hugo new site` created)
+python3 themes/popular/scripts/setup.py            # apply
 ```
 It writes `hugo.toml`. Prefer to edit by hand? Everything lives under `[params]`; see the [configuration reference](/docs/configuration/).
 {{% /fw %}}
@@ -91,15 +91,16 @@ It writes `hugo.toml`. Prefer to edit by hand? Everything lives under `[params]`
 {{% fw "astro" %}}
 ```bash
 python3 scripts/setup.py --dry-run  # interactive; Enter skips a question, shows the diff, writes nothing
-python3 scripts/setup.py --force    # apply (replaces the template's src/config.ts)
+python3 scripts/setup.py            # apply
 ```
 It writes `src/config.ts`. Prefer to edit by hand? Everything lives in that one file; see the [configuration reference](/docs/configuration/).
 {{% /fw %}}
 
-The first run needs `--force` because scaffolding your site already created a
-config file, and the wizard refuses to clobber an existing config unless you say
-so. Preview with `--dry-run` first; it writes nothing. Skip every question and
-you still get a clean starter config: the wizard is sugar, never a gate.
+On a fresh site started from an example (step 2) this just works: the wizard
+recognizes the unedited starter config and adopts it. Once you have hand-edited
+your config it won't overwrite your work without `--force`, so preview with
+`--dry-run` first. Skip every question and you still get a clean starter config:
+the wizard is sugar, never a gate.
 
 {{% callout tone="tip" title="The one-file re-brand" %}}
 Change `brand.primary` and the theme derives coherent tints for badges, tags and hovers automatically. Fonts, surfaces and radii are one line each. Details in [Theming](/docs/theming/).
