@@ -7,9 +7,16 @@
        cannot drift. Discipline rule: if an item does not map to a schema
        question, it belongs in the handbook, not on this page.
 
-       Loaded via hugo.Data (site.Data is deprecated since Hugo v0.156). Invoke
-       with the {{< >}} form so the emitted HTML is not re-parsed as markdown. */ -}}
-{{- $schema := index hugo.Data "setup-questions" -}}
+       Schema access is version-guarded: hugo.Data on v0.156+ (where .Site.Data
+       is deprecated), site.Data on older Hugo (where hugo.Data does not yet
+       exist), so the theme's documented minimum still builds. Invoke with the
+       {{< >}} form so the emitted HTML is not re-parsed as markdown. */ -}}
+{{- $schema := "" -}}
+{{- if ge hugo.Version "0.156.0" -}}
+  {{- $schema = index hugo.Data "setup-questions" -}}
+{{- else -}}
+  {{- $schema = index site.Data "setup-questions" -}}
+{{- end -}}
 {{- $indent := "calc(var(--space-4) + 22px + 0.8rem)" -}}
 {{- $groups := slice
       (dict "key" "setup-decisions" "head" "Decide before you install"
