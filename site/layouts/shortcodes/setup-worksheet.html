@@ -1,0 +1,55 @@
+{{- /* setup-worksheet: renders the setup-question schema
+       (data/setup-questions.json) as two persistent checklists, so a new
+       organizer can decide and gather everything BEFORE installing.
+
+       The page is generated entirely from the schema, which also drives
+       scripts/setup.py and the AGENTS.md interview, so the three surfaces
+       cannot drift. Discipline rule: if an item does not map to a schema
+       question, it belongs in the handbook, not on this page.
+
+       Loaded via hugo.Data (site.Data is deprecated since Hugo v0.156). Invoke
+       with the {{< >}} form so the emitted HTML is not re-parsed as markdown. */ -}}
+{{- $schema := index hugo.Data "setup-questions" -}}
+{{- $indent := "calc(var(--space-4) + 22px + 0.8rem)" -}}
+{{- $groups := slice
+      (dict "key" "setup-decisions" "head" "Decide before you install"
+            "blurb" "Judgement calls with no default. Settle these with your co-organizers first: the wizard records your answers in DECISIONS.md so the next organizer knows why."
+            "items" (where $schema.questions "layer" "decision"))
+      (dict "key" "setup-config" "head" "Have these ready"
+            "blurb" "Values the wizard writes into your config. Every one is skippable, skip it and you get a sensible default you can change later."
+            "items" (where $schema.questions "layer" "config")) -}}
+<div class="g-worksheet">
+{{- range $groups }}
+  <section class="g-worksheet__group">
+    <div class="g-checklist" data-key="{{ .key }}">
+      <div class="g-checklist__head">
+        <span>{{ .head }}</span>
+        <span class="g-checklist__count">0/{{ len .items }}</span>
+      </div>
+      <p class="g-worksheet__blurb">{{ .blurb }}</p>
+      <ul>
+      {{- range .items }}
+        <li>
+          <button class="g-check" type="button" role="checkbox" aria-checked="false">
+            <span class="g-check__box"></span>
+            <span class="g-check__label">{{ .prompt }}</span>
+          </button>
+          <p class="g-worksheet__help">{{ .help }}
+            {{- with .handbook_url }} <a class="g-worksheet__handbook" href="{{ . }}"><i class="fa-solid fa-book" aria-hidden="true"></i> Handbook</a>{{ end -}}
+          </p>
+        </li>
+      {{- end }}
+      </ul>
+    </div>
+  </section>
+{{- end }}
+</div>
+<style>
+  .g-worksheet__group + .g-worksheet__group { margin-top: 1.6rem; }
+  .g-worksheet__blurb { margin: 0; padding: 0.8rem var(--space-4); font-size: var(--text-sm);
+    color: var(--text-muted); border-bottom: var(--border-width) solid var(--border-subtle); }
+  .g-worksheet__help { margin: -0.4rem 0 0; padding: 0 var(--space-4) 0.85rem {{ $indent }};
+    font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-muted); }
+  .g-worksheet__handbook { white-space: nowrap; font-weight: var(--weight-medium); }
+  .g-worksheet__handbook i { font-size: 0.8em; }
+</style>
