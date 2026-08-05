@@ -59,8 +59,33 @@ A ready-made GitHub Pages workflow ships in the repo (`.github/workflows/deploy-
 ```bash
 npm run build   # output in dist/
 ```
-Set `site` in `astro.config.mjs` for correct RSS/OG URLs. The included Pages workflow builds all four demos behind a gallery; for your own site, deploy `dist/` at a domain root (the theme's links are root-absolute).
+Set `site` in `astro.config.mjs` for correct RSS/OG URLs. The included Pages workflow builds all four demos behind a gallery; for your own site, deploy `dist/`.
 {{% /fw %}}
+
+### Deploying under a subpath
+
+A GitHub **project** page is served from a path, `you.github.io/my-community/`,
+not from a domain root. Say so in one place and every link, image, feed and
+structured-data URL follows.
+
+{{% fw "hugo" %}}
+```toml
+# hugo.toml
+baseURL = "https://you.github.io/my-community/"
+```
+{{% /fw %}}
+
+{{% fw "astro" %}}
+```js
+// astro.config.mjs
+const base = '/my-community';
+```
+{{% /fw %}}
+
+Nothing else changes: keep writing content links and image paths the way you
+always have (`/images/hero.png`, `[the handbook](/handbook/)`). A **user** page
+(`you.github.io`) or a custom domain is a domain root, so leave the setting
+alone there.
 
 ## Keeping Hugo & Astro in sync
 

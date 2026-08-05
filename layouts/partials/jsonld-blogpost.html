@@ -4,7 +4,7 @@
 {{- $authors := slice -}}
 {{- range .Params.authors }}{{ with site.GetPage (print "/" $sec "/" .) }}{{ $authors = $authors | append (dict "@type" "Person" "name" .Title) }}{{ end }}{{ end -}}
 {{- range .Params.guestAuthors }}{{ $authors = $authors | append (dict "@type" "Person" "name" .name) }}{{ end -}}
-{{- $publisher := dict "@type" "Organization" "name" site.Title "url" (absURL "/") -}}
+{{- $publisher := dict "@type" "Organization" "name" site.Title "url" (partial "abs-url.html" "/") -}}
 {{- if not $authors }}{{ $authors = slice $publisher }}{{ end -}}
 {{- $headline := .Title -}}{{- if gt (len $headline) 110 }}{{ $headline = printf "%s…" (substr $headline 0 109) }}{{ end -}}
 {{- $ld := dict
@@ -19,5 +19,5 @@
 -}}
 {{- with .Description | default .Summary }}{{ $ld = merge $ld (dict "description" (. | plainify | truncate 300)) }}{{ end -}}
 {{- $img := .Params.image | default site.Params.ogImage -}}
-{{- with $img }}{{ $ld = merge $ld (dict "image" (. | absURL)) }}{{ end -}}
+{{- with $img }}{{ $ld = merge $ld (dict "image" (partial "abs-url.html" .)) }}{{ end -}}
 <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>

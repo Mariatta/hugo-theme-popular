@@ -11,8 +11,8 @@
   <p class="g-lead">{{ i18n "noUpcomingEvents" }}</p>
   {{- if or $chat $cal }}
   <div class="g-row" style="justify-content:center">
-    {{ with $chat }}{{ with .url }}<a class="g-btn g-btn--primary" href="{{ . }}"{{ if not (hasPrefix . "/") }} rel="noopener" target="_blank"{{ end }}><i class="fa-solid fa-comments" aria-hidden="true"></i> {{ $chat.label | default (i18n "joinChat") }}</a>{{ end }}{{ end }}
-    {{ with $cal }}<a class="g-btn g-btn--outline" href="{{ . }}"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i> {{ i18n "subscribeCalendar" }}</a>{{ end }}
+    {{ with $chat }}{{ with .url }}<a class="g-btn g-btn--primary" href="{{ partial "rel-href.html" . }}"{{ if not (hasPrefix . "/") }} rel="noopener" target="_blank"{{ end }}><i class="fa-solid fa-comments" aria-hidden="true"></i> {{ $chat.label | default (i18n "joinChat") }}</a>{{ end }}{{ end }}
+    {{ with $cal }}<a class="g-btn g-btn--outline" href="{{ partial "rel-href.html" . }}"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i> {{ i18n "subscribeCalendar" }}</a>{{ end }}
   </div>
   {{- end }}
 </div>

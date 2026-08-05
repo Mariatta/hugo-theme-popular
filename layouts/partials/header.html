@@ -2,7 +2,7 @@
 <header class="g-header">
   <nav class="g-container g-nav" aria-label="{{ i18n "primaryNav" }}">
     <a class="g-brand" href="{{ "" | relLangURL }}">
-      {{ with site.Params.logo }}<img src="{{ . | relURL }}" alt="{{ site.Title }}">{{ end }}
+      {{ with site.Params.logo }}<img src="{{ partial "rel-src.html" . }}" alt="{{ site.Title }}">{{ end }}
       <span class="g-brand__text">
         <span class="g-brand__name">{{ site.Params.brandName | default site.Title }}</span>
         {{ with site.Params.brandSub }}<span class="g-brand__sub">{{ . }}</span>{{ end }}

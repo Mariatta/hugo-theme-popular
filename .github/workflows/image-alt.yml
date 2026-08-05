@@ -63,6 +63,39 @@ jobs:
       - name: Validate iCalendar feeds
         run: python3 scripts/check-ics.py alt-check-out
 
+      - name: Subpath deployment (baseURL with a path)
+        run: |
+          # A Pages project site lives at user.github.io/repo/. Every internal
+          # href and src must carry that path: relURL/relLangURL silently drop
+          # it when the value starts with a slash, which is how front matter
+          # written the Astro way ("/images/x.png") 404s here. rel-href.html
+          # and rel-src.html exist to prevent exactly that.
+          # (The deploy workflow has the same guard, but it no-ops on the
+          # theme's own custom-domain deployment, so run it here too.)
+          THEME="$(basename "$GITHUB_WORKSPACE")"
+          sub () {  # sub <source-dir> <dest-subdir>
+            hugo --source "$1" \
+                 --themesDir "$(realpath --relative-to="$1" "$GITHUB_WORKSPACE/..")" \
+                 --theme "$THEME" \
+                 --baseURL "https://example.com/sub/" \
+                 --destination "$GITHUB_WORKSPACE/subpath-out/$2"
+          }
+          sub exampleSite example
+          sub demos/kdrama-fan-club kdrama
+          leaks=$(grep -rhoE '(href|src)="/[^"]*"' subpath-out --include='*.html' \
+                  | grep -vE '^(href|src)="/sub' | sort -u | head -20 || true)
+          if [ -n "$leaks" ]; then
+            echo "::error::internal link or asset missing the /sub base path:"; echo "$leaks"; exit 1
+          fi
+          # absolute URLs (canonical, og:image, JSON-LD, feeds) keep the subpath too
+          grep -q '"url":"https://example.com/sub/"' subpath-out/example/index.html
+          grep -q 'og:image" content="https://example.com/sub/' subpath-out/example/index.html
+          grep -q 'https://example.com/sub/events/' subpath-out/example/llms.txt
+          # markdown body links written "/handbook/" pick up the prefix
+          grep -q 'href="/sub/handbook/"' subpath-out/example/runbooks/index.html
+          python3 scripts/check-jsonld.py subpath-out
+          python3 scripts/check-ics.py subpath-out
+
       - name: Empty state + notice banner (§5)
         run: |
           # A fixture site with no upcoming events must render the designed

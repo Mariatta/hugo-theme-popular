@@ -27,8 +27,8 @@
 {{- /* Brand overrides from config, recolor/retype the whole site here. */ -}}
 {{ partial "brand-vars.html" . }}
 
-{{ with (site.Params.favicon | default site.Params.logo) }}<link rel="icon" href="{{ . | relURL }}">{{ end }}
-{{ range site.Params.customCSS }}<link rel="stylesheet" href="{{ . | relURL }}">{{ end }}
+{{ with (site.Params.favicon | default site.Params.logo) }}<link rel="icon" href="{{ partial "rel-src.html" . }}">{{ end }}
+{{ range site.Params.customCSS }}<link rel="stylesheet" href="{{ partial "rel-src.html" . }}">{{ end }}
 
 {{- /* Site hook: create layouts/partials/head-extra.html in your site to
        inject analytics, verification tags, extra fonts, anything head-level,

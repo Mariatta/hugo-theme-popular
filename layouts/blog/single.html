@@ -13,7 +13,7 @@
    <div class="g-article">
     {{ with .Params.image }}
       <div style="border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:var(--space-5)">
-        <img src="{{ . | relURL }}" alt="{{ $.Title }}" style="width:100%;aspect-ratio:16/9;object-fit:cover">
+        <img src="{{ partial "rel-src.html" . }}" alt="{{ $.Title }}" style="width:100%;aspect-ratio:16/9;object-fit:cover">
       </div>
     {{ end }}
 
@@ -22,7 +22,7 @@
     {{ with .Params.speaker }}
       <h2 style="font-size:var(--text-xl);margin:var(--space-5) 0 1rem">{{ i18n "ourSpeaker" }}</h2>
       <div class="g-persona">
-        {{ with .photo }}<img class="g-persona__img" src="{{ . | relURL }}" alt="{{ .name }}">{{ end }}
+        {{ with .photo }}<img class="g-persona__img" src="{{ partial "rel-src.html" . }}" alt="{{ .name }}">{{ end }}
         <div>
           <div class="g-persona__name">{{ .name }}</div>
           {{ with .title }}<div class="g-persona__role">{{ . }}</div>{{ end }}

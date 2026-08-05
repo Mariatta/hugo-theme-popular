@@ -299,6 +299,11 @@ The helper scripts have a dependency-free test suite: `python3 -m unittest disco
 Popular is a static site, deploy the `public/` folder anywhere (Netlify, GitHub Pages, Cloudflare
 Pages, etc.). Set `baseURL` in `hugo.toml` and build with `hugo --minify`.
 
+**Serving from a subpath** (a GitHub project page lives at `user.github.io/repo/`)
+is supported: put the full path in `baseURL`, for example
+`baseURL = "https://you.github.io/my-community/"`, and every link, image and feed
+URL picks it up. No other change is needed, in config or in content.
+
 ---
 
 ## Support the theme

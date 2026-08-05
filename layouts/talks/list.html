@@ -42,8 +42,8 @@
         <div class="g-talk__event"><i class="fa-solid fa-calendar-day" aria-hidden="true"></i> <a href="{{ .event.RelPermalink }}">{{ .event.Title }}</a> · {{ .event.Date | time.Format ":date_medium" }}</div>
         {{ if or .recording .slides }}
         <div class="g-row" style="gap:var(--space-2)">
-          {{ with .recording }}<a class="g-btn g-btn--sm g-btn--outline" href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a>{{ end }}
-          {{ with .slides }}<a class="g-btn g-btn--sm g-btn--ghost" href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a>{{ end }}
+          {{ with .recording }}<a class="g-btn g-btn--sm g-btn--outline" href="{{ partial "rel-href.html" . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a>{{ end }}
+          {{ with .slides }}<a class="g-btn g-btn--sm g-btn--ghost" href="{{ partial "rel-href.html" . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a>{{ end }}
         </div>
         {{ end }}
       </div>
