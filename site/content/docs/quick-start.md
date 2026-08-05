@@ -10,6 +10,12 @@ New here? Start with **[Before you build](/docs/before-you-build/)**: the handfu
 of decisions (code of conduct, where the repo lives, how people RSVP) worth
 settling before you install. This page picks up once you're ready to build.
 
+{{% callout tone="info" title="Tell us when a step doesn't work" %}}
+Please report problems with these instructions **as you go**, while the details are fresh: a command that errors, a step that's out of date, a sentence you had to read three times, an assumption that didn't hold on your machine. Setup friction is a bug in the docs, and reporting it is the only way it gets fixed upstream for the next person.
+
+Open an issue on the repo you're using, [Hugo](https://github.com/Mariatta/hugo-theme-popular/issues/new) or [Astro](https://github.com/Mariatta/astro-theme-popular/issues/new), with the step, what you ran, and what happened. Pull requests fixing the wording are just as welcome. If an AI agent is walking you through setup, ask it to write the report: it has the full transcript of what actually ran.
+{{% /callout %}}
+
 {{< fwswitch >}}
 
 ## 1 · Install the theme
@@ -41,6 +47,7 @@ Point your agent at this page plus the [content model](/docs/content-model/) and
 - **Content** is Markdown with front matter under `content/` (Hugo) or `src/content/` (Astro); the fields are identical across both frameworks. See the [content model](/docs/content-model/).
 - **Bulk content** like events and speakers should be [imported](/docs/importing/) from Sessionize or a spreadsheet with one command, not typed by hand.
 - **Preview** with `hugo server` (Hugo) or `npm run dev` (Astro); both output a fully static site you can deploy anywhere.
+- **Report what breaks.** `AGENTS.md` tells the agent to flag any instruction here that is wrong, stale or fails when run, and to offer to file it upstream rather than quietly working around it. Take it up on that offer: it knows exactly which command failed.
 
 *Modifying or contributing to the theme itself* is different work: point the agent at the repo's `AGENTS.md` first ([Hugo](https://github.com/Mariatta/hugo-theme-popular/blob/main/AGENTS.md) · [Astro](https://github.com/Mariatta/astro-theme-popular/blob/main/AGENTS.md)) for repo layout, parity rules, and the known gotchas. It doubles as the fastest human orientation.
 {{% /callout %}}
