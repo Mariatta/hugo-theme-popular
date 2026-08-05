@@ -19,7 +19,7 @@
       "startDate" $startDate
       "eventStatus" (cond (eq .Params.cancelled true) "https://schema.org/EventCancelled" "https://schema.org/EventScheduled")
       "eventAttendanceMode" (cond (eq .Params.online true) "https://schema.org/OnlineEventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode")
-      "organizer" (dict "@type" "Organization" "name" site.Title "url" (absURL "/"))
+      "organizer" (dict "@type" "Organization" "name" site.Title "url" (partial "abs-url.html" "/"))
 -}}
 {{- with .Description | default .Summary }}{{ $ld = merge $ld (dict "description" (. | plainify | truncate 300)) }}{{ end -}}
 {{- if eq .Params.online true -}}
@@ -30,7 +30,7 @@
   {{- $ld = merge $ld (dict "location" $loc) -}}
 {{- end -}}
 {{- $img := .Params.image | default site.Params.ogImage -}}
-{{- with $img }}{{ $ld = merge $ld (dict "image" (. | absURL)) }}{{ end -}}
+{{- with $img }}{{ $ld = merge $ld (dict "image" (partial "abs-url.html" .)) }}{{ end -}}
 {{- with $perf }}{{ $ld = merge $ld (dict "performer" .) }}{{ end -}}
 {{- /* Offers / pricing. */ -}}
 {{- if .Params.price -}}

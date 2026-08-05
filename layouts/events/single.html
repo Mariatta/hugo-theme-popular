@@ -20,7 +20,7 @@
       <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ if $venuePage }}<a href="{{ $venuePage.RelPermalink }}">{{ $venuePage.Title }}</a>{{ with $venuePage.Params.address }} · {{ . }}{{ end }}{{ else }}{{ with .Params.venue }}{{ . }}{{ else }}{{ i18n "venueTba" }}{{ end }}{{ with .Params.address }} · {{ . }}{{ end }}{{ end }}</span>
       {{ if $venuePage }}{{ if eq $venuePage.Params.wheelchair true }}<span class="g-badge g-badge--success g-badge--soft"><i class="fa-solid fa-wheelchair" aria-hidden="true"></i> {{ i18n "wheelchairAccessible" }}</span>{{ end }}{{ if or $venuePage.Params.transit $venuePage.Params.parking $venuePage.Params.access }}<span><a href="{{ $venuePage.RelPermalink }}#{{ i18n "gettingThere" | urlize }}">{{ i18n "gettingThere" }}</a></span>{{ end }}{{ end }}
       {{ with .Params.speaker }}<span><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> {{ . }}</span>{{ end }}
-      {{ if not .Params.talks }}{{ with .Params.recording }}<span><a href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a></span>{{ end }}{{ with .Params.slides }}<span><a href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a></span>{{ end }}{{ end }}
+      {{ if not .Params.talks }}{{ with .Params.recording }}<span><a href="{{ partial "rel-href.html" . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a></span>{{ end }}{{ with .Params.slides }}<span><a href="{{ partial "rel-href.html" . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a></span>{{ end }}{{ end }}
     </div>
 
     {{ if or .Params.checkin $venueNotes }}
@@ -56,8 +56,8 @@
           {{ if $sp }}<div class="g-talk__by"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> <a href="{{ $sp.RelPermalink }}">{{ $sp.Title }}</a></div>{{ end }}
           {{ if or .recording .slides }}
           <div class="g-row" style="gap:var(--space-2)">
-            {{ with .recording }}<a class="g-btn g-btn--sm g-btn--outline" href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a>{{ end }}
-            {{ with .slides }}<a class="g-btn g-btn--sm g-btn--ghost" href="{{ . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a>{{ end }}
+            {{ with .recording }}<a class="g-btn g-btn--sm g-btn--outline" href="{{ partial "rel-href.html" . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a>{{ end }}
+            {{ with .slides }}<a class="g-btn g-btn--sm g-btn--ghost" href="{{ partial "rel-href.html" . }}" rel="noopener" target="_blank"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ i18n "viewSlides" }}</a>{{ end }}
           </div>
           {{ end }}
         </div>
@@ -65,7 +65,7 @@
       </div>
     {{ end }}
 
-    {{ with .Params.rsvp }}<div class="g-row" style="margin-top:var(--space-4)"><a class="g-btn g-btn--primary g-btn--lg" href="{{ . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i> {{ i18n "rsvpExternal" }}</a></div>{{ end }}
+    {{ with .Params.rsvp }}<div class="g-row" style="margin-top:var(--space-4)"><a class="g-btn g-btn--primary g-btn--lg" href="{{ partial "rel-href.html" . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i> {{ i18n "rsvpExternal" }}</a></div>{{ end }}
    </div>
   </div>
 </article>

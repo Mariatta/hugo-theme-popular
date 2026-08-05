@@ -151,6 +151,25 @@ use it for every renderable component snippet) in `site/layouts/shortcodes/`.
 - TOML ordering gotcha: keys like `tagline` must come **before** any sub-table
   header like `[params.footer.credit]`, or they get captured by the sub-table.
 
+## Subpath deployments (URL rules)
+
+A site can be served from a path (`baseURL = "https://x.dev/repo/"`, which is
+what a GitHub project page needs), so **never write a bare URL into a
+template**. Hugo's `relURL`/`relLangURL`/`absURL` drop the subpath when the
+value starts with a slash, and front matter written the Astro way does start
+with one (the two repos share the content model).
+
+- Hrefs: `{{ partial "rel-href.html" .url }}`
+- Images and other assets: `{{ partial "rel-src.html" .Params.photo }}`
+- Absolute URLs (canonical, `og:image`, JSON-LD, feeds): `{{ partial "abs-url.html" "/" }}`
+
+All three pass external URLs, `mailto:`, `tel:` and `#fragment` through
+untouched, so reaching for one is never wrong. Markdown bodies are covered by
+`_markup/render-link.html` and `_markup/render-image.html`. `image-alt.yml`
+builds a `/sub` site and fails on any internal `href`/`src` left at the root;
+the Astro twin has `withBase()`/`absoluteUrl()` for the same job (PARITY.md,
+"Subpath deployments").
+
 ## Naming conventions
 
 - Front-matter keys, config params, and template variables must be descriptive
