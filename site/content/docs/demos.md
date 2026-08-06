@@ -78,7 +78,8 @@ baseURL = "https://you.github.io/my-community/"
 {{% fw "astro" %}}
 ```js
 // astro.config.mjs
-const base = '/my-community';
+site: 'https://you.github.io',
+base: '/my-community',
 ```
 {{% /fw %}}
 
@@ -86,6 +87,10 @@ Nothing else changes: keep writing content links and image paths the way you
 always have (`/images/hero.png`, `[the handbook](/handbook/)`). A **user** page
 (`you.github.io`) or a custom domain is a domain root, so leave the setting
 alone there.
+
+The [setup wizard](/docs/quick-start/) writes this for you: answer the site-URL
+question with the full project-page URL and it splits it correctly per
+framework.
 
 ## Keeping Hugo & Astro in sync
 
