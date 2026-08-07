@@ -19,6 +19,10 @@
          note = "Expires in 60 minutes." */ -}}
 {{- with site.Params.previewMode }}
 {{- $note := "" }}{{ if reflect.IsMap . }}{{ $note = .note }}{{ end }}
+{{- /* The demo bar occupies the same corner. When a demo site is previewed,
+       both are on, so sit above it rather than on top of it. Matches
+       demo-bar.html's own visibility rule: it hides under hugo server. */ -}}
+{{- $stacked := and site.Params.demoBar (not hugo.IsServer) }}
 <style>
   .g-previewbar { position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 90;
     display: flex; align-items: center; gap: 8px; padding: 8px 16px; max-width: calc(100vw - 28px);
@@ -31,8 +35,11 @@
   @media (max-width: 640px) { .g-previewbar__label { display: none; } }
   /* Reserve space so the fixed bar never covers the footer credit. */
   .g-footer__bottom { padding-bottom: 72px; }
+  /* Both bars on the same site: stack, and reserve for both. */
+  .g-previewbar--stacked { bottom: 62px; }
+  {{ if $stacked }}.g-footer__bottom { padding-bottom: 120px; }{{ end }}
 </style>
-<div class="g-previewbar" role="status">
+<div class="g-previewbar{{ if $stacked }} g-previewbar--stacked{{ end }}" role="status">
   <i class="fa-solid fa-eye" aria-hidden="true"></i>
   <span class="g-previewbar__label">{{ i18n "previewLabel" }}</span>
   <span>{{ i18n "previewBanner" }}</span>
