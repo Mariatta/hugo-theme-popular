@@ -233,15 +233,22 @@ copies this repo would inherit.
 | Setting | Value |
 |---|---|
 | Build command | `hugo --source site --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "$DEPLOY_PRIME_URL" --minify` |
-| Publish directory | `site/public` |
-| `HUGO_VERSION` | must match the floor in `theme.toml` |
+| Publish directory | `site/public` (Hugo writes under `--source`, so not `public`) |
+| `HUGO_VERSION` | a specific recent version, at least the `theme.toml` floor |
 | Custom domain | none: `popular.mariatta.ca` stays on GitHub Pages |
 | Sensitive variable policy | fork pull requests build without sensitive variables |
 
-**When you raise the Hugo floor, update Netlify too.** `theme.toml`, the README
-and the `image-alt.yml` matrix all live here and get reviewed; `HUGO_VERSION`
-does not, and a stale one means previews build on an old Hugo while CI is green
-on a new one. Netlify UI: Project configuration -> Environment variables.
+**`HUGO_VERSION` is not optional.** Netlify's build image ships no Hugo at all;
+it installs the version that variable names, so an unset one fails the build with
+`hugo: command not found` (exit 127) rather than falling back to a default.
+
+**Keep it moving.** Netlify has no "latest", but production (`deploy-demo.yml`)
+builds with `latest`, so a pinned preview drifts behind the site it previews.
+Bump it when you raise the floor in `theme.toml`, and otherwise whenever you
+update Hugo locally: previews should be built by roughly what production uses,
+and never by less than the floor. Nothing in this repo can check that for you,
+which is the whole reason this section exists.
+Netlify UI: Project configuration -> Environment variables.
 
 The build command uses `$(basename "$PWD")` rather than the theme name because
 Netlify checks the repo out into a directory called `repo`, so `--theme
