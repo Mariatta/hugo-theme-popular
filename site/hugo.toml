@@ -55,7 +55,9 @@ theme = "hugo-theme-popular"
   url = "/about/"
   weight = 40
 [[menu.main]]
-  name = "About us"
+  # matches the page's own title; "About us" is the community-site wording that
+  # belongs in exampleSite and the demos, not on the theme's own site
+  name = "About Popular"
   parent = "About"
   url = "/about/"
   weight = 10
