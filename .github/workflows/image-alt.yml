@@ -66,6 +66,24 @@ jobs:
       - name: Validate iCalendar feeds
         run: python3 scripts/check-ics.py alt-check-out
 
+      - name: Preview banner (params.previewMode)
+        run: |
+          # A generator sets params.previewMode on its throwaway build; the
+          # config it writes into the adopter's repo never does. Assert both.
+          THEME="$(basename "$GITHUB_WORKSPACE")"
+          printf '[params.previewMode]\n  note = "Expires in 60 minutes."\n' > exampleSite/preview-mode.toml
+          hugo --source exampleSite \
+               --themesDir "$(realpath --relative-to=exampleSite "$GITHUB_WORKSPACE/..")" \
+               --theme "$THEME" \
+               --config hugo.toml,preview-mode.toml \
+               --destination "$GITHUB_WORKSPACE/preview-out"
+          rm exampleSite/preview-mode.toml
+          grep -q 'class="g-previewbar"' preview-out/index.html
+          grep -q 'Expires in 60 minutes.' preview-out/index.html
+          if grep -rl --include='*.html' 'g-previewbar' alt-check-out; then
+            echo "::error::the preview bar reached a build that did not ask for it"; exit 1
+          fi
+
       - name: Subpath deployment (baseURL with a path)
         run: |
           # A Pages project site lives at user.github.io/repo/. Every internal
