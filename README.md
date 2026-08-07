@@ -66,6 +66,8 @@ publishes the GitHub Release with that section as the notes.
 
 - **Hugo Extended is _not_ required.** Popular uses plain CSS (no SCSS), so standard Hugo works.
 - Hugo **v0.146.0 or newer** (uses `[cascade.build]` and `.Fragments.Headings`); CI tests this floor and latest.
+  Maintainers: raising the floor also means `theme.toml`, the CI matrix, and the Netlify preview's
+  `HUGO_VERSION` (see [AGENTS.md](AGENTS.md)).
 - Icons come from **Font Awesome 6** (loaded from a CDN by default; see *Icons* below).
 
 ---

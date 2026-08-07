@@ -220,6 +220,48 @@ the Astro twin has `withBase()`/`absoluteUrl()` for the same job (PARITY.md,
   `[section]`). Don't add `languageCode`: it's unused by the theme and emits a
   deprecation warning on Hugo ≥ 0.158.
 
+## Settings that live outside this repo
+
+Two things this project depends on are configured in a web UI and are therefore
+invisible to `grep`. When either drifts, the failure looks like a mystery.
+
+**Netlify (pull request previews only; production is GitHub Pages).** The docs
+site gets a Deploy Preview per pull request. The whole configuration is in the
+Netlify UI, deliberately: no `netlify.toml`, no workflow, nothing an adopter who
+copies this repo would inherit.
+
+| Setting | Value |
+|---|---|
+| Build command | `bash scripts/build-sites.sh "$DEPLOY_PRIME_URL" public` |
+| Publish directory | `public` |
+| `HUGO_VERSION` | a specific recent version, at least the `theme.toml` floor |
+| Custom domain | none: `popular.mariatta.ca` stays on GitHub Pages |
+| Sensitive variable policy | fork pull requests build without sensitive variables |
+
+**`HUGO_VERSION` is not optional.** Netlify's build image ships no Hugo at all;
+it installs the version that variable names, so an unset one fails the build with
+`hugo: command not found` (exit 127) rather than falling back to a default.
+
+**Keep it moving.** Netlify has no "latest", but production (`deploy-demo.yml`)
+builds with `latest`, so a pinned preview drifts behind the site it previews.
+Bump it when you raise the floor in `theme.toml`, and otherwise whenever you
+update Hugo locally: previews should be built by roughly what production uses,
+and never by less than the floor. Nothing in this repo can check that for you,
+which is the whole reason this section exists.
+Netlify UI: Project configuration -> Environment variables.
+
+`scripts/build-sites.sh` is what production runs too, deliberately: it builds
+the project site at the root plus every demo at its subpath. A preview that
+builds only `site/` looks right until you click a demo and get a 404, because
+the demo bar's links resolve against the base and expect `/aquarium/`,
+`/foodie/`, `/kdrama/` and `/superfan/` to exist. The script derives the theme
+name from the checkout directory rather than hardcoding it, because Netlify
+checks the repo out into a directory called `repo` and `--theme
+hugo-theme-popular` would not resolve there.
+
+**GitHub Pages** publishes production from `deploy-demo.yml` (Settings -> Pages
+-> Source: GitHub Actions). Nothing else should publish to that domain.
+
 ## CI checks
 
 - `.github/workflows/image-alt.yml` builds every site and fails if any `<img>`
