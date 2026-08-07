@@ -45,6 +45,14 @@ export const BRAND: Record<string, string> = {
 ```
 {{% /fw %}}
 
+## The setup wizard can set it for you
+
+`scripts/setup.py` asks for one brand colour, optionally. Answer it and the
+wizard writes the block above (`[params.brand]` on Hugo, `BRAND` in
+`src/config.ts` on Astro) with your hex in it; skip it and your config keeps the
+default palette, unchanged, with nothing extra written. Everything else on this
+page is still yours to edit by hand afterwards.
+
 ## Derived tints
 
 Set `primary` and the theme computes coherent companions with `color-mix()`: the soft tint behind badges and tag hovers, and the light variant used on dark stat strips. That's why a one-line palette change doesn't leave stale pink accents behind.
