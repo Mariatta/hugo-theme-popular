@@ -232,8 +232,8 @@ copies this repo would inherit.
 
 | Setting | Value |
 |---|---|
-| Build command | `hugo --source site --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "$DEPLOY_PRIME_URL" --minify` |
-| Publish directory | `site/public` (Hugo writes under `--source`, so not `public`) |
+| Build command | `bash scripts/build-sites.sh "$DEPLOY_PRIME_URL" public` |
+| Publish directory | `public` |
 | `HUGO_VERSION` | a specific recent version, at least the `theme.toml` floor |
 | Custom domain | none: `popular.mariatta.ca` stays on GitHub Pages |
 | Sensitive variable policy | fork pull requests build without sensitive variables |
@@ -250,8 +250,13 @@ and never by less than the floor. Nothing in this repo can check that for you,
 which is the whole reason this section exists.
 Netlify UI: Project configuration -> Environment variables.
 
-The build command uses `$(basename "$PWD")` rather than the theme name because
-Netlify checks the repo out into a directory called `repo`, so `--theme
+`scripts/build-sites.sh` is what production runs too, deliberately: it builds
+the project site at the root plus every demo at its subpath. A preview that
+builds only `site/` looks right until you click a demo and get a 404, because
+the demo bar's links resolve against the base and expect `/aquarium/`,
+`/foodie/`, `/kdrama/` and `/superfan/` to exist. The script derives the theme
+name from the checkout directory rather than hardcoding it, because Netlify
+checks the repo out into a directory called `repo` and `--theme
 hugo-theme-popular` would not resolve there.
 
 **GitHub Pages** publishes production from `deploy-demo.yml` (Settings -> Pages

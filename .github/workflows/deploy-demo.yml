@@ -46,25 +46,9 @@ jobs:
         env:
           BASE: ${{ steps.pages.outputs.base_url }}
         run: |
-          THEME="$(basename "$GITHUB_WORKSPACE")"
-          # Regenerate the docs-site changelog page from the canonical
-          # CHANGELOG.md so the deployed /changelog/ is always current.
-          # (escape shortcode delimiters so mentions like `{{< faq >}}` in the
-          # changelog render literally instead of executing)
-          { printf '+++\ntitle = "Changelog"\ntype = "docs"\neyebrow = "Docs"\nlead = "Every notable change to the Popular theme, newest first."\nweight = 70\n+++\n\n'; grep -v '^# Changelog$' CHANGELOG.md | sed -e 's|{{<|{{</* |g' -e 's|>}}| */>}}|g' -e 's|{{%|{{%/* |g' -e 's|%}}| */%}}|g'; } > site/content/changelog.md
-          build () {  # build <source-dir> <dest-subpath ("" for root)>
-            hugo --source "$1" \
-                 --themesDir "$(realpath --relative-to="$1" "$GITHUB_WORKSPACE/..")" \
-                 --theme "$THEME" \
-                 --baseURL "$BASE/$2" \
-                 --destination "$GITHUB_WORKSPACE/public/$2" \
-                 --minify
-          }
-          build site ""
-          build demos/rocky-cove-aquarium aquarium/
-          build demos/lucky-town-foodie foodie/
-          build demos/kdrama-fan-club kdrama/
-          build demos/truly-madly-riley superfan/
+          # One script, shared with the Netlify preview build, so a preview
+          # cannot quietly differ from production (see scripts/build-sites.sh).
+          bash scripts/build-sites.sh "$BASE" "$GITHUB_WORKSPACE/public"
 
 
       - name: No internal link may escape the base path
