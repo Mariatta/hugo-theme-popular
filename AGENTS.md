@@ -220,6 +220,36 @@ the Astro twin has `withBase()`/`absoluteUrl()` for the same job (PARITY.md,
   `[section]`). Don't add `languageCode`: it's unused by the theme and emits a
   deprecation warning on Hugo ≥ 0.158.
 
+## Settings that live outside this repo
+
+Two things this project depends on are configured in a web UI and are therefore
+invisible to `grep`. When either drifts, the failure looks like a mystery.
+
+**Netlify (pull request previews only; production is GitHub Pages).** The docs
+site gets a Deploy Preview per pull request. The whole configuration is in the
+Netlify UI, deliberately: no `netlify.toml`, no workflow, nothing an adopter who
+copies this repo would inherit.
+
+| Setting | Value |
+|---|---|
+| Build command | `hugo --source site --themesDir ../.. --theme "$(basename "$PWD")" --baseURL "$DEPLOY_PRIME_URL" --minify` |
+| Publish directory | `site/public` |
+| `HUGO_VERSION` | must match the floor in `theme.toml` |
+| Custom domain | none: `popular.mariatta.ca` stays on GitHub Pages |
+| Sensitive variable policy | fork pull requests build without sensitive variables |
+
+**When you raise the Hugo floor, update Netlify too.** `theme.toml`, the README
+and the `image-alt.yml` matrix all live here and get reviewed; `HUGO_VERSION`
+does not, and a stale one means previews build on an old Hugo while CI is green
+on a new one. Netlify UI: Project configuration -> Environment variables.
+
+The build command uses `$(basename "$PWD")` rather than the theme name because
+Netlify checks the repo out into a directory called `repo`, so `--theme
+hugo-theme-popular` would not resolve there.
+
+**GitHub Pages** publishes production from `deploy-demo.yml` (Settings -> Pages
+-> Source: GitHub Actions). Nothing else should publish to that domain.
+
 ## CI checks
 
 - `.github/workflows/image-alt.yml` builds every site and fails if any `<img>`

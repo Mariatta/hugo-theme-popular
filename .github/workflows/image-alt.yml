@@ -15,7 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # latest plus the documented minimum supported version
+        # latest plus the documented minimum supported version.
+        # Changing the floor here means changing theme.toml, the README,
+        # and HUGO_VERSION in the Netlify UI (preview builds; not in this
+        # repo, see AGENTS.md).
         hugo-version: ["latest", "0.146.0"]
     steps:
       - uses: actions/checkout@v4
