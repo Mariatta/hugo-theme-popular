@@ -226,3 +226,9 @@ other = "Transit"
 
 [parking]
 other = "Parking"
+
+[previewLabel]
+other = "Preview"
+
+[previewBanner]
+other = "This is a preview. Nothing here is published yet."

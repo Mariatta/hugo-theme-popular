@@ -188,6 +188,10 @@ the Astro twin has `withBase()`/`absoluteUrl()` for the same job (PARITY.md,
 
 ## Known gotchas
 
+- `params.previewMode` renders the preview banner (`partials/preview-bar.html`),
+  for tools that build a site on someone's behalf. Never set it in
+  `exampleSite/`, a demo, or anything the wizard writes: a real site showing
+  "this is a preview" is the failure this design prevents (see PARITY.md).
 - Sites using the events section must set `buildFuture = true` in `hugo.toml`
   (exampleSite and all demos do). Hugo falls back to `date` as the publish
   date, so upcoming events (future `date`) are otherwise silently dropped
