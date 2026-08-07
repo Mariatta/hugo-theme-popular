@@ -61,6 +61,11 @@ deterministic, tested writer.
    it succeeds. Point the user at `DECISIONS.md` for what was decided and the
    "Still open" list for what to come back to.
 
+The wizard also writes `.github/workflows/deploy.yml` (GitHub Pages,
+parameterless: the URL lives in `hugo.toml`), unless the site already has
+workflows of its own. Tell the user to set Settings -> Pages -> Source: GitHub
+Actions once. A project-page URL in `base_url` is all a subpath install needs.
+
 Same invariant as the wizard: sugar, never a gate. A user who wants to skip the
 interview entirely still gets a clean starter config.
 
