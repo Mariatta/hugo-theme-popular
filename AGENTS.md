@@ -63,7 +63,8 @@ deterministic, tested writer.
 
 The wizard also writes `.github/workflows/deploy.yml` (GitHub Pages,
 parameterless: the URL lives in `hugo.toml`), unless the site already has
-workflows of its own. Tell the user to set Settings -> Pages -> Source: GitHub
+workflows of its own. `scripts/starter-content.py --format hugo` brings the
+sample content across for a site being created from nothing. Tell the user to set Settings -> Pages -> Source: GitHub
 Actions once. A project-page URL in `base_url` is all a subpath install needs.
 
 Same invariant as the wizard: sugar, never a gate. A user who wants to skip the
