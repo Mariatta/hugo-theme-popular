@@ -18,7 +18,11 @@
 {{ end }}<link rel="stylesheet" href="{{ partial "rel-href.html" $fa }}" referrerpolicy="no-referrer"{{ if eq $fa $cdnjs }} integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous"{{ end }}>
 
 {{- /* CSS pipeline: tokens first (so overrides cascade), then base + components.
-       fonts.css must stay first because it carries the @import for web fonts. */ -}}
+       fonts.css carries the @font-face rules for the theme's two self-hosted
+       families (static/fonts/, see its README). Its url()s are relative, so
+       they resolve against this concatenated bundle and survive a subpath
+       install; the old @import is gone, and with it the rule that fonts.css
+       had to come first. */ -}}
 {{- $bundle := slice
     (resources.Get "css/tokens/fonts.css")
     (resources.Get "css/tokens/colors.css")
