@@ -5,10 +5,17 @@
 
 {{ partial "seo.html" . }}
 
-{{- /* FontAwesome (icons). Swap the version/URL in config if you self-host. */ -}}
-{{- $fa := site.Params.fontAwesome | default "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" -}}
-{{ if eq $fa "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" }}<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-{{ end }}<link rel="stylesheet" href="{{ $fa }}" referrerpolicy="no-referrer"{{ if eq $fa "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" }} integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous"{{ end }}>
+{{- /* FontAwesome (icons), served by the site itself from static/fontawesome/.
+     A site works offline, survives a CDN outage or a URL change, and tells no
+     third party who is reading it. Point params.fontAwesome at a URL to use a
+     CDN instead; an external value passes through rel-href.html untouched,
+     while the local default picks up the baseURL subpath. The preconnect and
+     integrity attributes below apply only to the cdnjs URL the theme used to
+     default to, and are kept for sites that still set it. */ -}}
+{{- $cdnjs := "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" -}}
+{{- $fa := site.Params.fontAwesome | default "/fontawesome/css/all.min.css" -}}
+{{ if eq $fa $cdnjs }}<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+{{ end }}<link rel="stylesheet" href="{{ partial "rel-href.html" $fa }}" referrerpolicy="no-referrer"{{ if eq $fa $cdnjs }} integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI" crossorigin="anonymous"{{ end }}>
 
 {{- /* CSS pipeline: tokens first (so overrides cascade), then base + components.
        fonts.css must stay first because it carries the @import for web fonts. */ -}}
