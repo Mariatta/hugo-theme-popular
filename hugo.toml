@@ -14,9 +14,10 @@
 # block, not theme.toml's min_version, which is the older field the retired
 # hugoThemes repo used; keep the two in step. `extended` is deliberately unset:
 # the theme uses no SCSS, so a standard build is enough.
-[module]
-  [module.hugoVersion]
-    min = "0.146.0"
+# TEMPORARILY REMOVED to isolate a Netlify preview failure; restored next commit.
+#[module]
+#  [module.hugoVersion]
+#    min = "0.146.0"
 
 # The theme's own version, merged into every site as site.Params.popularVersion
 # and shown in the footer next to the Popular credit. Bump on release.
