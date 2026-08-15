@@ -6,11 +6,12 @@ homepage = "https://github.com/Mariatta/hugo-theme-popular"
 demosite = "https://popular.mariatta.ca/"
 tags = ["blog", "community", "meetup", "events", "docs", "responsive", "accessible"]
 features = ["blog", "events", "organizers", "docs", "checklists", "config-theming"]
-# Raising this floor? Three other places carry a Hugo version and none of
-# them updates itself: README "Requirements", the image-alt.yml CI matrix,
-# and HUGO_VERSION in the Netlify UI for the preview builds, which must be at
-# least this floor and is not in this repo at all (AGENTS.md, "Settings that
-# live outside this repo").
+# Raising this floor? Four other places carry a Hugo version and none of
+# them updates itself: [module.hugoVersion] in hugo.toml (which is what
+# themes.gohugo.io actually reads), README "Requirements", the image-alt.yml
+# CI matrix, and HUGO_VERSION in the Netlify UI for the preview builds, which
+# must be at least this floor and is not in this repo at all (AGENTS.md,
+# "Settings that live outside this repo").
 min_version = "0.146.0"
 
 [author]

@@ -1,6 +1,11 @@
 {{- /* <head> contents: meta, fonts, concatenated CSS pipeline, brand token overrides */ -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{- /* Says which generator built the page, the conventional way to identify a
+     static site. The Hugo theme directory does not require it, but its Astro
+     twin's reviewers check for exactly this tag, and a theme should be
+     identifiable from its own output either way. */ -}}
+{{ hugo.Generator }}
 <title>{{ if .IsHome }}{{ site.Title }}{{ if site.Params.tagline }}, {{ site.Params.tagline }}{{ end }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 
 {{ partial "seo.html" . }}
