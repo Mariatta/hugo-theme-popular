@@ -31,12 +31,16 @@ git submodule add https://github.com/Mariatta/hugo-theme-popular.git themes/popu
 {{% /fw %}}
 
 {{% fw "astro" %}}
-Use the Astro repo as a template, it *is* a runnable site:
+Scaffold a site that **depends on** the theme, so updating it later is
+`npm update astro-theme-popular` rather than re-copying files:
 
 ```bash
-npm create astro@latest -- --template Mariatta/astro-theme-popular my-community
+npm create popular-site@latest my-community
 cd my-community && npm install
 ```
+
+It asks which starting point you want: the neutral starter, or any of the four
+demos as a fuller example to edit down.
 {{% /fw %}}
 
 {{% callout tone="info" title="Building a site with an AI agent?" %}}

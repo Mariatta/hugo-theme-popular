@@ -21,4 +21,4 @@
 # The theme's own version, merged into every site as site.Params.popularVersion
 # and shown in the footer next to the Popular credit. Bump on release.
 [params]
-  popularVersion = "0.10.0"
+  popularVersion = "0.11.0"
