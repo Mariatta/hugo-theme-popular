@@ -44,7 +44,6 @@ buildFuture = true
   brandSub = "Riley"
   logo = "images/logo.svg"
   ogImage = "images/hero.svg"
-  customCSS = ["https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@700&display=swap"]
   landAcknowledgement = "Fan-made and gloriously unofficial: this site is a love letter, not affiliated with anyone it adores."
 
   # Celestial gold on midnight: burnished gold with dark button text,
@@ -68,7 +67,7 @@ buildFuture = true
     textMuted     = "#A39D8A"
     textOnBrand   = "#0A0E1A"   # dark text on gold buttons, not white
     borderSubtle  = "#26304A"
-    fontDisplay   = '"Cinzel Decorative", Cinzel, Inter, sans-serif'
+    fontDisplay   = "Quantico, Inter, sans-serif"
 
   [params.cta]
     label = "Say hi"
