@@ -103,6 +103,13 @@ hugo server --source demos/rocky-cove-aquarium --themesDir ../../.. --theme hugo
 Use `hugo` instead of `hugo server` for a one-off build. After changing theme
 templates or content, build all four sites to make sure nothing broke.
 
+**`site/content/changelog.md` is generated** from the canonical `CHANGELOG.md`
+by `scripts/build-sites.sh`, which is what production runs, so the published
+page is always current. `hugo server --source site` does not regenerate it, so
+the dev server shows whatever was last committed. Commit the regenerated page
+alongside a changelog edit, or the local site claims the newest release does not
+exist. Never hand-edit it: it is overwritten on every deploy.
+
 To bulk-populate events and speakers from a Sessionize event, run
 `python3 scripts/sessionize-import.py --url <sessionize view/All endpoint> --site <site dir>`
 (or `scripts/spreadsheet-import.py --xlsx <workbook>` for spreadsheet-based

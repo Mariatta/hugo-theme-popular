@@ -98,16 +98,46 @@ A bio card with a portrait, used for speakers and members, the same card that po
 
 A photo grid for recaps: no JavaScript, no lightbox (each photo links to its full-size image, the deliberate [non-feature](/docs/beyond-meetups/#deliberate-non-features)). `alt` is **required**, a missing `alt` fails the build with a clear message, which is how the image-alt check stays green by construction.
 
+{{% fw "hugo" %}}
+```markdown
 {{</* gallery */>}}
   {{</* photo src="images/recap-1.jpg" alt="Attendees around the demo table" caption="Show & tell" */>}}
   {{</* photo src="images/recap-2.jpg" alt="A speaker mid-talk" */>}}
 {{</* /gallery */>}}
+```
+{{% /fw %}}
+
+{{% fw "astro" %}}
+```mdx
+import Gallery from 'astro-theme-popular/components/Gallery.astro';
+import Photo from 'astro-theme-popular/components/Photo.astro';
+
+<Gallery>
+  <Photo src="/images/recap-1.jpg" alt="Attendees around the demo table" caption="Show & tell" />
+  <Photo src="/images/recap-2.jpg" alt="A speaker mid-talk" />
+</Gallery>
+```
+{{% /fw %}}
 
 ## Pull-quote
 
-A styled blockquote with optional attribution, for a testimonial in a recap or on the home page. Use the `{{%/* */%}}` form so the quote renders as Markdown.
+A styled blockquote with optional attribution, for a testimonial in a recap or on the home page.
 
+{{% fw "hugo" %}}
+Use the `{{%/* */%}}` form so the quote renders as Markdown.
+
+```markdown
 {{%/* pullquote cite="A happy member" */%}}The best Tuesday of my month.{{%/* /pullquote */%}}
+```
+{{% /fw %}}
+
+{{% fw "astro" %}}
+```mdx
+import Pullquote from 'astro-theme-popular/components/Pullquote.astro';
+
+<Pullquote cite="A happy member">The best Tuesday of my month.</Pullquote>
+```
+{{% /fw %}}
 
 {{< example >}}
 {{% pullquote cite="A happy member" %}}The best Tuesday of my month.{{% /pullquote %}}
