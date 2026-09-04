@@ -2,6 +2,10 @@
 {{- $venuePage := "" -}}
 {{- with .Params.venueRef }}{{ $venuePage = site.GetPage (print "/venues/" .) }}{{ if not $venuePage }}{{ warnf "%s: venueRef %q matches no venue page" $.File.Path . }}{{ end }}{{ end -}}
 {{- $tbd := or .Params.venueWanted (and (not .Params.venue) (not $venuePage)) -}}
+{{- /* Planning: the event is on the calendar but its details are not settled.
+     Wins over the venue-wanted badge, which is inferred, and hides the RSVP
+     button even when `rsvp` is already filled in. */ -}}
+{{- $planning := eq .Params.planning true -}}
 {{- /* Speaker line: resolved /speakers/ names, falling back to the plain string. */ -}}
 {{- $names := slice -}}
 {{- range .Params.speakers }}{{ with site.GetPage (print "/speakers/" .) }}{{ $names = $names | append .Title }}{{ else }}{{ warnf "%s: speaker %q matches no speaker page" $.File.Path . }}{{ end }}{{ end -}}
@@ -25,8 +29,9 @@
   </div>
   <div class="g-event__aside">
     {{ if eq .Params.cancelled true }}<span class="g-badge g-badge--danger g-badge--soft">{{ i18n "eventCancelled" }}</span>
+    {{ else if $planning }}<span class="g-badge g-badge--soft">{{ i18n "eventPlanning" }}</span>
     {{ else if $tbd }}<span class="g-badge g-badge--warning g-badge--soft">{{ i18n "venueWanted" }}</span>
     {{ else }}<span class="g-badge g-badge--success g-badge--soft">{{ i18n "confirmed" }}</span>{{ end }}
-    {{ with .Params.rsvp }}<a class="g-btn g-btn--primary g-btn--sm" href="{{ partial "rel-href.html" . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i>{{ i18n "rsvp" }}</a>{{ end }}
+    {{ if not $planning }}{{ with .Params.rsvp }}<a class="g-btn g-btn--primary g-btn--sm" href="{{ partial "rel-href.html" . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i>{{ i18n "rsvp" }}</a>{{ end }}{{ end }}
   </div>
 </div>

@@ -49,6 +49,8 @@ guestAuthors:
 
 `title`, `date` (the event's start, decides upcoming vs past automatically), `description`, `image`, `tags[]`, `time`, `rsvp`, and `venueWanted = true` for a "Venue wanted" badge.
 
+**State:** an event row carries one badge. `cancelled = true` shows "Cancelled", `planning = true` shows "Planning", a missing venue shows "Venue wanted", and everything else shows "Confirmed", in that order. Use `planning` for an event that is on the calendar but not nailed down yet: it also hides the RSVP button everywhere, including the home page, so you can fill `rsvp` in ahead of time and have it appear the moment you drop the flag.
+
 **Where:** either `venueRef = "slug"` pointing at a [venue page](#venues) (inherits its name, address and arrival notes), or the flat `venue` + `address` fields for a one-off location.
 
 **Who:** either `speakers = ["slug"]` referencing [speaker profiles](#speakers) (rendered as bio cards, multiple supported), or the plain `speaker` string for a one-liner.

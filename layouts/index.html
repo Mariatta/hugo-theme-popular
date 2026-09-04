@@ -73,7 +73,7 @@
       </div>
       <p style="margin:0;color:var(--text-muted);max-width:34rem">{{ .Description | default .Summary }}</p>
       <div class="g-row">
-        {{ with .Params.rsvp }}<a class="g-btn g-btn--primary" href="{{ partial "rel-href.html" . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i> {{ i18n "rsvpExternal" }}</a>{{ end }}
+        {{ if ne .Params.planning true }}{{ with .Params.rsvp }}<a class="g-btn g-btn--primary" href="{{ partial "rel-href.html" . }}"><i class="fa-solid fa-calendar" aria-hidden="true"></i> {{ i18n "rsvpExternal" }}</a>{{ end }}{{ end }}
         <a class="g-btn g-btn--outline" href="{{ "events/" | relLangURL }}">{{ i18n "allEvents" }}</a>
       </div>
     </div>

@@ -59,6 +59,9 @@ other = "Past events"
 [venueWanted]
 other = "Venue wanted"
 
+[eventPlanning]
+other = "Planning"
+
 [confirmed]
 other = "Confirmed"
 

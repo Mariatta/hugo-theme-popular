@@ -201,7 +201,9 @@ config. A stat with `value = "@pastEventCount"` renders the live number of past 
 
 Each event is a page in `content/events/`. The event's `date` is its start time; anything in the
 future shows under **Upcoming**, anything past under **Past**. Useful front-matter fields:
-`time`, `rsvp`, `tags`, and `venueWanted = true` to show a "Venue wanted" badge. Venues come
+`time`, `rsvp`, `tags`, `venueWanted = true` to show a "Venue wanted" badge, and
+`planning = true` for an event that is on the calendar but not settled yet (a "Planning"
+badge, and no RSVP button until you drop the flag). Venues come
 from `venueRef = "slug"` (a `content/venues/` page whose address and arrival notes the event
 inherits) or the flat `venue` + `address` fields. Speakers come from `speakers = ["slug"]`
 (`content/speakers/` profiles rendered as bio cards) or the plain `speaker` string. `checkin`
