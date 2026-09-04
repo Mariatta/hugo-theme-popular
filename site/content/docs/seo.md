@@ -49,6 +49,9 @@ Optional event fields:
 
 - `cancelled = true`: marks the event cancelled (a visible badge **and** the
   structured data), so the two never disagree.
+- `planning = true`: a "Planning" badge and no RSVP button. Presentation only:
+  schema.org has no status for "we are still working on it", so the structured
+  data is unchanged and the event stays `EventScheduled`.
 - `online = true`: an online event (virtual location, online attendance mode).
 - `price`, `currency`, `cost`: for paid events (`cost` is the displayed text,
   `price`/`currency` feed the structured offer).

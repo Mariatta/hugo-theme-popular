@@ -29,6 +29,11 @@ speakers = []
 speaker = ""
 
 rsvp = "https://example.com/rsvp"
+
+# Still being planned: shows a "Planning" badge instead of "Confirmed", and
+# hides the RSVP button until you remove this, even with `rsvp` filled in.
+# planning = true
+
 draft = true
 +++
 
