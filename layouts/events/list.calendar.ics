@@ -11,6 +11,10 @@
 {{- partial "fold.html" "CALSCALE:GREGORIAN" -}}
 {{- partial "fold.html" "METHOD:PUBLISH" -}}
 {{- partial "fold.html" (printf "X-WR-CALNAME:%s events" site.Title) -}}
+{{- /* Subscription refresh hints (RFC 7986 + the Apple/Outlook legacy twin).
+     Google Calendar ignores both and polls on its own schedule. */ -}}
+{{- partial "fold.html" "REFRESH-INTERVAL;VALUE=DURATION:PT12H" -}}
+{{- partial "fold.html" "X-PUBLISHED-TTL:PT12H" -}}
 {{- range $events -}}
 {{- $hm := partial "parse-time.html" .Params.time -}}
 {{- partial "fold.html" "BEGIN:VEVENT" -}}

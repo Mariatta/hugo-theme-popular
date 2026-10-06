@@ -89,6 +89,12 @@ other = "Subscribe via RSS"
 [subscribeCalendar]
 other = "Subscribe to calendar"
 
+[subscribeGoogle]
+other = "Add to Google Calendar"
+
+[downloadCalendar]
+other = "Download .ics"
+
 [watchRecording]
 other = "Watch"
 
