@@ -1,0 +1,16 @@
+{{- /* Calendar subscribe buttons for the events feed: a webcal link that
+       opens the user's calendar app subscribed to the live feed (Apple
+       Calendar, Outlook, Thunderbird), a Google Calendar deep link (Google
+       registers no webcal handler on the web or Android), and the plain
+       .ics download as the universal fallback for "add calendar from URL"
+       flows. Context: dict "cal" (the events list's Calendar output format)
+       and optional "small" (compact buttons). webcal needs an absolute URL,
+       so it builds on .Permalink; safeURL because html/template blocks the
+       non-standard webcal: scheme otherwise. Callers supply the wrapping
+       .g-row. */ -}}
+{{- $cal := .cal -}}
+{{- $size := cond (default false .small) " g-btn--sm" "" -}}
+{{- $webcal := replaceRE "^https?" "webcal" $cal.Permalink -}}
+<a class="g-btn g-btn--outline{{ $size }}" href="{{ $webcal | safeURL }}"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i> {{ i18n "subscribeCalendar" }}</a>
+<a class="g-btn g-btn--outline{{ $size }}" href="https://calendar.google.com/calendar/render?cid={{ urlquery $webcal }}" rel="noopener" target="_blank"><i class="fa-brands fa-google" aria-hidden="true"></i> {{ i18n "subscribeGoogle" }}</a>
+<a class="g-btn g-btn--ghost{{ $size }}" href="{{ $cal.RelPermalink }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> {{ i18n "downloadCalendar" }}</a>

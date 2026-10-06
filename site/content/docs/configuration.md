@@ -145,11 +145,19 @@ see every future meetup in Google, Apple or Outlook Calendar:
 outputs = ["HTML", "RSS", "Calendar"]
 ```
 
-The events list gains a "Subscribe to calendar" link automatically. Timed
-events (a parseable `time`) get a start and a 2-hour default end
+The events list gains subscribe buttons automatically: "Subscribe to
+calendar" is a `webcal://` link that opens Apple Calendar, Outlook or
+Thunderbird already subscribed to the live feed, "Add to Google Calendar"
+hands the feed to Google Calendar (which registers no webcal handler), and
+"Download .ics" stays as the fallback for any app's "add calendar from URL"
+flow. Subscribers see new and changed events without doing anything again;
+Google refreshes subscribed feeds on its own schedule, typically within a
+day. The webcal link is built from your `baseURL`, so set it to your real
+domain.
+
+Timed events (a parseable `time`) get a start and a 2-hour default end
 (`[params.events] defaultDurationMinutes`); date-only events are all-day.
-Cancelled events carry `STATUS:CANCELLED`. To subscribe, most apps take the
-feed URL under "add calendar from URL". On Astro the feed is always at
+Cancelled events carry `STATUS:CANCELLED`. On Astro the feed is always at
 `/events/calendar.ics`, no opt-in needed.
 
 ## Search-engine basics
