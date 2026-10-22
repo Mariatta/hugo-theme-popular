@@ -19,6 +19,23 @@ To hear about new releases: watch either repo on GitHub (Watch → Custom →
 Releases) or subscribe to the releases feed
 (`https://github.com/Mariatta/hugo-theme-popular/releases.atom`).
 
+## [Unreleased]
+
+### Fixed
+
+- **Astro: iCalendar feed now escapes semicolons.** `icsEscape` in
+  `src/lib/ical.ts` used the string literal `'\;'`, which JavaScript reads as a
+  plain `;`, so semicolons in an event title, venue or description reached the
+  `.ics` output unescaped (RFC 5545 §3.3.11 requires `\;`). Backslashes, commas
+  and newlines were already escaped correctly. Found while porting the builder
+  for the PyCon US Maintainer Summit site (pycon-maintainer-summit.github.io#36).
+- **`scripts/check-ics.py` now checks text escaping.** Its docstring claimed
+  it validated escaping, but it only checked line endings, folding, required
+  properties and UIDs, which is how an unescaped semicolon in the Astro feed
+  reached a release. It now reads `SUMMARY`, `LOCATION` and `DESCRIPTION`
+  after unfolding and fails on a bare `;` or `,` or a stray backslash
+  (RFC 5545 section 3.3.11). Covered by `scripts/tests/test_check_ics.py`.
+
 ## [0.13.0] - 2026-10-05
 
 ### Changed
