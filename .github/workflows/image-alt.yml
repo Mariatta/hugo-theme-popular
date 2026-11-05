@@ -63,6 +63,10 @@ jobs:
             demos/kdrama-fan-club/content
       - name: Validate JSON-LD
         run: python3 scripts/check-jsonld.py alt-check-out
+      - name: Markdown tables get the scroll wrapper
+        # render-table.html wraps every table so a wide one scrolls on a phone;
+        # the starter handbook carries one so this cannot regress unnoticed.
+        run: grep -q '<div class="g-table-scroll"><table>' alt-check-out/example/handbook/index.html
       - name: Validate iCalendar feeds
         run: python3 scripts/check-ics.py alt-check-out
 

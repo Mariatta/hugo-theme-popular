@@ -1,0 +1,29 @@
+{{- /* Markdown tables: Goldmark's default markup inside a .g-table-scroll
+     wrapper, so a table wider than a phone scrolls sideways inside the page
+     instead of stretching it. The wrapper scrolls, not the table: display:
+     block on a <table> drops its semantics for screen readers. Column
+     alignment written in the markdown (`:---:`) stays an inline style, as
+     Goldmark writes it, and wins over the start default in base.css
+     (.g-prose th, .g-prose td). Mirrors the table hook in popular-markdown.mjs /
+     package/index.mjs in the Astro repo (PARITY.md, "Markdown tables"). */ -}}
+<div class="g-table-scroll"><table
+  {{- range $k, $v := .Attributes }}{{ if $v }} {{ printf "%s=%q" $k $v | safeHTMLAttr }}{{ end }}{{ end }}>
+  <thead>
+    {{- range .THead }}
+    <tr>
+      {{- range . }}
+      <th{{ with .Alignment }}{{ printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}{{ end }}>{{ .Text }}</th>
+      {{- end }}
+    </tr>
+    {{- end }}
+  </thead>
+  <tbody>
+    {{- range .TBody }}
+    <tr>
+      {{- range . }}
+      <td{{ with .Alignment }}{{ printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}{{ end }}>{{ .Text }}</td>
+      {{- end }}
+    </tr>
+    {{- end }}
+  </tbody>
+</table></div>
