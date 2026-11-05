@@ -1,0 +1,15 @@
+{{- /* Markdown headings: Goldmark's auto id stays (the docs sidebar and
+     .Fragments.Headings rely on it), and every h2-h6 also ends in a "#"
+     anchor so each section has a URL a reader can copy. The anchor is kept
+     out of the accessibility tree and the tab order on purpose: a labelled
+     link inside a heading is read as part of the heading's name, and the
+     docs sidebar already lists the same fragments as real links. h1 is left
+     alone; the page title lives in the hero. The anchor is empty and gets its
+     "#" from CSS, so .Summary, the RSS feed and plainify'd JSON-LD
+     descriptions never pick up a stray "#". Mirrors popular-markdown.mjs /
+     package/index.mjs in the Astro repo (PARITY.md, "Heading anchors"). */ -}}
+<h{{ .Level }}{{ with .Anchor }} id="{{ . | safeURL }}"{{ end }}
+  {{- range $k, $v := .Attributes }}{{ if ne $k "id" }} {{ printf "%s=%q" $k $v | safeHTMLAttr }}{{ end }}{{ end }}>
+  {{- .Text -}}
+  {{- if and .Anchor (ge .Level 2) }}<a class="g-anchor" href="#{{ .Anchor | safeURL }}" aria-hidden="true" tabindex="-1"></a>{{ end -}}
+</h{{ .Level }}>
