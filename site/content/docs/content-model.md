@@ -103,7 +103,7 @@ Copy the organizers pattern: duplicate the `organizers` collection in `src/conte
 
 ## Docs pages (handbook / runbooks)
 
-Long-form pages with an auto-generated scroll-tracking table of contents from your `##` headings. Use the callout and checklist components inside.
+Long-form pages with an auto-generated scroll-tracking table of contents from your `##` headings. Use the callout and checklist components inside. Every `##` and deeper heading (here and in any markdown body) shows a `#` on hover that links straight to that section, so you can send someone to `/docs/cfp-guide/#review-process` rather than to the whole page.
 
 {{% fw "hugo" %}}
 Set `type = "docs"` in front matter; write callouts/checklists with the theme's shortcodes.

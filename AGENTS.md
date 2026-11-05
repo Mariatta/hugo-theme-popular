@@ -178,7 +178,8 @@ with one (the two repos share the content model).
 
 All three pass external URLs, `mailto:`, `tel:` and `#fragment` through
 untouched, so reaching for one is never wrong. Markdown bodies are covered by
-`_markup/render-link.html` and `_markup/render-image.html`. `image-alt.yml`
+`_markup/render-link.html` and `_markup/render-image.html`
+(`_markup/render-heading.html` adds the per-section `#` anchors). `image-alt.yml`
 builds a `/sub` site and fails on any internal `href`/`src` left at the root;
 the Astro twin has `withBase()`/`absoluteUrl()` for the same job (PARITY.md,
 "Subpath deployments").
