@@ -7,10 +7,10 @@
 {{- $events := (where (where site.RegularPages "Section" "events") "Date" ">=" $cutoff).ByDate -}}
 {{- partial "fold.html" (printf "BEGIN:VCALENDAR") -}}
 {{- partial "fold.html" "VERSION:2.0" -}}
-{{- partial "fold.html" (printf "PRODID:-//%s//Popular theme//EN" site.Title) -}}
+{{- partial "fold.html" (printf "PRODID:-//%s//Popular theme//EN" (partial "ics-escape.html" site.Title)) -}}
 {{- partial "fold.html" "CALSCALE:GREGORIAN" -}}
 {{- partial "fold.html" "METHOD:PUBLISH" -}}
-{{- partial "fold.html" (printf "X-WR-CALNAME:%s events" site.Title) -}}
+{{- partial "fold.html" (printf "X-WR-CALNAME:%s events" (partial "ics-escape.html" site.Title)) -}}
 {{- /* Subscription refresh hints (RFC 7986 + the Apple/Outlook legacy twin).
      Google Calendar ignores both and polls on its own schedule. */ -}}
 {{- partial "fold.html" "REFRESH-INTERVAL;VALUE=DURATION:PT12H" -}}
