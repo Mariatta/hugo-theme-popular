@@ -6,8 +6,7 @@
      Goldmark writes it, and wins over the left default in base.css
      (.g-prose table). Mirrors the table hook in popular-markdown.mjs /
      package/index.mjs in the Astro repo (PARITY.md, "Markdown tables"). */ -}}
-<div class="g-table-scroll">
-<table
+<div class="g-table-scroll"><table
   {{- range $k, $v := .Attributes }}{{ if $v }} {{ printf "%s=%q" $k $v | safeHTMLAttr }}{{ end }}{{ end }}>
   <thead>
     {{- range .THead }}
@@ -27,5 +26,4 @@
     </tr>
     {{- end }}
   </tbody>
-</table>
-</div>
+</table></div>
