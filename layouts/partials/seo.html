@@ -1,9 +1,14 @@
 {{- /* Basic SEO + Open Graph. Extend as needed. */ -}}
 {{- $desc := .Description | default .Summary | default site.Params.description -}}
 <meta name="description" content="{{ $desc | plainify | truncate 160 }}">
-<meta property="og:site_name" content="{{ site.Title }}">
+{{- /* With no site title (see the warning in head.html), og:site_name is left
+     out rather than written empty, and the home og:title falls back to the
+     tagline, the same way the home <title> does. The Astro twin does the same
+     in BaseLayout.astro. */}}
+{{ with site.Title }}<meta property="og:site_name" content="{{ . }}">
+{{ end -}}
 <meta property="og:locale" content="{{ replace (site.Language.Lang | default "en") "-" "_" }}">
-<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title | default site.Params.tagline }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $desc | plainify | truncate 200 }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
