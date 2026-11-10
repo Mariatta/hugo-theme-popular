@@ -12,7 +12,7 @@ lead = "Every knob the theme exposes. Hugo reads hugo.toml [params]; Astro reads
 
 `title`, `tagline`, `description`, `brandName` + `brandSub` (the two-line wordmark in the header), `logo`, `ogImage`, and `landAcknowledgement` (footer slot, leave empty to hide).
 
-In Hugo, `title` is a top-level key in `hugo.toml`, above `[params]`; everything else here goes under `[params]`. `title` names the site everywhere it is listed: the browser tab, link previews, the footer, the RSS feed and the calendar feed. `brandName` only sets the header wordmark, so a site with `brandName` and no `title` looks right in the header and is nameless everywhere else. The build warns when `title` is empty.
+In Hugo, `title` is a top-level key in `hugo.toml`, above `[params]`; everything else here goes under `[params]`. `title` names the site everywhere it is listed: the browser tab, link previews, the footer, the RSS feed and the calendar feed. `brandName` only sets the header wordmark, so a site with `brandName` and no `title` looks right in the header and is nameless everywhere else. The Hugo build warns when `title` is empty.
 
 {{% fw "hugo" %}}
 ```toml

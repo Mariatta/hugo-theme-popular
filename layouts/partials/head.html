@@ -11,8 +11,8 @@
      top-level key in hugo.toml, not one under [params], which is the easy
      mistake that leaves it empty; warn so the author finds out at build time.
      Hugo prints an identical warnf once, not once per page. The Astro twin
-     does the same in BaseLayout.astro. */ -}}
-{{- if not site.Title }}{{ warnf "popular: site title is empty. Set title = \"...\" at the top level of hugo.toml (not under [params]); it is used in the page title, og:site_name, the footer, RSS and the calendar feed." }}{{ end -}}
+     joins the same way in BaseLayout.astro (without the warning). */ -}}
+{{- if not site.Title }}{{ warnf "popular: site title is empty. Set title = \"...\" at the top level of your site config, hugo.toml (not under [params]); it is used in the page title, og:site_name, the footer, RSS and the calendar feed." }}{{ end -}}
 {{- $titleParts := cond .IsHome (slice site.Title site.Params.tagline) (slice .Title site.Title) -}}
 {{- $title := slice -}}
 {{- range $titleParts }}{{ with . }}{{ $title = $title | append (string .) }}{{ end }}{{ end -}}
