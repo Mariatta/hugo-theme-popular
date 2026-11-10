@@ -19,7 +19,7 @@ In Hugo, `title` is a top-level key in `hugo.toml`, above `[params]`; everything
 title = "Rocky Cove Aquarium Club"   # top level, not under [params]
 
 [params]
-  tagline = "A friendly coding meetup"
+  tagline = "Show and tell nights, aquascaping workshops, shrimp swaps"
   brandName = "Rocky Cove"
   brandSub = "Aquarium Club"
   logo = "images/logo.png"
@@ -31,7 +31,7 @@ title = "Rocky Cove Aquarium Club"   # top level, not under [params]
 ```ts
 export const SITE = {
   title: 'Rocky Cove Aquarium Club',
-  tagline: 'A friendly coding meetup',
+  tagline: 'Show and tell nights, aquascaping workshops, shrimp swaps',
   brandName: 'Rocky Cove',
   brandSub: 'Aquarium Club',
   logo: '/images/logo.png',
