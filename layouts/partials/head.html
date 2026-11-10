@@ -6,7 +6,17 @@
      twin's reviewers check for exactly this tag, and a theme should be
      identifiable from its own output either way. */ -}}
 {{ hugo.Generator }}
-<title>{{ if .IsHome }}{{ site.Title }}{{ if site.Params.tagline }}, {{ site.Params.tagline }}{{ end }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+{{- /* The home title joins whichever of title and tagline are set, so a
+     missing one never leaves a stray separator (", Tagline"). title is a
+     top-level key in hugo.toml, not one under [params], which is the easy
+     mistake that leaves it empty; warn so the author finds out at build time.
+     Hugo prints an identical warnf once, not once per page. The Astro twin
+     joins the same way in BaseLayout.astro (without the warning). */ -}}
+{{- if not site.Title }}{{ warnf "popular: site title is empty. Set title = \"...\" at the top level of your site config, hugo.toml (not under [params]); it is used in the page title, og:site_name, the footer, RSS and the calendar feed." }}{{ end -}}
+{{- $titleParts := cond .IsHome (slice site.Title site.Params.tagline) (slice .Title site.Title) -}}
+{{- $title := slice -}}
+{{- range $titleParts }}{{ with . }}{{ $title = $title | append (string .) }}{{ end }}{{ end -}}
+<title>{{ delimit $title (cond .IsHome ", " " · ") }}</title>
 
 {{ partial "seo.html" . }}
 
