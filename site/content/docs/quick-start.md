@@ -96,7 +96,7 @@ writes, you can also set yourself.
 python3 themes/popular/scripts/setup.py --dry-run  # interactive; Enter skips a question, shows the diff, writes nothing
 python3 themes/popular/scripts/setup.py            # apply
 ```
-It writes `hugo.toml`. Prefer to edit by hand? Everything lives under `[params]`; see the [configuration reference](/docs/configuration/).
+It writes `hugo.toml`. Prefer to edit by hand? The site name is Hugo's own top-level `title` key, above `[params]`; everything else the theme reads lives under `[params]`. See the [configuration reference](/docs/configuration/).
 {{% /fw %}}
 
 {{% fw "astro" %}}

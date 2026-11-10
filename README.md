@@ -147,7 +147,10 @@ font files with `params.customCSS` (a list of extra stylesheet URLs) or by editi
 
 ### Header, footer, socials, CTA
 
-All configured in `hugo.toml` under `[params]`:
+The site name is Hugo's top-level `title` key, above `[params]`, and it is what the browser tab,
+link previews, the footer, RSS and the calendar feed show. `brandName` only sets the header
+wordmark, so set `title` even when you set `brandName`. The rest is configured in `hugo.toml`
+under `[params]`:
 
 - `logo`, `brandName`, `brandSub`, `tagline`, `landAcknowledgement`
 - `[params.cta]`: the header button (`label`, `url`, `icon`)

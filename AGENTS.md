@@ -161,6 +161,9 @@ use it for every renderable component snippet) in `site/layouts/shortcodes/`.
   `html:root` override block. Design tokens live in `assets/css/tokens/`.
 - Footer: `[params.footer]` with `tagline`, optional `[params.footer.credit]`
   (`label`, `url`), and `[[params.footer.columns]]`.
+- Site name: Hugo's top-level `title`, not `params.title`. With only `brandName`
+  set, the header looks right but the page title, og:site_name, footer, RSS and
+  ICS feed are nameless; `head.html` warns at build time when `title` is empty.
 - TOML ordering gotcha: keys like `tagline` must come **before** any sub-table
   header like `[params.footer.credit]`, or they get captured by the sub-table.
 
