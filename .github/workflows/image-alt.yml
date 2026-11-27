@@ -143,3 +143,32 @@ jobs:
             grep -q 'events/calendar.ics' "$out/$page"
             grep -q 'Join our chat' "$out/$page"
           done
+
+      - name: Multi-day events
+        run: |
+          # A fixture event that started in the past and ends far in the
+          # future: it must count as upcoming, show its span, land in the feed
+          # as an all-day span, and list its talks undated first, then by day.
+          THEME="$(basename "$GITHUB_WORKSPACE")"
+          SRC=scripts/fixtures/multi-day-events
+          hugo --source "$SRC" \
+               --themesDir "$(realpath --relative-to="$SRC" "$GITHUB_WORKSPACE/..")" \
+               --theme "$THEME" \
+               --destination "$GITHUB_WORKSPACE/multi-day-out"
+          out="$GITHUB_WORKSPACE/multi-day-out"
+          grep -q 'Next event: Multi-day fixture' "$out/llms.txt"
+          if grep -q 'g-empty' "$out/events/index.html"; then
+            echo "::error::the in-progress multi-day event is not listed as upcoming"; exit 1
+          fi
+          grep -q '"endDate":"2099-12-31"' "$out/events/in-progress/index.html"
+          grep -q 'DTSTART;VALUE=DATE:20200101' "$out/events/calendar.ics"
+          grep -q 'DTEND;VALUE=DATE:21000101' "$out/events/calendar.ics"
+          python3 scripts/check-ics.py "$out"
+          python3 scripts/check-jsonld.py "$out"
+          python3 - "$out/events/in-progress/index.html" <<'PY'
+          import sys
+          html = open(sys.argv[1], encoding="utf-8").read()
+          order = [html.index(t) for t in ("Undated session", "First-day session", "Second-day session")]
+          assert order == sorted(order), f"talks out of order: {order}"
+          assert html.count('class="g-schedule-day"') == 2, "expected one heading per scheduled day"
+          PY

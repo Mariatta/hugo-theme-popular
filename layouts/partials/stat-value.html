@@ -6,7 +6,7 @@
      Any other value passes through unchanged. */ -}}
 {{- $value := . -}}
 {{- if eq $value "@pastEventCount" -}}
-  {{- $n := len (where (where site.RegularPages "Section" "events") "Date" "<" now) -}}
+  {{- $n := len (partial "events-split.html" (where site.RegularPages "Section" "events")).past -}}
   {{- $value = cond (ge $n 10) (printf "%d+" (mul (div $n 10) 10)) (printf "%d" $n) -}}
 {{- else if hasPrefix $value "@count:" -}}
   {{- $rest := strings.TrimPrefix "@count:" $value -}}

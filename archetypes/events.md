@@ -2,6 +2,9 @@
 title = "{{ replace .Name "-" " " | title }}"
 # The event's date & time. Upcoming vs past is decided by this.
 date = {{ .Date }}
+# Runs over several days? Set the last day (inclusive). The event then shows
+# its whole span and stays under "Upcoming" through the end of that day.
+# endDate = 2026-06-07
 description = ""
 image = ""
 tags = []

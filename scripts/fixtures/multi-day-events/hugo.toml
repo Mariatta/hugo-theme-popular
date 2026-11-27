@@ -1,0 +1,33 @@
+# Fixture site for the multi-day events build-and-grep test (PARITY.md,
+# "Multi-day events"). Its one event started in the past and ends far in the
+# future, so it is always in progress: it must list as upcoming, not past.
+# Its talks are written out of order with one undated, to pin the schedule
+# order. Built and grepped by .github/workflows/image-alt.yml.
+baseURL = "https://example.com/"
+title = "Multi-day Fixture"
+theme = "popular"
+buildFuture = true
+
+[outputs]
+  home = ["HTML", "LLMS"]
+
+[params]
+  brandName = "Multi-day"
+  brandSub = "Fixture"
+  logo = "images/logo.png"
+  ogImage = "images/hero.png"
+
+  [params.footer]
+    tagline = "Fixture footer"
+    [params.footer.credit]
+      label = "Popular. A Hugo theme by Mariatta."
+      url = "https://popular.mariatta.ca/"
+
+[mediaTypes."text/calendar"]
+  suffixes = ["ics"]
+
+[outputFormats.Calendar]
+  mediaType = "text/calendar"
+  baseName = "calendar"
+  isPlainText = true
+  noUgly = true

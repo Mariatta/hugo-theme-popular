@@ -10,7 +10,7 @@
   <header class="g-pagehero">
     <div class="g-container" style="padding-block:var(--space-6) var(--space-5)">
       <div style="margin-bottom:1rem"><a href="{{ "events/" | relLangURL }}" style="display:inline-flex;gap:.4rem;align-items:center;font-size:var(--text-sm);font-weight:var(--weight-medium)"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ i18n "allEvents" }}</a></div>
-      <span class="g-eyebrow">{{ .Date | time.Format ":date_full" }}{{ with .Params.time }} · {{ . }}{{ end }}</span>
+      <span class="g-eyebrow">{{ partial "event-date-text.html" (dict "page" . "style" "full") }}{{ with .Params.time }} · {{ . }}{{ end }}</span>
       <h1 style="margin:.5rem 0 0">{{ .Title }}{{ if eq .Params.cancelled true }} <span class="g-badge g-badge--danger" style="vertical-align:middle;font-size:var(--text-sm)">{{ i18n "eventCancelled" }}</span>{{ else if eq .Params.planning true }} <span class="g-badge g-badge--soft" style="vertical-align:middle;font-size:var(--text-sm)">{{ i18n "eventPlanning" }}</span>{{ end }}</h1>
     </div>
   </header>
@@ -47,11 +47,35 @@
          render recording/slides links in the meta block above. */ -}}
     {{ with .Params.talks }}
       <h2 style="font-size:var(--text-xl);margin:var(--space-5) 0 1rem">{{ i18n "talks" }}</h2>
+      {{- /* Multi-day schedule: a talk with a `date` is listed under that day,
+           days in order and talks in the order they were written; talks with
+           no `date` come first, above the day headings. The day must fall
+           inside the event's dates, so a typo fails the build instead of
+           quietly misfiling the talk. Any other event keeps the order the
+           talks were written in. */ -}}
+      {{- $dates := partial "event-dates.html" $ -}}
+      {{- $dated := slice -}}{{- $undated := slice -}}
+      {{- range . -}}
+        {{- if .date -}}
+          {{- $day := (time.AsTime .date).Format "2006-01-02" -}}
+          {{- if or (lt $day ($dates.start.Format "2006-01-02")) (gt $day ($dates.end.Format "2006-01-02")) }}{{ errorf "%s: talk %q is on %s, outside the event's dates (%s to %s)" $.File.Path .title $day ($dates.start.Format "2006-01-02") ($dates.end.Format "2006-01-02") }}{{ end -}}
+          {{- $dated = $dated | append (merge . (dict "scheduleDay" $day)) -}}
+        {{- else }}{{ $undated = $undated | append . }}{{ end -}}
+      {{- end -}}
+      {{- $scheduled := and $dates.multi (gt (len $dated) 0) -}}
+      {{- $talks := . -}}
+      {{- if $scheduled }}{{ $talks = $undated | append (sort $dated "scheduleDay") }}{{ end -}}
+      {{- $lastDay := "" -}}
       <div class="g-stack" style="gap:var(--space-3)">
-        {{ range . }}
+        {{ range $talks }}
+        {{- if and $scheduled .scheduleDay -}}
+          {{- if ne .scheduleDay $lastDay }}<h3 class="g-schedule-day">{{ time.AsTime .scheduleDay | time.Format ":date_full" }}</h3>{{ end -}}
+          {{- $lastDay = .scheduleDay -}}
+        {{- end -}}
         {{- $sp := "" -}}
         {{- if .speaker }}{{ $sp = site.GetPage (print "/speakers/" .speaker) }}{{ if not $sp }}{{ warnf "%s: talk speaker %q matches no speaker page" $.File.Path .speaker }}{{ end }}{{ end -}}
         <div class="g-talk">
+          {{ with .time }}<div class="g-talk__time"><i class="fa-solid fa-clock" aria-hidden="true"></i> {{ . }}</div>{{ end }}
           <div class="g-talk__title">{{ .title }}</div>
           {{ if $sp }}<div class="g-talk__by"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> <a href="{{ $sp.RelPermalink }}">{{ $sp.Title }}</a></div>{{ end }}
           {{ if or .recording .slides }}

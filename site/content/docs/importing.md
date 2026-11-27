@@ -47,7 +47,7 @@ python3 scripts/spreadsheet-import.py --make-sample community.xlsx
 python3 scripts/spreadsheet-import.py --xlsx community.xlsx --site .
 ```
 
-A ready-made sample also ships at `scripts/sample-community.xlsx`. The **Events tab cross-references the other tabs by name**: a Venue cell matching a Venues row becomes a `venueRef` (inheriting the venue's address and arrival notes), and comma-separated speaker names become `speakers` references; names that match nothing fall back to the plain-text fields. Check-in instructions, arrival notes, RSVP links and tags are all columns.
+A ready-made sample also ships at `scripts/sample-community.xlsx`. The **Events tab cross-references the other tabs by name**: a Venue cell matching a Venues row becomes a `venueRef` (inheriting the venue's address and arrival notes), and comma-separated speaker names become `speakers` references; names that match nothing fall back to the plain-text fields. Check-in instructions, arrival notes, RSVP links and tags are all columns, and an optional **End Date** column makes an event span several days.
 
 Prefer CSV? Export each tab as `<tab>.csv` into a folder and run with `--csv-dir folder/`.
 

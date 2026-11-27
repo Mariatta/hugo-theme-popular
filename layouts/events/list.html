@@ -1,8 +1,9 @@
 {{ define "main" }}
 {{ partial "page-hero.html" (dict "eyebrow" (.Params.eyebrow | default (i18n "eyebrowEvents")) "title" .Title "lead" .Params.lead) }}
 {{- $all := .Pages -}}
-{{- $upcoming := (where $all "Date" ">=" now).ByDate -}}
-{{- $past := (where $all "Date" "<" now).ByDate.Reverse -}}
+{{- $split := partial "events-split.html" $all -}}
+{{- $upcoming := $split.upcoming -}}
+{{- $past := $split.past -}}
 
 <section class="g-bg-white g-section">
   <div class="g-container">
