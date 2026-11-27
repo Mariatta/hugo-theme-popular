@@ -11,7 +11,16 @@
   {{- $e := . -}}
   {{- $tags := .Params.tags | default slice -}}
   {{- if .Params.talks -}}
+    {{- /* Within an event, the order of the event page: on a multi-day event
+         talks with no `date` first, then by day, written order within a day;
+         on any other event the order they were written in. */ -}}
+    {{- $dated := slice -}}{{- $undated := slice -}}
     {{- range .Params.talks -}}
+      {{- if .date }}{{ $dated = $dated | append (merge . (dict "scheduleDay" ((time.AsTime .date).Format "2006-01-02"))) }}{{ else }}{{ $undated = $undated | append . }}{{ end -}}
+    {{- end -}}
+    {{- $talks := .Params.talks -}}
+    {{- if and $dated (partial "event-dates.html" $e).multi }}{{ $talks = $undated | append (sort $dated "scheduleDay") }}{{ end -}}
+    {{- range $talks -}}
       {{- $rows = $rows | append (dict "title" .title "speaker" .speaker "recording" .recording "slides" .slides "day" .date "event" $e "tags" $tags "simple" false) -}}
     {{- end -}}
   {{- else if or .Params.recording .Params.slides -}}

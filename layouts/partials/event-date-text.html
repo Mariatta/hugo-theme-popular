@@ -14,7 +14,16 @@
 {{- else if eq .style "day" -}}
   {{- $text = $start | time.Format "Jan 2" -}}
   {{- if $dates.multi -}}
-    {{- $text = printf "%s – %s" $text ($end | time.Format (cond (eq ($start.Format "200601") ($end.Format "200601")) "2" "Jan 2")) -}}
+    {{- /* No-break spaces keep the narrow date box from stranding the end
+         day: "Jan" may sit over "16 – 17", "Apr 30 –" over "May 2". */ -}}
+    {{- /* A word joiner goes with each one: a line may otherwise still break
+         between an en dash and a no-break space. */ -}}
+    {{- $nb := "\u2060\u00a0" -}}
+    {{- if eq ($start.Format "200601") ($end.Format "200601") -}}
+      {{- $text = printf "%s%s–%s%s" $text $nb $nb ($end | time.Format "2") -}}
+    {{- else -}}
+      {{- $text = printf "%s%s– %s" (replace $text " " $nb) $nb (replace ($end | time.Format "Jan 2") " " $nb) -}}
+    {{- end -}}
   {{- end -}}
 {{- else -}}
   {{- $text = $end | time.Format ":date_full" -}}
