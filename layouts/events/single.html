@@ -57,7 +57,9 @@
       {{- $dated := slice -}}{{- $undated := slice -}}
       {{- range . -}}
         {{- if .date -}}
-          {{- $day := (time.AsTime .date).Format "2006-01-02" -}}
+          {{- $parsed := try (time.AsTime .date) -}}
+          {{- if $parsed.Err }}{{ errorf "%s: talk %q has date %q, which is not a date; write it like 2027-01-17" $.File.Path .title (string .date) }}{{ end -}}
+          {{- $day := ($parsed.Value | default $dates.start).Format "2006-01-02" -}}
           {{- if or (lt $day ($dates.start.Format "2006-01-02")) (gt $day ($dates.end.Format "2006-01-02")) }}{{ errorf "%s: talk %q is on %s, outside the event's dates (%s to %s)" $.File.Path .title $day ($dates.start.Format "2006-01-02") ($dates.end.Format "2006-01-02") }}{{ end -}}
           {{- $dated = $dated | append (merge . (dict "scheduleDay" $day)) -}}
         {{- else }}{{ $undated = $undated | append . }}{{ end -}}

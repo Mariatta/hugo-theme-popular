@@ -1,7 +1,9 @@
 +++
 title = "{{ replace .Name "-" " " | title }}"
-# The event's date & time. Upcoming vs past is decided by this.
-date = {{ .Date }}
+# The event's date & time. Upcoming vs past is decided by this. Write it
+# without a UTC offset (no "-07:00" or "Z" on the end), so every page and the
+# calendar feed agree on the day.
+date = {{ now.Format "2006-01-02T15:04:05" }}
 # Runs over several days? Set the last day (inclusive). The event then shows
 # its whole span and stays under "Upcoming" through the end of that day.
 # endDate = 2026-06-07

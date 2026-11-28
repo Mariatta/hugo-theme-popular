@@ -14,14 +14,19 @@
     {{- /* Within an event, the order of the event page: on a multi-day event
          talks with no `date` first, then by day, written order within a day;
          on any other event the order they were written in. */ -}}
-    {{- $dated := slice -}}{{- $undated := slice -}}
+    {{- $dated := slice -}}{{- $undated := slice -}}{{- $written := slice -}}
     {{- range .Params.talks -}}
-      {{- if .date }}{{ $dated = $dated | append (merge . (dict "scheduleDay" ((time.AsTime .date).Format "2006-01-02"))) }}{{ else }}{{ $undated = $undated | append . }}{{ end -}}
+      {{- if .date -}}
+        {{- $parsed := try (time.AsTime .date) -}}
+        {{- if $parsed.Err }}{{ errorf "%s: talk %q has date %q, which is not a date; write it like 2027-01-17" $e.File.Path .title (string .date) }}{{ end -}}
+        {{- $talk := merge . (dict "scheduleDay" (($parsed.Value | default $e.Date).Format "2006-01-02")) -}}
+        {{- $dated = $dated | append $talk -}}{{- $written = $written | append $talk -}}
+      {{- else }}{{ $undated = $undated | append . }}{{ $written = $written | append . }}{{ end -}}
     {{- end -}}
-    {{- $talks := .Params.talks -}}
+    {{- $talks := $written -}}
     {{- if and $dated (partial "event-dates.html" $e).multi }}{{ $talks = $undated | append (sort $dated "scheduleDay") }}{{ end -}}
     {{- range $talks -}}
-      {{- $rows = $rows | append (dict "title" .title "speaker" .speaker "recording" .recording "slides" .slides "day" .date "event" $e "tags" $tags "simple" false) -}}
+      {{- $rows = $rows | append (dict "title" .title "speaker" .speaker "recording" .recording "slides" .slides "day" .scheduleDay "event" $e "tags" $tags "simple" false) -}}
     {{- end -}}
   {{- else if or .Params.recording .Params.slides -}}
     {{- $spslug := "" -}}{{- with .Params.speakers -}}{{ $spslug = index . 0 }}{{- end -}}

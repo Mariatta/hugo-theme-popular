@@ -49,7 +49,9 @@ guestAuthors:
 
 `title`, `date` (the event's start, decides upcoming vs past automatically), `description`, `image`, `tags[]`, `time`, `rsvp`, and `venueWanted = true` for a "Venue wanted" badge.
 
-**More than one day:** add `endDate`, the last day (inclusive), for a weekend away, a camp or a conference. The event then shows its whole span ("Sat – Sun" over "Jun 6 – 7" in the events list), stays under Upcoming through the end of the last day, and lands in subscribers' calendars as an all-day block across those days. `time` is still shown as you wrote it, so say what it means: "9:00 AM – 4:00 PM each day". To lay out what happens on which day, give each entry in `talks` its own `date` and `time`, and the event page groups them under a heading per day, with any undated entries first. A `date` outside the event fails the build, so a typo cannot quietly misfile a session. Not running talks? Rename the heading with the `talks` string: "Sessions", "Drives", "Workshops".
+Write `date` and `endDate` without a UTC offset: `2027-01-16` or `2027-01-16T18:00:00`, not `2027-01-16T18:00:00-07:00`. With an offset the day can shift by one, and the Hugo and Astro themes then show different days.
+
+**More than one day:** add `endDate`, the last day (inclusive), for a weekend away, a camp or a conference. The event then shows its whole span ("Sat – Sun" over "Jun 6 – 7" in the events list), stays under Upcoming through the end of the last day (counted in UTC, so west of UTC it moves to Past on the evening of the last day; in Hugo, set `timeZone` in `hugo.toml` to count in your own), and lands in subscribers' calendars as an all-day block across those days. `time` is still shown as you wrote it, so say what it means: "9:00 AM – 4:00 PM each day". To lay out what happens on which day, give each entry in `talks` its own `date` and `time`, and the event page groups them under a heading per day, with any undated entries first. A `date` outside the event fails the build, so a typo cannot quietly misfile a session. Not running talks? Rename the heading with the `talks` string: "Sessions", "Drives", "Workshops".
 
 {{% fw "hugo" %}}
 ```toml
