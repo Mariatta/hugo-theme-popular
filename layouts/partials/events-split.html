@@ -1,0 +1,11 @@
+{{- /* Split event pages into upcoming (soonest first) and past (newest first).
+     Context = a collection of event pages. A one-day event is past once its
+     `date` has passed. A multi-day event stays upcoming through the end of
+     its last day (`endDate`), so it does not drop into "past" partway through
+     the weekend. Returns (dict "upcoming" Pages "past" Pages). */ -}}
+{{- $past := where . "Date" "<" now -}}
+{{- range $past -}}
+  {{- $dates := partial "event-dates.html" . -}}
+  {{- if and $dates.multi (gt ($dates.end.AddDate 0 0 1) now) }}{{ $past = $past | complement (slice .) }}{{ end -}}
+{{- end -}}
+{{- return (dict "upcoming" (. | complement $past).ByDate "past" $past.ByDate.Reverse) -}}

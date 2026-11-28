@@ -3,13 +3,13 @@
      (see the theme's hugo.toml). Regenerated every build so the next-event
      line stays true. */ -}}
 {{- $chat := "" -}}{{- with site.Params.community }}{{ $chat = .chat }}{{ end -}}
-{{- $events := sort (where (where site.RegularPages "Section" "events") "Date" ">=" now) "Date" "asc" -}}
+{{- $events := (partial "events-split.html" (where site.RegularPages "Section" "events")).upcoming -}}
 {{- $next := index $events 0 -}}
 # {{ site.Title }}
 {{ with site.Params.description }}
 {{ . }}
 {{ end }}
-{{ if $next }}Next event: {{ $next.Title }} on {{ $next.Date | time.Format ":date_full" }}{{ with $next.Params.time }}, {{ . }}{{ end }} ({{ $next.Permalink }}){{ else }}No upcoming events are scheduled right now.{{ end }}
+{{ if $next }}Next event: {{ $next.Title }} on {{ partial "event-date-text.html" (dict "page" $next "style" "full") }}{{ with $next.Params.time }}, {{ . }}{{ end }} ({{ $next.Permalink }}){{ else }}No upcoming events are scheduled right now.{{ end }}
 {{ with $chat }}
 Join the community chat: {{ .url }}
 {{ end }}

@@ -49,6 +49,43 @@ guestAuthors:
 
 `title`, `date` (the event's start, decides upcoming vs past automatically), `description`, `image`, `tags[]`, `time`, `rsvp`, and `venueWanted = true` for a "Venue wanted" badge.
 
+Write `date` and `endDate` without a UTC offset: `2027-01-16` or `2027-01-16T18:00:00`, not `2027-01-16T18:00:00-07:00`. With an offset the day can shift by one, and the Hugo and Astro themes then show different days.
+
+**More than one day:** add `endDate`, the last day (inclusive), for a weekend away, a camp or a conference. The event then shows its whole span ("Sat – Sun" over "Jun 6 – 7" in the events list), stays under Upcoming through the end of the last day (counted in UTC, so west of UTC it moves to Past on the evening of the last day; in Hugo, set `timeZone` in `hugo.toml` to count in your own), and lands in subscribers' calendars as an all-day block across those days. `time` is still shown as you wrote it, so say what it means: "9:00 AM – 4:00 PM each day". To lay out what happens on which day, give each entry in `talks` its own `date` and `time`, and the event page groups them under a heading per day, with any undated entries first. A `date` outside the event fails the build, so a typo cannot quietly misfile a session. Not running talks? Rename the heading with the `talks` string: "Sessions", "Drives", "Workshops".
+
+{{% fw "hugo" %}}
+```toml
+date = 2027-01-16
+endDate = 2027-01-17
+time = "9:00 AM – 4:00 PM each day"
+
+[[talks]]
+title = "Guided low-tide walk"
+date = 2027-01-16
+time = "9:30 AM"
+
+[[talks]]
+title = "Sunrise sea star count"
+date = 2027-01-17
+time = "7:30 AM"
+```
+{{% /fw %}}
+
+{{% fw "astro" %}}
+```yaml
+date: 2027-01-16
+endDate: 2027-01-17
+time: "9:00 AM – 4:00 PM each day"
+talks:
+  - title: "Guided low-tide walk"
+    date: 2027-01-16
+    time: "9:30 AM"
+  - title: "Sunrise sea star count"
+    date: 2027-01-17
+    time: "7:30 AM"
+```
+{{% /fw %}}
+
 **State:** an event row carries one badge. `cancelled = true` shows "Cancelled", `planning = true` shows "Planning", a missing venue shows "Venue wanted", and everything else shows "Confirmed", in that order. Use `planning` for an event that is on the calendar but not nailed down yet: it also hides the RSVP button everywhere, including the home page, so you can fill `rsvp` in ahead of time and have it appear the moment you drop the flag.
 
 **Where:** either `venueRef = "slug"` pointing at a [venue page](#venues) (inherits its name, address and arrival notes), or the flat `venue` + `address` fields for a one-off location.

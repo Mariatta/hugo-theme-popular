@@ -1,10 +1,15 @@
 {{- /* iCalendar feed of events: upcoming plus the last 90 days. Every content
      line is CRLF-terminated and folded at 75 octets by fold.html; text values
      are escaped by ics-escape.html. DTSTART reuses parse-time.html so the feed
-     and the Event JSON-LD never disagree about start times. */ -}}
+     and the Event JSON-LD never disagree about a one-day event's start time.
+     A multi-day event is an all-day span here, while its JSON-LD startDate
+     keeps the first day's start time. */ -}}
 {{- $dur := 120 -}}{{- with site.Params.events }}{{ with .defaultDurationMinutes }}{{ $dur = . }}{{ end }}{{ end -}}
 {{- $cutoff := now.AddDate 0 0 -90 -}}
-{{- $events := (where (where site.RegularPages "Section" "events") "Date" ">=" $cutoff).ByDate -}}
+{{- $events := slice -}}
+{{- range (where site.RegularPages "Section" "events").ByDate -}}
+{{- if ge (partial "event-dates.html" .).end $cutoff }}{{ $events = $events | append . }}{{ end -}}
+{{- end -}}
 {{- partial "fold.html" (printf "BEGIN:VCALENDAR") -}}
 {{- partial "fold.html" "VERSION:2.0" -}}
 {{- partial "fold.html" (printf "PRODID:-//%s//Popular theme//EN" (partial "ics-escape.html" site.Title)) -}}
@@ -20,7 +25,14 @@
 {{- partial "fold.html" "BEGIN:VEVENT" -}}
 {{- partial "fold.html" (printf "UID:%s" .Permalink) -}}
 {{- partial "fold.html" (printf "DTSTAMP:%s" (now.UTC.Format "20060102T150405Z")) -}}
-{{- if $hm -}}
+{{- $dates := partial "event-dates.html" . -}}
+{{- if $dates.multi -}}
+{{- /* Multi-day: an all-day span. DTEND is exclusive, so the day after the
+     last day. The `time` text is not applied: it describes each day, not one
+     continuous block from the first morning to the last evening. */ -}}
+{{- partial "fold.html" (printf "DTSTART;VALUE=DATE:%s" (.Date.Format "20060102")) -}}
+{{- partial "fold.html" (printf "DTEND;VALUE=DATE:%s" (($dates.end.AddDate 0 0 1).Format "20060102")) -}}
+{{- else if $hm -}}
 {{- $start := printf "%s%s00" (.Date.Format "20060102T") (replaceRE ":" "" $hm) -}}
 {{- partial "fold.html" (printf "DTSTART:%s" $start) -}}
 {{- /* DTEND = midnight + (parsed minutes + duration), version-safe Duration. */ -}}

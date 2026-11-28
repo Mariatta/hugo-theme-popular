@@ -11,8 +11,22 @@
   {{- $e := . -}}
   {{- $tags := .Params.tags | default slice -}}
   {{- if .Params.talks -}}
+    {{- /* Within an event, the order of the event page: on a multi-day event
+         talks with no `date` first, then by day, written order within a day;
+         on any other event the order they were written in. */ -}}
+    {{- $dated := slice -}}{{- $undated := slice -}}{{- $written := slice -}}
     {{- range .Params.talks -}}
-      {{- $rows = $rows | append (dict "title" .title "speaker" .speaker "recording" .recording "slides" .slides "event" $e "tags" $tags "simple" false) -}}
+      {{- if .date -}}
+        {{- $parsed := try (time.AsTime .date) -}}
+        {{- if $parsed.Err }}{{ errorf "%s: talk %q has date %q, which is not a date; write it like 2027-01-17" $e.File.Path .title (string .date) }}{{ end -}}
+        {{- $talk := merge . (dict "scheduleDay" (($parsed.Value | default $e.Date).Format "2006-01-02")) -}}
+        {{- $dated = $dated | append $talk -}}{{- $written = $written | append $talk -}}
+      {{- else }}{{ $undated = $undated | append . }}{{ $written = $written | append . }}{{ end -}}
+    {{- end -}}
+    {{- $talks := $written -}}
+    {{- if and $dated (partial "event-dates.html" $e).multi }}{{ $talks = $undated | append (sort $dated "scheduleDay") }}{{ end -}}
+    {{- range $talks -}}
+      {{- $rows = $rows | append (dict "title" .title "speaker" .speaker "recording" .recording "slides" .slides "day" .scheduleDay "event" $e "tags" $tags "simple" false) -}}
     {{- end -}}
   {{- else if or .Params.recording .Params.slides -}}
     {{- $spslug := "" -}}{{- with .Params.speakers -}}{{ $spslug = index . 0 }}{{- end -}}
@@ -39,7 +53,7 @@
       <div class="g-talk" data-tags="{{ delimit .tags "," }}">
         <div class="g-talk__title">{{ .title }}</div>
         {{ with $spname }}<div class="g-talk__by"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> {{ if $sp }}<a href="{{ $sp.RelPermalink }}">{{ . }}</a>{{ else }}{{ . }}{{ end }}</div>{{ end }}
-        <div class="g-talk__event"><i class="fa-solid fa-calendar-day" aria-hidden="true"></i> <a href="{{ .event.RelPermalink }}">{{ .event.Title }}</a> · {{ .event.Date | time.Format ":date_medium" }}</div>
+        <div class="g-talk__event"><i class="fa-solid fa-calendar-day" aria-hidden="true"></i> <a href="{{ .event.RelPermalink }}">{{ .event.Title }}</a> · {{ (cond (not .day) .event.Date (time.AsTime (.day | default .event.Date))) | time.Format ":date_medium" }}</div>
         {{ if or .recording .slides }}
         <div class="g-row" style="gap:var(--space-2)">
           {{ with .recording }}<a class="g-btn g-btn--sm g-btn--outline" href="{{ partial "rel-href.html" . }}" rel="noopener" target="_blank"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> {{ i18n "watchRecording" }}</a>{{ end }}

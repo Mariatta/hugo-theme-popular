@@ -15,8 +15,8 @@
 {{- if .Params.talks }}{{ range .Params.talks }}{{ if .recording }}{{ $hasRecording = true }}{{ end }}{{ end }}{{ else }}{{ if .Params.recording }}{{ $hasRecording = true }}{{ end }}{{ end -}}
 <div class="g-event">
   <div class="g-event__date">
-    <span class="g-event__dow">{{ .Date | time.Format "Mon" }}</span>
-    <span class="g-event__day">{{ .Date | time.Format "Jan 2" }}</span>
+    <span class="g-event__dow">{{ partial "event-date-text.html" (dict "page" . "style" "dow") }}</span>
+    <span class="g-event__day">{{ partial "event-date-text.html" (dict "page" . "style" "day") }}</span>
     {{ with .Params.time }}<span class="g-event__time">{{ . }}</span>{{ end }}
   </div>
   <div class="g-event__body">

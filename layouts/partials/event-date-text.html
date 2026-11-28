@@ -1,0 +1,34 @@
+{{- /* An event's date as text, as a span for a multi-day event.
+     Call with (dict "page" <event page> "style" "full" | "dow" | "day").
+       full  Saturday, June 6, 2026   /  Saturday, June 6, 2026 – Sunday, June 7, 2026
+       dow   Sat                      /  Sat – Sun
+       day   Jun 6                    /  Jun 6 – 7  (Apr 30 – May 2 across months)
+     "full" writes both ends with :date_full, so the word order follows the
+     site language; the row styles are the theme's existing short layouts. */ -}}
+{{- $dates := partial "event-dates.html" .page -}}
+{{- $start := $dates.start -}}{{- $end := $dates.end -}}
+{{- $text := "" -}}
+{{- if eq .style "dow" -}}
+  {{- $text = $start | time.Format "Mon" -}}
+  {{- if $dates.multi }}{{ $text = printf "%s – %s" $text ($end | time.Format "Mon") }}{{ end -}}
+{{- else if eq .style "day" -}}
+  {{- $text = $start | time.Format "Jan 2" -}}
+  {{- if $dates.multi -}}
+    {{- /* No-break spaces keep the narrow date box from stranding the end
+         day: "Jan" may sit over "16 – 17", "Apr 30 –" over "May 2". */ -}}
+    {{- /* A word joiner goes with each one: a line may otherwise still break
+         between an en dash and a no-break space. */ -}}
+    {{- $nb := "\u2060\u00a0" -}}
+    {{- if eq ($start.Format "200601") ($end.Format "200601") -}}
+      {{- $text = printf "%s%s–%s%s" $text $nb $nb ($end | time.Format "2") -}}
+    {{- else -}}
+      {{- $text = printf "%s%s– %s" (replace $text " " $nb) $nb (replace ($end | time.Format "Jan 2") " " $nb) -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $text = $end | time.Format ":date_full" -}}
+  {{- if $dates.multi -}}
+    {{- $text = printf "%s – %s" ($start | time.Format ":date_full") $text -}}
+  {{- end -}}
+{{- end -}}
+{{- return $text -}}

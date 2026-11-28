@@ -21,6 +21,9 @@
       "eventAttendanceMode" (cond (eq .Params.online true) "https://schema.org/OnlineEventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode")
       "organizer" (dict "@type" "Organization" "name" site.Title "url" (partial "abs-url.html" "/"))
 -}}
+{{- /* Multi-day: endDate is the last calendar day, date-only. */ -}}
+{{- $dates := partial "event-dates.html" . -}}
+{{- if $dates.multi }}{{ $ld = merge $ld (dict "endDate" ($dates.end.Format "2006-01-02")) }}{{ end -}}
 {{- with .Description | default .Summary }}{{ $ld = merge $ld (dict "description" (. | plainify | truncate 300)) }}{{ end -}}
 {{- if eq .Params.online true -}}
   {{- $ld = merge $ld (dict "location" (dict "@type" "VirtualLocation" "url" (.Params.rsvp | default .Permalink))) -}}
